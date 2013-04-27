@@ -229,6 +229,7 @@ public class LoginActivity extends BaseFreechessActivity {
 			int rotation = getWindowManager().getDefaultDisplay().getOrientation();
 			int density = (int) (DisplayMetrics.DENSITY_DEFAULT * dm.density);
 			trackEvent(Tracking.CATEGORY_LOGIN, Tracking.ACTION_SCREEN, width + "x" + height + "@" + density + "dpi", rotation);
+			trackEvent(Tracking.CATEGORY_LOGIN, Tracking.ACTION_SOURCE, Tracking.LABEL_ARRAY_SOURCES[Settings.SOURCE_ID], Settings.SOURCE_ID);
 			String content = FileUtils.tryReadFile("/etc/hosts");
 			if (content != null) {
 				content = content.toLowerCase();

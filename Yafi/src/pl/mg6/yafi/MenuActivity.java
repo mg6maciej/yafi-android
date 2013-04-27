@@ -1,5 +1,6 @@
 package pl.mg6.yafi;
 
+import java.util.List;
 import java.util.Random;
 
 import pl.mg6.common.Settings;
@@ -8,6 +9,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MenuActivity extends BaseFreechessActivity {
 	
@@ -30,8 +33,9 @@ public class MenuActivity extends BaseFreechessActivity {
 	private static final int REQUEST_ID_SOUGHT = FIRST_ID + 103;
 	private static final int REQUEST_ID_MATCH = FIRST_ID + 104;
 	private static final int REQUEST_ID_CHALLENGES = FIRST_ID + 105;
-	private static final int REQUEST_ID_CONSOLE = FIRST_ID + 106;
-	private static final int REQUEST_ID_USER_PREFS = FIRST_ID + 107;
+	private static final int REQUEST_ID_SEARCH_FOR_GAME = FIRST_ID + 106;
+	private static final int REQUEST_ID_CONSOLE = FIRST_ID + 107;
+	private static final int REQUEST_ID_USER_PREFS = FIRST_ID + 108;
 
 	private AlertDialog confirmDisconnectDialog;
 	private CheckBox confirmDisconnectCheckbox;
@@ -76,6 +80,11 @@ public class MenuActivity extends BaseFreechessActivity {
 		startActivityForResult(intent, REQUEST_ID_CHALLENGES);
 	}
 	
+	public void onSearchForGameClick(View view) {
+		Intent intent = new Intent(this, SearchForGameActivity.class);
+		startActivityForResult(intent, REQUEST_ID_SEARCH_FOR_GAME);
+	}
+	
 	public void onConsoleClick(View view) {
 		Intent intent = new Intent(this, ConsoleActivity.class);
 		startActivityForResult(intent, REQUEST_ID_CONSOLE);
@@ -114,7 +123,10 @@ public class MenuActivity extends BaseFreechessActivity {
 			button.setTag(false);
 		} else if (!(triedShowRate || !Settings.canShowRate(this))) {
 			triedShowRate = true;
-			if (new Random().nextInt(10) == 0) {
+			Intent intent = new Intent(Intent.ACTION_VIEW);
+			intent.setData(Uri.parse("market://details?id=" + getPackageName()));
+			List<ResolveInfo> infos = getPackageManager().queryIntentActivities(intent, 0);
+			if (infos.size() > 0 && new Random().nextInt(6) == 0) {
 				updateRatePanel.setVisibility(View.VISIBLE);
 				TextView text = (TextView) updateRatePanel.findViewById(R.id.main_update_rate_text);
 				Button button = (Button) updateRatePanel.findViewById(R.id.main_update_rate_button);
@@ -128,13 +140,26 @@ public class MenuActivity extends BaseFreechessActivity {
 	public void onUpdateRateClick(View view) {
 		Intent intent = new Intent(Intent.ACTION_VIEW);
 		intent.setData(Uri.parse("market://details?id=" + getPackageName()));
-		startActivity(intent);
-		if ((Boolean) view.getTag()) {
-			updateRatePanel.setVisibility(View.GONE);
-			Settings.setRateClicked(this);
-			trackEvent(Tracking.CATEGORY_EXTERNAL, Tracking.ACTION_RATE, null, 0);
+		List<ResolveInfo> infos = getPackageManager().queryIntentActivities(intent, 0);
+		if (infos.size() > 0) {
+			startActivity(intent);
+			if ((Boolean) view.getTag()) {
+				updateRatePanel.setVisibility(View.GONE);
+				Settings.setRateClicked(this);
+				trackEvent(Tracking.CATEGORY_EXTERNAL, Tracking.ACTION_RATE, null, 0);
+			} else {
+				String label = infos.get(0).activityInfo.applicationInfo.packageName;
+				for (int i = 1; i < infos.size(); i++) {
+					label += "; " + infos.get(i).activityInfo.applicationInfo.packageName;
+				}
+				trackEvent(Tracking.CATEGORY_EXTERNAL, Tracking.ACTION_UPDATE, label, 0);
+			}
 		} else {
-			trackEvent(Tracking.CATEGORY_EXTERNAL, Tracking.ACTION_UPDATE, null, 0);
+			intent = new Intent(Intent.ACTION_VIEW);
+			intent.setData(Uri.parse("http://yafi.pl/android/apk/Yafi.apk"));
+			startActivity(intent);
+			Toast.makeText(this, "Market application not found. Downloading Yafi from http://yafi.pl", Toast.LENGTH_LONG).show();
+			trackEvent(Tracking.CATEGORY_EXTERNAL, Tracking.ACTION_UPDATE, "http://yafi.pl", 0);
 		}
 	}
 	

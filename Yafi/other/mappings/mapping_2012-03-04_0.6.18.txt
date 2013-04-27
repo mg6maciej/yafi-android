@@ -1,0 +1,2187 @@
+com.google.ads.Ad -> com.google.ads.t:
+com.google.ads.AdActivity -> com.google.ads.AdActivity:
+    java.lang.Object a -> a
+    com.google.ads.AdActivity b -> b
+    com.google.ads.d c -> c
+    com.google.ads.AdActivity d -> d
+    com.google.ads.AdActivity e -> e
+    com.google.ads.h f -> f
+    boolean g -> g
+    long h -> h
+    android.widget.RelativeLayout i -> i
+    com.google.ads.AdActivity j -> j
+    boolean k -> k
+    com.google.ads.g l -> l
+    void a(java.lang.String) -> a
+    void a(java.lang.String,java.lang.Throwable) -> a
+    com.google.ads.g getAdVideoView() -> a
+    com.google.ads.h getOpeningAdWebView() -> b
+    boolean isShowing() -> c
+    void launchAdActivity(com.google.ads.d,com.google.ads.e) -> a
+    void a(com.google.ads.d) -> a
+    void moveAdVideoView(int,int,int,int) -> a
+    void newAdVideoView(int,int,int,int) -> b
+    android.widget.RelativeLayout$LayoutParams a(int,int,int,int) -> c
+    void onClick(android.view.View) -> onClick
+    void onCreate(android.os.Bundle) -> onCreate
+    void a(com.google.ads.h,boolean,int) -> a
+    void onDestroy() -> onDestroy
+    void onPause() -> onPause
+    void a() -> d
+    void onWindowFocusChanged(boolean) -> onWindowFocusChanged
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+com.google.ads.AdListener -> com.google.ads.am:
+    void onReceiveAd(com.google.ads.Ad) -> d
+    void onFailedToReceiveAd(com.google.ads.Ad,com.google.ads.AdRequest$ErrorCode) -> a
+    void onPresentScreen(com.google.ads.Ad) -> c
+    void onDismissScreen(com.google.ads.Ad) -> a
+    void onLeaveApplication(com.google.ads.Ad) -> b
+com.google.ads.AdRequest -> com.google.ads.ai:
+    com.google.ads.AdRequest$Gender a -> b
+    java.lang.String b -> c
+    java.util.Set c -> d
+    boolean d -> e
+    java.util.Map e -> f
+    android.location.Location f -> g
+    boolean g -> h
+    boolean h -> i
+    java.lang.String TEST_EMULATOR -> a
+    java.util.Set i -> j
+    void addKeyword(java.lang.String) -> a
+    void addExtra(java.lang.String,java.lang.Object) -> a
+    java.util.Map getRequestMap(android.content.Context) -> a
+    void addTestDevice(java.lang.String) -> b
+com.google.ads.AdRequest$ErrorCode -> com.google.ads.aa:
+    com.google.ads.AdRequest$ErrorCode INVALID_REQUEST -> a
+    com.google.ads.AdRequest$ErrorCode NO_FILL -> b
+    com.google.ads.AdRequest$ErrorCode NETWORK_ERROR -> c
+    com.google.ads.AdRequest$ErrorCode INTERNAL_ERROR -> d
+    java.lang.String a -> e
+    com.google.ads.AdRequest$ErrorCode[] b -> f
+    com.google.ads.AdRequest$ErrorCode[] values() -> values
+    com.google.ads.AdRequest$ErrorCode valueOf(java.lang.String) -> valueOf
+    java.lang.String toString() -> toString
+com.google.ads.AdRequest$Gender -> com.google.ads.at:
+    com.google.ads.AdRequest$Gender UNKNOWN -> a
+    com.google.ads.AdRequest$Gender MALE -> b
+    com.google.ads.AdRequest$Gender FEMALE -> c
+    com.google.ads.AdRequest$Gender[] a -> d
+    com.google.ads.AdRequest$Gender[] values() -> values
+    com.google.ads.AdRequest$Gender valueOf(java.lang.String) -> valueOf
+com.google.ads.AdSize -> com.google.ads.as:
+    com.google.ads.AdSize BANNER -> a
+    com.google.ads.AdSize IAB_MRECT -> b
+    com.google.ads.AdSize IAB_BANNER -> c
+    com.google.ads.AdSize IAB_LEADERBOARD -> d
+    int a -> e
+    int b -> f
+    java.lang.String c -> g
+    int getWidth() -> a
+    int getHeight() -> b
+    java.lang.String toString() -> toString
+com.google.ads.AdView -> com.google.ads.AdView:
+    com.google.ads.d a -> a
+    void a(android.content.Context,java.lang.String,int,com.google.ads.AdSize,android.util.AttributeSet) -> a
+    void a(android.content.Context,java.lang.String,com.google.ads.AdSize,android.util.AttributeSet) -> a
+    void a(android.content.Context,android.util.AttributeSet) -> a
+    void a(android.app.Activity,com.google.ads.AdSize,java.lang.String) -> a
+    void loadAd(com.google.ads.AdRequest) -> a
+    void setAdListener(com.google.ads.AdListener) -> a
+    void stopLoading() -> a
+com.google.ads.InterstitialAd -> com.google.ads.ao:
+com.google.ads.a -> com.google.ads.u:
+    java.util.Map a -> a
+    java.util.Map b -> b
+    void a(com.google.ads.d,java.util.Map,android.net.Uri,android.webkit.WebView) -> a
+    boolean a(android.net.Uri) -> a
+    boolean b(android.net.Uri) -> b
+    boolean c(android.net.Uri) -> c
+    void a(android.webkit.WebView,java.lang.String,java.lang.String) -> a
+    void a(android.webkit.WebView,java.lang.String) -> a
+    void a(android.webkit.WebView,java.util.Map) -> a
+    void a(android.webkit.WebView) -> a
+    void b(android.webkit.WebView) -> b
+com.google.ads.aa -> com.google.ads.ac:
+    boolean a(android.content.Context) -> a
+    boolean a(android.content.Intent,android.content.Context) -> a
+com.google.ads.ab -> com.google.ads.ab:
+    void a(com.google.ads.d,java.util.HashMap,android.webkit.WebView) -> a
+com.google.ads.ab$a -> com.google.ads.aj:
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.google.ads.ab$b -> com.google.ads.ak:
+    com.google.ads.ab$b a -> a
+    com.google.ads.ab$b b -> c
+    java.lang.String c -> b
+    com.google.ads.ab$b[] d -> d
+    com.google.ads.ab$b[] values() -> values
+    com.google.ads.ab$b valueOf(java.lang.String) -> valueOf
+com.google.ads.ab$c -> com.google.ads.al:
+    com.google.ads.d a -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.google.ads.b -> com.google.ads.v:
+    com.google.ads.c a -> a
+    com.google.ads.d b -> b
+    boolean c -> c
+    boolean d -> d
+    java.lang.String e -> e
+    void a() -> a
+    void a(java.net.HttpURLConnection) -> a
+    void b(java.net.HttpURLConnection) -> b
+    void a(boolean) -> a
+    void a(java.lang.String) -> a
+    void run() -> run
+com.google.ads.c -> com.google.ads.w:
+    java.lang.String a -> a
+    java.lang.String b -> b
+    com.google.ads.b c -> c
+    com.google.ads.d d -> d
+    com.google.ads.AdRequest e -> e
+    android.webkit.WebView f -> f
+    java.lang.String g -> g
+    java.util.LinkedList h -> h
+    boolean i -> i
+    com.google.ads.AdRequest$ErrorCode j -> j
+    boolean k -> k
+    int l -> l
+    java.lang.Thread m -> m
+    boolean n -> n
+    void a(java.lang.String) -> a
+    void a() -> a
+    void a(com.google.ads.AdRequest) -> a
+    void run() -> run
+    java.lang.String a(com.google.ads.AdRequest,android.app.Activity) -> a
+    void a(com.google.ads.AdRequest$ErrorCode,boolean) -> a
+    void a(java.lang.String,java.lang.String) -> a
+    void b(java.lang.String) -> b
+    void a(com.google.ads.AdRequest$ErrorCode) -> a
+    void b() -> b
+    void a(int) -> a
+    void a(boolean) -> a
+com.google.ads.c$a -> com.google.ads.af:
+    com.google.ads.d b -> a
+    android.webkit.WebView c -> b
+    com.google.ads.b d -> c
+    com.google.ads.AdRequest$ErrorCode e -> d
+    boolean f -> e
+    com.google.ads.c a -> f
+    void run() -> run
+com.google.ads.c$b -> com.google.ads.ad:
+    com.google.ads.c a -> a
+com.google.ads.c$c -> com.google.ads.ae:
+    java.lang.String b -> a
+    java.lang.String c -> b
+    android.webkit.WebView d -> c
+    com.google.ads.c a -> d
+    void run() -> run
+com.google.ads.c$d -> com.google.ads.ag:
+    com.google.ads.c a -> a
+com.google.ads.c$e -> com.google.ads.ah:
+    com.google.ads.d b -> a
+    java.util.LinkedList c -> b
+    int d -> c
+    com.google.ads.c a -> d
+    void run() -> run
+com.google.ads.d -> com.google.ads.x:
+    java.lang.Object a -> a
+    java.lang.ref.WeakReference b -> b
+    com.google.ads.Ad c -> c
+    com.google.ads.AdListener d -> d
+    com.google.ads.c e -> e
+    com.google.ads.AdRequest f -> f
+    com.google.ads.AdSize g -> g
+    com.google.ads.f h -> h
+    java.lang.String i -> i
+    com.google.ads.h j -> j
+    com.google.ads.i k -> k
+    android.os.Handler l -> l
+    long m -> m
+    boolean n -> n
+    boolean o -> o
+    android.content.SharedPreferences p -> p
+    long q -> q
+    com.google.ads.x r -> r
+    boolean s -> s
+    java.util.LinkedList t -> t
+    java.util.LinkedList u -> u
+    int v -> v
+    void a(java.lang.String) -> a
+    void a(java.util.LinkedList) -> a
+    void a() -> a
+    void c() -> b
+    void d() -> c
+    android.app.Activity e() -> d
+    com.google.ads.Ad f() -> e
+    com.google.ads.c g() -> f
+    java.lang.String h() -> g
+    com.google.ads.h i() -> h
+    com.google.ads.i j() -> i
+    com.google.ads.AdSize k() -> j
+    com.google.ads.f l() -> k
+    void a(int) -> a
+    int m() -> l
+    long n() -> m
+    boolean A() -> w
+    boolean p() -> n
+    void a(com.google.ads.AdRequest) -> a
+    void a(com.google.ads.AdRequest$ErrorCode) -> a
+    void q() -> o
+    void r() -> p
+    void s() -> q
+    void t() -> r
+    void u() -> s
+    void v() -> x
+    boolean w() -> t
+    void B() -> y
+    void a(java.lang.Runnable) -> a
+    void x() -> u
+    void a(com.google.ads.AdListener) -> a
+    void a(long) -> a
+    void a(float) -> a
+    void b(long) -> b
+    void z() -> v
+com.google.ads.e -> com.google.ads.y:
+    java.lang.String a -> a
+    java.util.HashMap b -> b
+    android.os.Bundle a() -> a
+    java.lang.String b() -> b
+    java.util.HashMap c() -> c
+com.google.ads.f -> com.google.ads.z:
+    java.util.LinkedList b -> a
+    long c -> b
+    long d -> c
+    java.util.LinkedList e -> d
+    long f -> e
+    java.lang.String g -> f
+    boolean h -> g
+    boolean i -> h
+    java.lang.String a -> i
+    void a() -> a
+    void b() -> b
+    void c() -> c
+    void d() -> d
+    long e() -> e
+    java.lang.String f() -> f
+    java.lang.String g() -> g
+    long h() -> h
+    long i() -> i
+    java.lang.String j() -> j
+    void a(java.lang.String) -> a
+    boolean k() -> k
+    void l() -> l
+    boolean m() -> m
+    void n() -> n
+    void o() -> o
+    java.lang.String p() -> p
+    void b(java.lang.String) -> b
+com.google.ads.g -> com.google.ads.o:
+    java.lang.ref.WeakReference b -> a
+    com.google.ads.h c -> b
+    android.widget.MediaController a -> c
+    long d -> d
+    android.widget.VideoView e -> e
+    java.lang.String f -> f
+    void a() -> a
+    void a(boolean) -> a
+    void a(java.lang.String) -> a
+    void onCompletion(android.media.MediaPlayer) -> onCompletion
+    boolean onError(android.media.MediaPlayer,int,int) -> onError
+    void onPrepared(android.media.MediaPlayer) -> onPrepared
+    void b() -> b
+    void c() -> c
+    void a(int) -> a
+    void a(android.view.MotionEvent) -> a
+    void d() -> d
+    void e() -> e
+com.google.ads.g$a -> com.google.ads.an:
+    java.lang.ref.WeakReference a -> a
+    android.os.Handler b -> b
+    void run() -> run
+    void a() -> a
+com.google.ads.h -> com.google.ads.n:
+    java.lang.ref.WeakReference a -> a
+    com.google.ads.AdSize b -> b
+    com.google.ads.AdActivity b() -> a
+    void a(com.google.ads.AdActivity) -> a
+    void loadDataWithBaseURL(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> loadDataWithBaseURL
+    void loadUrl(java.lang.String) -> loadUrl
+    void stopLoading() -> stopLoading
+    void destroy() -> destroy
+    void onMeasure(int,int) -> onMeasure
+com.google.ads.i -> com.google.ads.m:
+    com.google.ads.d a -> a
+    java.util.Map b -> b
+    boolean c -> c
+    boolean d -> d
+    boolean e -> e
+    boolean f -> f
+    boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
+    void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
+    void a() -> a
+    void b() -> b
+    void c() -> c
+com.google.ads.j -> com.google.ads.l:
+    void a(com.google.ads.d,java.util.HashMap,android.webkit.WebView) -> a
+com.google.ads.k -> com.google.ads.k:
+    void a(com.google.ads.d,java.util.HashMap,android.webkit.WebView) -> a
+com.google.ads.l -> com.google.ads.j:
+    void a(com.google.ads.d,java.util.HashMap,android.webkit.WebView) -> a
+com.google.ads.m -> com.google.ads.i:
+    void a(com.google.ads.d,java.util.HashMap,android.webkit.WebView) -> a
+com.google.ads.n -> com.google.ads.h:
+    void a(com.google.ads.d,java.util.HashMap,android.webkit.WebView) -> a
+com.google.ads.o -> com.google.ads.g:
+    void a(com.google.ads.d,java.util.HashMap,android.webkit.WebView) -> a
+com.google.ads.p -> com.google.ads.f:
+    void a(com.google.ads.d,java.util.HashMap,android.webkit.WebView) -> a
+com.google.ads.q -> com.google.ads.e:
+    void a(com.google.ads.d,java.util.HashMap,android.webkit.WebView) -> a
+com.google.ads.s -> com.google.ads.d:
+    void a(com.google.ads.d,java.util.HashMap,android.webkit.WebView) -> a
+com.google.ads.searchads.SearchAdRequest -> com.google.ads.a.b:
+    java.lang.String a -> b
+    int b -> c
+    android.util.Pair c -> d
+    int d -> e
+    int e -> f
+    int f -> g
+    java.lang.String g -> h
+    int h -> i
+    int i -> j
+    com.google.ads.searchads.SearchAdRequest$BorderType j -> k
+    int k -> l
+    java.util.Map getRequestMap(android.content.Context) -> a
+    java.lang.String a(int) -> a
+com.google.ads.searchads.SearchAdRequest$BorderType -> com.google.ads.a.a:
+    com.google.ads.searchads.SearchAdRequest$BorderType NONE -> a
+    com.google.ads.searchads.SearchAdRequest$BorderType DASHED -> b
+    com.google.ads.searchads.SearchAdRequest$BorderType DOTTED -> c
+    com.google.ads.searchads.SearchAdRequest$BorderType SOLID -> d
+    java.lang.String a -> e
+    com.google.ads.searchads.SearchAdRequest$BorderType[] b -> f
+    com.google.ads.searchads.SearchAdRequest$BorderType[] values() -> values
+    com.google.ads.searchads.SearchAdRequest$BorderType valueOf(java.lang.String) -> valueOf
+    java.lang.String toString() -> toString
+com.google.ads.t -> com.google.ads.c:
+    void a(com.google.ads.d,java.util.HashMap,android.webkit.WebView) -> a
+com.google.ads.u -> com.google.ads.b:
+    void a(com.google.ads.d,java.util.HashMap,android.webkit.WebView) -> a
+com.google.ads.util.AdUtil -> com.google.ads.util.AdUtil:
+    int a -> a
+    java.lang.Boolean b -> b
+    java.lang.String c -> c
+    java.lang.String d -> d
+    java.lang.String e -> e
+    android.media.AudioManager f -> f
+    boolean g -> g
+    boolean h -> h
+    java.lang.String i -> i
+    java.lang.String a(android.content.Context) -> a
+    int a() -> a
+    int b() -> b
+    int a(android.content.Context,android.util.DisplayMetrics) -> a
+    int b(android.content.Context,android.util.DisplayMetrics) -> b
+    boolean b(android.content.Context) -> b
+    boolean a(int,int,java.lang.String) -> a
+    boolean c(android.content.Context) -> c
+    boolean c() -> c
+    boolean a(android.net.Uri) -> a
+    java.lang.String a(java.lang.String) -> a
+    java.lang.String d(android.content.Context) -> d
+    java.lang.String e(android.content.Context) -> e
+    java.lang.String f(android.content.Context) -> f
+    com.google.ads.util.AdUtil$a g(android.content.Context) -> g
+    android.util.DisplayMetrics a(android.app.Activity) -> a
+    java.lang.String a(android.location.Location) -> a
+    java.lang.String b(java.lang.String) -> b
+    java.util.HashMap b(android.net.Uri) -> b
+    boolean d() -> d
+    void a(boolean) -> a
+    void h(android.content.Context) -> h
+    java.lang.String i(android.content.Context) -> i
+    void a(android.webkit.WebView) -> a
+    void a(java.net.HttpURLConnection,android.content.Context) -> a
+    java.lang.String a(java.util.Map) -> a
+    org.json.JSONObject b(java.util.Map) -> b
+    org.json.JSONArray a(java.util.Set) -> a
+com.google.ads.util.AdUtil$UserActivityReceiver -> com.google.ads.util.AdUtil$UserActivityReceiver:
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.google.ads.util.AdUtil$a -> com.google.ads.util.c:
+    com.google.ads.util.AdUtil$a a -> d
+    com.google.ads.util.AdUtil$a b -> a
+    com.google.ads.util.AdUtil$a c -> e
+    com.google.ads.util.AdUtil$a d -> b
+    com.google.ads.util.AdUtil$a e -> c
+    com.google.ads.util.AdUtil$a f -> f
+    com.google.ads.util.AdUtil$a[] g -> g
+    com.google.ads.util.AdUtil$a[] values() -> values
+    com.google.ads.util.AdUtil$a valueOf(java.lang.String) -> valueOf
+com.google.ads.util.a -> com.google.ads.util.d:
+    void a(java.lang.String) -> a
+    void b(java.lang.String) -> b
+    void a(java.lang.String,java.lang.Throwable) -> a
+    void c(java.lang.String) -> c
+    void d(java.lang.String) -> d
+    void e(java.lang.String) -> e
+    void a(java.lang.Throwable) -> a
+    void b(java.lang.String,java.lang.Throwable) -> b
+    boolean a(java.lang.String,int) -> a
+com.google.ads.util.b -> com.google.ads.util.e:
+    boolean a -> a
+    java.lang.String a(byte[]) -> a
+com.google.ads.util.b$a -> com.google.ads.util.b:
+    byte[] a -> d
+    int b -> e
+com.google.ads.util.b$b -> com.google.ads.util.a:
+    byte[] h -> f
+    byte[] i -> g
+    byte[] j -> h
+    int c -> i
+    int k -> j
+    boolean d -> a
+    boolean e -> b
+    boolean f -> c
+    byte[] l -> k
+    boolean g -> l
+    boolean a(byte[],int) -> a
+com.google.ads.util.c -> com.google.ads.util.f:
+    int a(android.content.Context,android.util.DisplayMetrics) -> a
+    int b(android.content.Context,android.util.DisplayMetrics) -> b
+    int a(android.content.Context,float,int) -> a
+com.google.ads.v -> com.google.ads.a:
+    int a(java.util.HashMap,java.lang.String,int,android.util.DisplayMetrics) -> a
+    void a(com.google.ads.d,java.util.HashMap,android.webkit.WebView) -> a
+com.google.ads.w -> com.google.ads.r:
+    android.content.Context a -> a
+    java.lang.String b -> b
+    void run() -> run
+com.google.ads.x -> com.google.ads.s:
+    java.lang.ref.WeakReference a -> a
+    void run() -> run
+com.google.ads.y -> com.google.ads.p:
+    android.net.Uri a -> a
+    android.net.Uri b -> b
+    java.lang.String[] c -> c
+    java.lang.String[] d -> d
+com.google.ads.z -> com.google.ads.q:
+    void a(android.webkit.WebView,boolean) -> a
+com.google.ads.z$a -> com.google.ads.ap:
+    java.lang.ref.WeakReference a -> a
+    void run() -> run
+com.google.ads.z$b -> com.google.ads.aq:
+    java.lang.ref.WeakReference a -> a
+    android.webkit.WebView b -> b
+    java.lang.String c -> c
+    void run() -> run
+com.google.ads.z$c -> com.google.ads.ar:
+    boolean a -> a
+    android.webkit.WebView b -> b
+    void run() -> run
+com.google.android.apps.analytics.AdHitIdGenerator -> com.google.android.apps.analytics.b:
+    boolean adMobSdkInstalled -> a
+    int getAdHitId() -> a
+com.google.android.apps.analytics.AdMobInfo -> com.google.android.apps.analytics.e:
+    com.google.android.apps.analytics.AdMobInfo INSTANCE -> a
+    int adHitId -> b
+    java.util.Random random -> c
+    com.google.android.apps.analytics.AdMobInfo getInstance() -> a
+    int generateAdHitId() -> b
+com.google.android.apps.analytics.AnalyticsParameterEncoder -> com.google.android.apps.analytics.d:
+    java.lang.String encode(java.lang.String,java.lang.String) -> a
+com.google.android.apps.analytics.AnalyticsReceiver -> com.google.android.apps.analytics.AnalyticsReceiver:
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.google.android.apps.analytics.CustomVariable -> com.google.android.apps.analytics.s:
+    int scope -> a
+    java.lang.String name -> b
+    java.lang.String value -> c
+    int index -> d
+    int getScope() -> a
+    java.lang.String getName() -> b
+    java.lang.String getValue() -> c
+    int getIndex() -> d
+com.google.android.apps.analytics.CustomVariableBuffer -> com.google.android.apps.analytics.v:
+    com.google.android.apps.analytics.CustomVariable[] customVariables -> a
+    boolean isIndexAvailable(int) -> a
+    void setCustomVariable(com.google.android.apps.analytics.CustomVariable) -> a
+    com.google.android.apps.analytics.CustomVariable getCustomVariableAt(int) -> b
+    com.google.android.apps.analytics.CustomVariable[] getCustomVariableArray() -> a
+    void throwOnInvalidIndex(int) -> d
+    boolean hasCustomVariables() -> b
+    void clearCustomVariableAt(int) -> c
+com.google.android.apps.analytics.Dispatcher -> com.google.android.apps.analytics.a:
+    void dispatchHits(com.google.android.apps.analytics.Hit[]) -> a
+    void init(com.google.android.apps.analytics.Dispatcher$Callbacks) -> a
+    void setDryRun(boolean) -> a
+com.google.android.apps.analytics.Dispatcher$Callbacks -> com.google.android.apps.analytics.ac:
+    void hitDispatched(long) -> a
+    void dispatchFinished() -> a
+com.google.android.apps.analytics.Event -> com.google.android.apps.analytics.x:
+    long eventId -> i
+    java.lang.String accountId -> a
+    int randomVal -> j
+    int adHitId -> k
+    int timestampFirst -> l
+    int timestampPrevious -> m
+    int timestampCurrent -> n
+    int visits -> o
+    int userId -> p
+    boolean anonymizeIp -> q
+    boolean useServerTime -> r
+    java.lang.String category -> b
+    java.lang.String action -> c
+    java.lang.String label -> d
+    int value -> e
+    int screenWidth -> f
+    int screenHeight -> g
+    com.google.android.apps.analytics.CustomVariableBuffer customVariableBuffer -> h
+    com.google.android.apps.analytics.Transaction transaction -> s
+    com.google.android.apps.analytics.Item item -> t
+    void setRandomVal(int) -> a
+    int getRandomVal() -> a
+    void setAdHitId(int) -> b
+    int getAdHitId() -> b
+    void setTimestampFirst(int) -> c
+    int getTimestampFirst() -> c
+    void setTimestampPrevious(int) -> d
+    int getTimestampPrevious() -> d
+    void setTimestampCurrent(int) -> e
+    int getTimestampCurrent() -> e
+    void setVisits(int) -> f
+    int getVisits() -> f
+    void setUserId(int) -> g
+    int getUserId() -> g
+    void setAnonymizeIp(boolean) -> a
+    boolean getAnonymizeIp() -> h
+    void setUseServerTime(boolean) -> b
+    boolean getUseServerTime() -> i
+    java.lang.String toString() -> toString
+    com.google.android.apps.analytics.Transaction getTransaction() -> j
+    void setTransaction(com.google.android.apps.analytics.Transaction) -> a
+    com.google.android.apps.analytics.Item getItem() -> k
+    void setItem(com.google.android.apps.analytics.Item) -> a
+    boolean isSessionInitialized() -> l
+com.google.android.apps.analytics.GoogleAnalyticsTracker -> com.google.android.apps.analytics.c:
+    com.google.android.apps.analytics.GoogleAnalyticsTracker instance -> a
+    boolean debug -> b
+    boolean dryRun -> c
+    boolean anonymizeIp -> d
+    boolean useServerTime -> e
+    int sampleRate -> f
+    java.lang.String accountId -> g
+    android.content.Context parent -> h
+    android.net.ConnectivityManager connectivityManager -> i
+    java.lang.String userAgentProduct -> j
+    java.lang.String userAgentVersion -> k
+    int dispatchPeriod -> l
+    com.google.android.apps.analytics.HitStore hitStore -> m
+    com.google.android.apps.analytics.Dispatcher dispatcher -> n
+    boolean powerSaveMode -> o
+    boolean dispatcherIsBusy -> p
+    com.google.android.apps.analytics.AdHitIdGenerator adHitIdGenerator -> q
+    com.google.android.apps.analytics.CustomVariableBuffer customVariableBuffer -> r
+    java.util.Map transactionMap -> s
+    java.util.Map itemMap -> t
+    android.os.Handler handler -> u
+    java.lang.Runnable dispatchRunner -> v
+    com.google.android.apps.analytics.GoogleAnalyticsTracker getInstance() -> a
+    void startNewSession(java.lang.String,int,android.content.Context) -> a
+    void trackEvent(java.lang.String,java.lang.String,java.lang.String,int) -> a
+    void trackPageView(java.lang.String) -> a
+    void createEvent(java.lang.String,java.lang.String,java.lang.String,java.lang.String,int) -> a
+    void maybeScheduleNextDispatch() -> e
+    void cancelPendingDispatches() -> f
+    boolean dispatch() -> b
+    void dispatchFinished() -> c
+    void setAnonymizeIp(boolean) -> a
+    void setSampleRate(int) -> a
+    void setDebug(boolean) -> b
+    boolean getDebug() -> d
+    void setDryRun(boolean) -> c
+    android.os.Handler access$000(com.google.android.apps.analytics.GoogleAnalyticsTracker) -> a
+    com.google.android.apps.analytics.HitStore access$100(com.google.android.apps.analytics.GoogleAnalyticsTracker) -> b
+com.google.android.apps.analytics.GoogleAnalyticsTracker$1 -> com.google.android.apps.analytics.g:
+    com.google.android.apps.analytics.GoogleAnalyticsTracker this$0 -> a
+    void run() -> run
+com.google.android.apps.analytics.GoogleAnalyticsTracker$DispatcherCallbacks -> com.google.android.apps.analytics.k:
+    com.google.android.apps.analytics.GoogleAnalyticsTracker this$0 -> a
+    void dispatchFinished() -> a
+    void hitDispatched(long) -> a
+com.google.android.apps.analytics.GoogleAnalyticsTracker$DispatcherCallbacks$1 -> com.google.android.apps.analytics.i:
+    com.google.android.apps.analytics.GoogleAnalyticsTracker$DispatcherCallbacks this$1 -> a
+    void run() -> run
+com.google.android.apps.analytics.Hit -> com.google.android.apps.analytics.j:
+    java.lang.String hitString -> a
+    long hitId -> b
+com.google.android.apps.analytics.HitBuilder -> com.google.android.apps.analytics.r:
+    void appendStringValue(java.lang.StringBuilder,java.lang.String,java.lang.String) -> a
+    void appendCurrencyValue(java.lang.StringBuilder,java.lang.String,double) -> a
+    java.lang.String constructHitRequestPath(com.google.android.apps.analytics.Event,com.google.android.apps.analytics.Referrer) -> a
+    java.lang.String getCustomVariableParams(com.google.android.apps.analytics.Event) -> a
+    void createX10Project(com.google.android.apps.analytics.CustomVariable[],java.lang.StringBuilder,int) -> a
+    java.lang.String x10Escape(java.lang.String) -> a
+    java.lang.String getEscapedCookieString(com.google.android.apps.analytics.Event,com.google.android.apps.analytics.Referrer) -> b
+com.google.android.apps.analytics.HitStore -> com.google.android.apps.analytics.u:
+    void putEvent(com.google.android.apps.analytics.Event) -> a
+    com.google.android.apps.analytics.Hit[] peekHits() -> a
+    void deleteHit(long) -> a
+    int getNumStoredHits() -> b
+    boolean setReferrer(java.lang.String) -> a
+    void startNewVisit() -> c
+    void setAnonymizeIp(boolean) -> a
+    void setSampleRate(int) -> a
+com.google.android.apps.analytics.Item -> com.google.android.apps.analytics.w:
+    java.lang.String orderId -> a
+    java.lang.String itemSKU -> b
+    java.lang.String itemName -> c
+    java.lang.String itemCategory -> d
+    double itemPrice -> e
+    long itemCount -> f
+    java.lang.String getOrderId() -> a
+    java.lang.String getItemSKU() -> b
+    java.lang.String getItemName() -> c
+    java.lang.String getItemCategory() -> d
+    double getItemPrice() -> e
+    long getItemCount() -> f
+com.google.android.apps.analytics.Item$Builder -> com.google.android.apps.analytics.p:
+    java.lang.String orderId -> a
+    java.lang.String itemSKU -> b
+    double itemPrice -> c
+    long itemCount -> d
+    java.lang.String itemName -> e
+    java.lang.String itemCategory -> f
+    com.google.android.apps.analytics.Item$Builder setItemName(java.lang.String) -> a
+    com.google.android.apps.analytics.Item$Builder setItemCategory(java.lang.String) -> b
+    java.lang.String access$000(com.google.android.apps.analytics.Item$Builder) -> a
+    java.lang.String access$100(com.google.android.apps.analytics.Item$Builder) -> b
+    double access$200(com.google.android.apps.analytics.Item$Builder) -> c
+    long access$300(com.google.android.apps.analytics.Item$Builder) -> d
+    java.lang.String access$400(com.google.android.apps.analytics.Item$Builder) -> e
+    java.lang.String access$500(com.google.android.apps.analytics.Item$Builder) -> f
+com.google.android.apps.analytics.NetworkDispatcher -> com.google.android.apps.analytics.t:
+    java.lang.String userAgent -> a
+    org.apache.http.HttpHost googleAnalyticsHost -> b
+    com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread dispatcherThread -> c
+    boolean dryRun -> d
+    void init(com.google.android.apps.analytics.Dispatcher$Callbacks) -> a
+    void dispatchHits(com.google.android.apps.analytics.Hit[]) -> a
+    void setDryRun(boolean) -> a
+    boolean isDryRun() -> a
+    org.apache.http.HttpHost access$200(com.google.android.apps.analytics.NetworkDispatcher) -> a
+com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread -> com.google.android.apps.analytics.o:
+    android.os.Handler handlerExecuteOnDispatcherThread -> a
+    com.google.android.apps.analytics.PipelinedRequester pipelinedRequester -> b
+    java.lang.String userAgent -> c
+    int lastStatusCode -> d
+    int maxEventsPerRequest -> e
+    long retryInterval -> f
+    com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread$AsyncDispatchTask currentTask -> g
+    com.google.android.apps.analytics.Dispatcher$Callbacks callbacks -> h
+    com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread$RequesterCallbacks requesterCallBacks -> i
+    com.google.android.apps.analytics.NetworkDispatcher parent -> j
+    void onLooperPrepared() -> onLooperPrepared
+    com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread$AsyncDispatchTask access$402(com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread,com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread$AsyncDispatchTask) -> a
+    int access$500(com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread) -> a
+    long access$600(com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread) -> b
+    long access$630$78cf8d4e(com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread) -> c
+    long access$602$78cf8d4e(com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread) -> d
+    com.google.android.apps.analytics.NetworkDispatcher access$700(com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread) -> e
+    com.google.android.apps.analytics.PipelinedRequester access$800(com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread) -> f
+    com.google.android.apps.analytics.Dispatcher$Callbacks access$900(com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread) -> g
+    int access$1000(com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread) -> h
+    java.lang.String access$1100(com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread) -> i
+    com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread$RequesterCallbacks access$1200(com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread) -> j
+    int access$1002$78cf9110(com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread) -> k
+    com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread$AsyncDispatchTask access$400(com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread) -> l
+    int access$502(com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread,int) -> a
+com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread$AsyncDispatchTask -> com.google.android.apps.analytics.m:
+    java.util.LinkedList hits -> a
+    com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread this$0 -> b
+    void run() -> run
+    com.google.android.apps.analytics.Hit removeNextHit() -> a
+com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread$RequesterCallbacks -> com.google.android.apps.analytics.z:
+    com.google.android.apps.analytics.NetworkDispatcher$DispatcherThread this$0 -> a
+    void pipelineModeChanged$1385ff() -> a
+    void requestSent() -> b
+    void serverError(int) -> a
+com.google.android.apps.analytics.PersistentHitStore -> com.google.android.apps.analytics.n:
+    com.google.android.apps.analytics.PersistentHitStore$DataBaseHelper databaseHelper -> a
+    int storeId -> b
+    long timestampFirst -> c
+    long timestampPrevious -> d
+    long timestampCurrent -> e
+    int visits -> f
+    int numStoredHits -> g
+    boolean sessionStarted -> h
+    boolean useStoredVisitorVars -> i
+    boolean anonymizeIp -> j
+    int sampleRate -> k
+    java.util.Random random -> l
+    com.google.android.apps.analytics.CustomVariableBuffer visitorCVCache -> m
+    java.lang.String CREATE_EVENTS_TABLE -> n
+    java.lang.String CREATE_SESSION_TABLE -> o
+    java.lang.String CREATE_CUSTOM_VARIABLES_TABLE -> p
+    java.lang.String CREATE_CUSTOM_VAR_CACHE_TABLE -> q
+    java.lang.String CREATE_TRANSACTION_EVENTS_TABLE -> r
+    java.lang.String CREATE_ITEM_EVENTS_TABLE -> s
+    java.lang.String CREATE_HITS_TABLE -> t
+    void deleteHit(long) -> a
+    com.google.android.apps.analytics.Hit[] peekHits() -> a
+    com.google.android.apps.analytics.Hit[] peekHits$7612f821() -> k
+    com.google.android.apps.analytics.Event[] peekEvents$3798dea(android.database.sqlite.SQLiteDatabase,int) -> a
+    com.google.android.apps.analytics.Transaction getTransaction(long,android.database.sqlite.SQLiteDatabase) -> a
+    com.google.android.apps.analytics.Item getItem(long,android.database.sqlite.SQLiteDatabase) -> b
+    com.google.android.apps.analytics.CustomVariableBuffer getCustomVariables(long,android.database.sqlite.SQLiteDatabase) -> c
+    void putEvent(com.google.android.apps.analytics.Event) -> a
+    boolean endTransaction(android.database.sqlite.SQLiteDatabase) -> d
+    void putEvent(com.google.android.apps.analytics.Event,android.database.sqlite.SQLiteDatabase,boolean) -> a
+    void writeEventToDatabase(com.google.android.apps.analytics.Event,com.google.android.apps.analytics.Referrer,android.database.sqlite.SQLiteDatabase,boolean) -> a
+    com.google.android.apps.analytics.CustomVariableBuffer getVisitorVarBuffer() -> l
+    com.google.android.apps.analytics.CustomVariableBuffer getVisitorVarBuffer(android.database.sqlite.SQLiteDatabase) -> a
+    int getNumStoredHits() -> b
+    int getNumStoredHitsFromDb() -> m
+    void loadExistingSession(android.database.sqlite.SQLiteDatabase) -> b
+    void startNewVisit() -> c
+    java.lang.String formatReferrer(java.lang.String) -> b
+    com.google.android.apps.analytics.Referrer readCurrentReferrer(android.database.sqlite.SQLiteDatabase) -> e
+    boolean setReferrerDatabase(android.database.sqlite.SQLiteDatabase,android.content.ContentValues) -> a
+    boolean setReferrer(java.lang.String) -> a
+    void setAnonymizeIp(boolean) -> a
+    void setSampleRate(int) -> a
+    java.lang.String access$000() -> d
+    java.lang.String access$100() -> e
+    java.lang.String access$200() -> f
+    java.lang.String access$300() -> g
+    java.lang.String access$400() -> h
+    java.lang.String access$500() -> i
+    java.lang.String access$600() -> j
+    com.google.android.apps.analytics.CustomVariableBuffer access$702(com.google.android.apps.analytics.PersistentHitStore,com.google.android.apps.analytics.CustomVariableBuffer) -> a
+    void access$800$6548677(com.google.android.apps.analytics.PersistentHitStore,com.google.android.apps.analytics.Event,android.database.sqlite.SQLiteDatabase) -> a
+    boolean access$900(android.database.sqlite.SQLiteDatabase) -> c
+com.google.android.apps.analytics.PersistentHitStore$DataBaseHelper -> com.google.android.apps.analytics.h:
+    int databaseVersion -> a
+    com.google.android.apps.analytics.PersistentHitStore store -> b
+    void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
+    void onOpen(android.database.sqlite.SQLiteDatabase) -> onOpen
+    void createCustomVariableTables(android.database.sqlite.SQLiteDatabase) -> a
+    void createECommerceTables(android.database.sqlite.SQLiteDatabase) -> b
+    void createHitTable(android.database.sqlite.SQLiteDatabase) -> c
+    void createReferrerTable(android.database.sqlite.SQLiteDatabase) -> d
+    void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
+    void onDowngrade(android.database.sqlite.SQLiteDatabase,int,int) -> onDowngrade
+com.google.android.apps.analytics.PipelinedRequester -> com.google.android.apps.analytics.f:
+    org.apache.http.impl.DefaultHttpClientConnection connection -> b
+    com.google.android.apps.analytics.PipelinedRequester$Callbacks callbacks -> a
+    int lastStatusCode -> c
+    boolean canPipeline -> d
+    org.apache.http.HttpHost host -> e
+    org.apache.http.conn.scheme.SocketFactory socketFactory -> f
+    void addRequest(org.apache.http.HttpEntityEnclosingRequest) -> a
+    void sendRequests() -> a
+    void finishedCurrentRequests() -> b
+    void closeConnection() -> c
+com.google.android.apps.analytics.PipelinedRequester$Callbacks -> com.google.android.apps.analytics.aa:
+    void pipelineModeChanged$1385ff() -> a
+    void serverError(int) -> a
+    void requestSent() -> b
+com.google.android.apps.analytics.Referrer -> com.google.android.apps.analytics.q:
+    java.lang.String referrer -> a
+    long timeStamp -> b
+    int visit -> c
+    int index -> d
+    java.lang.String getReferrerString() -> a
+    long getTimeStamp() -> b
+    int getVisit() -> c
+    int getIndex() -> d
+com.google.android.apps.analytics.Transaction -> com.google.android.apps.analytics.l:
+    java.lang.String orderId -> a
+    java.lang.String storeName -> b
+    double totalCost -> c
+    double totalTax -> d
+    double shippingCost -> e
+    java.lang.String getOrderId() -> a
+    java.lang.String getStoreName() -> b
+    double getTotalCost() -> c
+    double getTotalTax() -> d
+    double getShippingCost() -> e
+com.google.android.apps.analytics.Transaction$Builder -> com.google.android.apps.analytics.ab:
+    java.lang.String orderId -> a
+    java.lang.String storeName -> b
+    double totalCost -> c
+    double totalTax -> d
+    double shippingCost -> e
+    com.google.android.apps.analytics.Transaction$Builder setStoreName(java.lang.String) -> a
+    com.google.android.apps.analytics.Transaction$Builder setTotalTax(double) -> a
+    com.google.android.apps.analytics.Transaction$Builder setShippingCost(double) -> b
+    java.lang.String access$000(com.google.android.apps.analytics.Transaction$Builder) -> a
+    double access$100(com.google.android.apps.analytics.Transaction$Builder) -> b
+    java.lang.String access$200(com.google.android.apps.analytics.Transaction$Builder) -> c
+    double access$300(com.google.android.apps.analytics.Transaction$Builder) -> d
+    double access$400(com.google.android.apps.analytics.Transaction$Builder) -> e
+com.google.android.apps.analytics.Utils -> com.google.android.apps.analytics.y:
+    java.lang.String addQueueTimeParameter(java.lang.String,long) -> a
+com.google.android.apps.analytics.easytracking.EasyTracker -> com.google.android.apps.analytics.easytracking.h:
+    com.google.android.apps.analytics.easytracking.EasyTracker instance -> a
+    boolean gaEnabled -> b
+    java.lang.String gaAccountId -> c
+    int gaDispatchPeriod -> d
+    boolean gaDebug -> e
+    boolean gaDryRun -> f
+    int gaSampleRate -> g
+    boolean gaAnonymizeIp -> h
+    boolean autoActivityTracking -> i
+    int activitiesActive -> j
+    boolean sessionNeeded -> k
+    android.content.Context gaContext -> l
+    java.util.Map activityNameMap -> m
+    com.google.android.apps.analytics.easytracking.GoogleAnalyticsTrackerDelegate tracker -> n
+    com.google.android.apps.analytics.easytracking.ParameterLoader parameterFetcher -> o
+    java.util.concurrent.LinkedBlockingQueue trackerQueue -> p
+    com.google.android.apps.analytics.easytracking.EasyTracker$TrackerThread trackerThread -> q
+    java.lang.Object lock -> r
+    com.google.android.apps.analytics.easytracking.EasyTracker getTracker() -> a
+    com.google.android.apps.analytics.easytracking.GoogleAnalyticsTrackerDelegate getGoogleAnalyticsTracker() -> d
+    void setContext(android.content.Context) -> a
+    void trackActivityStart(android.app.Activity) -> a
+    void trackActivityRetainNonConfigurationInstance() -> b
+    void trackActivityStop$63a22f9() -> c
+    void trackEvent(java.lang.String,java.lang.String,java.lang.String,int) -> a
+    void queueToTrackerThreadIfEnabled(java.lang.Runnable) -> a
+    boolean access$000(com.google.android.apps.analytics.easytracking.EasyTracker) -> a
+    com.google.android.apps.analytics.easytracking.GoogleAnalyticsTrackerDelegate access$100(com.google.android.apps.analytics.easytracking.EasyTracker) -> b
+    boolean access$200(com.google.android.apps.analytics.easytracking.EasyTracker) -> c
+    int access$300(com.google.android.apps.analytics.easytracking.EasyTracker) -> d
+    boolean access$400(com.google.android.apps.analytics.easytracking.EasyTracker) -> e
+    java.lang.String access$500(com.google.android.apps.analytics.easytracking.EasyTracker) -> f
+    int access$600(com.google.android.apps.analytics.easytracking.EasyTracker) -> g
+    android.content.Context access$700(com.google.android.apps.analytics.easytracking.EasyTracker) -> h
+    com.google.android.apps.analytics.easytracking.GoogleAnalyticsTrackerDelegate access$800(com.google.android.apps.analytics.easytracking.EasyTracker) -> i
+    boolean access$900(com.google.android.apps.analytics.easytracking.EasyTracker) -> j
+    java.lang.String access$1000(com.google.android.apps.analytics.easytracking.EasyTracker,android.app.Activity) -> a
+    java.util.concurrent.LinkedBlockingQueue access$1100(com.google.android.apps.analytics.easytracking.EasyTracker) -> k
+com.google.android.apps.analytics.easytracking.EasyTracker$1 -> com.google.android.apps.analytics.easytracking.d:
+    com.google.android.apps.analytics.easytracking.EasyTracker this$0 -> a
+    void run() -> run
+com.google.android.apps.analytics.easytracking.EasyTracker$11 -> com.google.android.apps.analytics.easytracking.b:
+    java.lang.String val$category -> a
+    java.lang.String val$action -> b
+    java.lang.String val$label -> c
+    int val$value -> d
+    com.google.android.apps.analytics.easytracking.EasyTracker this$0 -> e
+    void run() -> run
+com.google.android.apps.analytics.easytracking.EasyTracker$2 -> com.google.android.apps.analytics.easytracking.e:
+    boolean val$startASession -> a
+    android.app.Activity val$activity -> b
+    com.google.android.apps.analytics.easytracking.EasyTracker this$0 -> c
+    void run() -> run
+com.google.android.apps.analytics.easytracking.EasyTracker$3 -> com.google.android.apps.analytics.easytracking.f:
+    boolean val$sendEvent -> a
+    com.google.android.apps.analytics.easytracking.EasyTracker this$0 -> b
+    void run() -> run
+com.google.android.apps.analytics.easytracking.EasyTracker$TrackerThread -> com.google.android.apps.analytics.easytracking.g:
+    com.google.android.apps.analytics.easytracking.EasyTracker this$0 -> a
+    void run() -> run
+com.google.android.apps.analytics.easytracking.GoogleAnalyticsTrackerDelegate -> com.google.android.apps.analytics.easytracking.c:
+    void startNewSession(java.lang.String,int,android.content.Context) -> a
+    void trackEvent(java.lang.String,java.lang.String,java.lang.String,int) -> a
+    void trackPageView(java.lang.String) -> a
+    void setAnonymizeIp(boolean) -> a
+    void setSampleRate(int) -> a
+    void setDebug(boolean) -> b
+    void setDryRun(boolean) -> c
+com.google.android.apps.analytics.easytracking.GoogleAnalyticsTrackerDelegateImpl -> com.google.android.apps.analytics.easytracking.i:
+    com.google.android.apps.analytics.GoogleAnalyticsTracker tracker -> a
+    void startNewSession(java.lang.String,int,android.content.Context) -> a
+    void trackEvent(java.lang.String,java.lang.String,java.lang.String,int) -> a
+    void trackPageView(java.lang.String) -> a
+    void setAnonymizeIp(boolean) -> a
+    void setSampleRate(int) -> a
+    void setDebug(boolean) -> b
+    void setDryRun(boolean) -> c
+com.google.android.apps.analytics.easytracking.ParameterLoader -> com.google.android.apps.analytics.easytracking.a:
+    java.lang.String getString(java.lang.String) -> a
+    boolean getBoolean(java.lang.String) -> b
+    int getInt(java.lang.String,int) -> a
+com.google.android.apps.analytics.easytracking.ParameterLoaderImpl -> com.google.android.apps.analytics.easytracking.j:
+    android.content.Context ctx -> a
+    int getResourceIdForType(java.lang.String,java.lang.String) -> a
+    java.lang.String getString(java.lang.String) -> a
+    boolean getBoolean(java.lang.String) -> b
+    int getInt(java.lang.String,int) -> a
+com.google.android.apps.analytics.easytracking.TrackedActivity -> com.google.android.apps.analytics.easytracking.TrackedActivity:
+    void onCreate(android.os.Bundle) -> onCreate
+    void onStart() -> onStart
+    java.lang.Object onRetainNonConfigurationInstance() -> onRetainNonConfigurationInstance
+    void onStop() -> onStop
+com.google.android.apps.analytics.easytracking.TrackedListActivity -> com.google.android.apps.analytics.easytracking.TrackedListActivity:
+    void onCreate(android.os.Bundle) -> onCreate
+    void onStart() -> onStart
+    java.lang.Object onRetainNonConfigurationInstance() -> onRetainNonConfigurationInstance
+    void onStop() -> onStop
+com.larvalabs.svgandroid.ParserHelper -> com.a.a.c:
+    char current -> b
+    java.lang.CharSequence s -> c
+    int pos -> a
+    int n -> d
+    double[] pow10 -> e
+    char read() -> d
+    void skipWhitespace() -> a
+    void advance() -> b
+    void reportUnexpectedCharacterError(char) -> a
+    float nextFloat() -> c
+com.larvalabs.svgandroid.SVG -> com.a.a.g:
+    android.graphics.Picture picture -> a
+    android.graphics.RectF bounds -> b
+    android.graphics.RectF limits -> c
+    void setLimits(android.graphics.RectF) -> a
+    android.graphics.Picture getPicture() -> a
+com.larvalabs.svgandroid.SVGParseException -> com.a.a.e:
+com.larvalabs.svgandroid.SVGParser -> com.a.a.i:
+    com.larvalabs.svgandroid.SVG getSVGFromResource(android.content.res.Resources,int) -> a
+    com.larvalabs.svgandroid.SVG parse$2929840(java.io.InputStream,java.lang.Integer,java.lang.Integer) -> a
+    com.larvalabs.svgandroid.SVGParser$NumberParse parseNumbers(java.lang.String) -> c
+    java.lang.String getStringAttr(java.lang.String,org.xml.sax.Attributes) -> d
+    java.lang.Float getFloatAttr(java.lang.String,org.xml.sax.Attributes,java.lang.Float) -> b
+    java.lang.String access$200(java.lang.String,org.xml.sax.Attributes) -> a
+    java.lang.Float access$500(java.lang.String,org.xml.sax.Attributes,java.lang.Float) -> a
+    android.graphics.Matrix access$600(java.lang.String) -> a
+    java.lang.Float access$700(java.lang.String,org.xml.sax.Attributes) -> b
+    com.larvalabs.svgandroid.SVGParser$NumberParse access$900(java.lang.String,org.xml.sax.Attributes) -> c
+    android.graphics.Path access$1000(java.lang.String) -> b
+com.larvalabs.svgandroid.SVGParser$Gradient -> com.a.a.h:
+    java.lang.String id -> a
+    java.lang.String xlink -> b
+    boolean isLinear -> c
+    float x1 -> d
+    float y1 -> e
+    float x2 -> f
+    float y2 -> g
+    float x -> h
+    float y -> i
+    float radius -> j
+    java.util.ArrayList positions -> k
+    java.util.ArrayList colors -> l
+    android.graphics.Matrix matrix -> m
+    com.larvalabs.svgandroid.SVGParser$Gradient createChild(com.larvalabs.svgandroid.SVGParser$Gradient) -> a
+com.larvalabs.svgandroid.SVGParser$NumberParse -> com.a.a.b:
+    java.util.ArrayList numbers -> a
+    int nextCmd -> b
+    java.util.ArrayList access$100(com.larvalabs.svgandroid.SVGParser$NumberParse) -> a
+com.larvalabs.svgandroid.SVGParser$Properties -> com.a.a.d:
+    com.larvalabs.svgandroid.SVGParser$StyleSet styles -> a
+    org.xml.sax.Attributes atts -> b
+    java.lang.String getAttr(java.lang.String) -> a
+    java.lang.Integer getHex(java.lang.String) -> b
+    java.lang.Float getFloat(java.lang.String) -> c
+com.larvalabs.svgandroid.SVGParser$SVGHandler -> com.a.a.a:
+    android.graphics.Picture picture -> f
+    android.graphics.Canvas canvas -> g
+    android.graphics.Paint paint -> h
+    android.graphics.RectF rect -> i
+    android.graphics.RectF bounds -> a
+    android.graphics.RectF limits -> b
+    java.lang.Integer searchColor -> c
+    java.lang.Integer replaceColor -> d
+    boolean whiteMode -> e
+    boolean pushed -> j
+    java.util.HashMap gradientMap -> k
+    java.util.HashMap gradientRefMap -> l
+    com.larvalabs.svgandroid.SVGParser$Gradient gradient -> m
+    boolean hidden -> n
+    int hiddenLevel -> o
+    boolean boundsMode -> p
+    void startDocument() -> startDocument
+    void endDocument() -> endDocument
+    boolean doFill(com.larvalabs.svgandroid.SVGParser$Properties,java.util.HashMap) -> a
+    boolean doStroke(com.larvalabs.svgandroid.SVGParser$Properties) -> a
+    com.larvalabs.svgandroid.SVGParser$Gradient doGradient(boolean,org.xml.sax.Attributes) -> a
+    void doColor(com.larvalabs.svgandroid.SVGParser$Properties,java.lang.Integer,boolean) -> a
+    void doLimits(float,float) -> a
+    void doLimits(android.graphics.Path) -> a
+    void pushTransform(org.xml.sax.Attributes) -> a
+    void popTransform() -> a
+    void startElement(java.lang.String,java.lang.String,java.lang.String,org.xml.sax.Attributes) -> startElement
+    void characters(char[],int,int) -> characters
+    void endElement(java.lang.String,java.lang.String,java.lang.String) -> endElement
+com.larvalabs.svgandroid.SVGParser$StyleSet -> com.a.a.f:
+    java.util.HashMap styleMap -> a
+    java.lang.String getStyle(java.lang.String) -> a
+pl.mg6.common.FileUtils -> pl.mg6.common.e:
+    java.lang.String tryReadFile(java.lang.String) -> a
+pl.mg6.common.HtmlEntityEncoder -> pl.mg6.common.a:
+    java.util.regex.Pattern WRONG_CHAR -> a
+    java.util.regex.Pattern ENTITY -> b
+    java.lang.String encode(java.lang.String) -> a
+    java.lang.String decode(java.lang.String) -> b
+pl.mg6.common.Settings -> pl.mg6.common.c:
+    java.lang.String BOARD_INPUT_METHOD_DEFAULT_VALUE -> a
+    android.content.SharedPreferences$Editor getSharedPrefsEditor(android.content.Context) -> x
+    boolean isConfirmDisconnect(android.content.Context) -> a
+    void setConfirmDisconnect$1a552341(android.content.Context) -> b
+    java.lang.String getUsername(android.content.Context) -> c
+    java.lang.String getPassword(android.content.Context) -> d
+    void setUsernameAndPassword(android.content.Context,java.lang.String,java.lang.String) -> a
+    boolean isRememberPassword(android.content.Context) -> e
+    int getBoardInputMethod(android.content.Context) -> f
+    java.lang.String getBoardColors(android.content.Context) -> g
+    boolean isBoardPremove(android.content.Context) -> h
+    java.lang.String getSeekTime(android.content.Context) -> i
+    java.lang.String getSeekIncrement(android.content.Context) -> j
+    java.lang.String getSeekType(android.content.Context) -> k
+    boolean isSeekRated(android.content.Context) -> l
+    void setSeekData(android.content.Context,java.lang.String,java.lang.String,java.lang.String,boolean) -> a
+    java.lang.String getMatchTime(android.content.Context) -> m
+    java.lang.String getMatchIncrement(android.content.Context) -> n
+    java.lang.String getMatchType(android.content.Context) -> o
+    boolean isMatchRated(android.content.Context) -> p
+    void setMatchData(android.content.Context,java.lang.String,java.lang.String,java.lang.String,boolean) -> b
+    boolean isHelpImprove(android.content.Context) -> q
+    void addCommand(android.content.Context,java.lang.String) -> a
+    java.util.List getFrequentlyUsedCommands(android.content.Context) -> r
+    void saveCurrentGame(android.content.Context,java.util.UUID) -> a
+    java.util.UUID loadCurrentGame(android.content.Context) -> s
+    void saveCurrentChat(android.content.Context,java.lang.String) -> b
+    java.lang.String loadCurrentChat(android.content.Context) -> t
+    boolean canShowRate(android.content.Context) -> u
+    void setRateClicked(android.content.Context) -> v
+    boolean isAdClicked(android.content.Context) -> w
+    void setAdClicked(android.content.Context,boolean) -> a
+pl.mg6.common.StringUtils -> pl.mg6.common.b:
+    java.util.regex.Pattern FIRST_OR_AFTER_UNDERLINE -> a
+    java.lang.String join(java.lang.String,java.lang.String[]) -> a
+    java.lang.String underlinedToPascalCase(java.lang.String) -> a
+pl.mg6.common.TimeUtils -> pl.mg6.common.d:
+    java.lang.String formatTime(int,boolean) -> a
+pl.mg6.common.android.AndroidUtils -> pl.mg6.common.android.c:
+    java.lang.String getVersionName(android.content.Context) -> a
+    int getVersionCode(android.content.Context) -> b
+pl.mg6.common.android.BaseActivity -> pl.mg6.common.android.BaseActivity:
+    java.lang.String TAG -> a
+    java.util.List aliveActivities -> b
+    void finalize() -> finalize
+    void onCreate(android.os.Bundle) -> onCreate
+    void onRestart() -> onRestart
+    void onStart() -> onStart
+    void onResume() -> onResume
+    void onPause() -> onPause
+    void onStop() -> onStop
+    void onDestroy() -> onDestroy
+    void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
+    void onRestoreInstanceState(android.os.Bundle) -> onRestoreInstanceState
+    java.lang.Object onRetainNonConfigurationInstance() -> onRetainNonConfigurationInstance
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+pl.mg6.common.android.ButtonEx -> pl.mg6.common.android.ButtonEx:
+    void setPressed(boolean) -> setPressed
+pl.mg6.common.android.ImageListPreference -> pl.mg6.common.android.ImageListPreference:
+    int layoutResId -> a
+    int entryId -> b
+    int imageId -> c
+    int checkableId -> d
+    int imagesResId -> e
+    void onPrepareDialogBuilder(android.app.AlertDialog$Builder) -> onPrepareDialogBuilder
+    int access$0(pl.mg6.common.android.ImageListPreference) -> a
+    int access$1(pl.mg6.common.android.ImageListPreference) -> b
+    int access$2(pl.mg6.common.android.ImageListPreference) -> c
+    int access$3(pl.mg6.common.android.ImageListPreference) -> d
+    int access$4(pl.mg6.common.android.ImageListPreference) -> e
+pl.mg6.common.android.ImageListPreference$ImageListPreferenceAdapter -> pl.mg6.common.android.b:
+    android.view.LayoutInflater layoutInflater -> b
+    java.lang.CharSequence[] values -> c
+    java.lang.String selectedValue -> d
+    java.lang.CharSequence[] texts -> e
+    android.graphics.drawable.Drawable[] images -> f
+    android.view.View$OnClickListener listener -> g
+    pl.mg6.common.android.ImageListPreference this$0 -> a
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+pl.mg6.common.android.ImageListPreference$ImageListPreferenceAdapter$1 -> pl.mg6.common.android.f:
+    pl.mg6.common.android.ImageListPreference$ImageListPreferenceAdapter this$1 -> a
+    void onClick(android.view.View) -> onClick
+pl.mg6.common.android.ListPreferenceEx -> pl.mg6.common.android.ListPreferenceEx:
+    void setValue(java.lang.String) -> setValue
+    java.lang.CharSequence getSummary() -> getSummary
+pl.mg6.common.android.OnSizeChangedListener -> pl.mg6.common.android.a:
+    void onSizeChanged$5b6f797d(int) -> a
+pl.mg6.common.android.ScrollViewEx -> pl.mg6.common.android.ScrollViewEx:
+    pl.mg6.common.android.OnSizeChangedListener onSizeChangedListener -> a
+    void onSizeChanged(int,int,int,int) -> onSizeChanged
+    void setOnSizeChangedListener(pl.mg6.common.android.OnSizeChangedListener) -> a
+pl.mg6.common.android.ViewUtils -> pl.mg6.common.android.d:
+    void setTextAndScroll(android.widget.ScrollView,android.widget.TextView,java.lang.String) -> a
+    void centerViewInScroll(android.view.View,android.widget.HorizontalScrollView) -> a
+    void centerViewInScroll(android.view.View,android.widget.ScrollView) -> a
+pl.mg6.common.android.ViewUtils$1 -> pl.mg6.common.android.e:
+    android.widget.TextView val$textView -> a
+    android.widget.ScrollView val$scrollView -> b
+    void run() -> run
+pl.mg6.common.android.ads.BaseAdListener -> pl.mg6.common.android.a.a:
+    java.lang.String TAG -> a
+    void onDismissScreen(com.google.ads.Ad) -> a
+    void onFailedToReceiveAd(com.google.ads.Ad,com.google.ads.AdRequest$ErrorCode) -> a
+    void onLeaveApplication(com.google.ads.Ad) -> b
+    void onPresentScreen(com.google.ads.Ad) -> c
+    void onReceiveAd(com.google.ads.Ad) -> d
+pl.mg6.common.android.tracker.TrackedActivity -> pl.mg6.common.android.tracker.TrackedActivity:
+    void onCreate(android.os.Bundle) -> onCreate
+    void onStart() -> onStart
+    void onStop() -> onStop
+    java.lang.Object onRetainNonConfigurationInstance() -> onRetainNonConfigurationInstance
+    void trackEvent(java.lang.String,java.lang.String,java.lang.String,int) -> a
+    void trackEvent$78a511a1(java.lang.String,java.lang.String,java.lang.String) -> a
+pl.mg6.common.android.tracker.TrackedPreferenceActivity -> pl.mg6.common.android.tracker.TrackedPreferenceActivity:
+    void onCreate(android.os.Bundle) -> onCreate
+    void onStart() -> onStart
+    void onStop() -> onStop
+    java.lang.Object onRetainNonConfigurationInstance() -> onRetainNonConfigurationInstance
+    void trackEvent(java.lang.String,java.lang.String,java.lang.String,int) -> a
+    void trackEvent$78a511a1(java.lang.String,java.lang.String,boolean) -> a
+pl.mg6.yafi.BaseFreechessActivity -> pl.mg6.yafi.BaseFreechessActivity:
+    java.lang.String TAG -> c
+    android.app.AlertDialog disconnectedDialog -> d
+    android.os.Handler handler -> e
+    pl.mg6.yafi.model.FreechessService$FreechessServiceInterface service -> a
+    boolean bindFreechessService -> f
+    boolean stopped -> g
+    boolean checkLoggedOn -> b
+    void onCreate(android.os.Bundle) -> onCreate
+    void onContentChanged() -> onContentChanged
+    void onStart() -> onStart
+    void onStop() -> onStop
+    void onServiceConnected(android.content.ComponentName,android.os.IBinder) -> onServiceConnected
+    void onServiceDisconnected(android.content.ComponentName) -> onServiceDisconnected
+    void onStartHandlingMessages() -> a
+    void onStopHandlingMessages() -> b
+    boolean handleMessage(android.os.Message) -> handleMessage
+    void onDisconnected() -> c
+    void onGameCreate() -> d
+    android.app.Dialog onCreateDialog(int) -> onCreateDialog
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    void access$0(pl.mg6.yafi.BaseFreechessActivity,java.lang.String,java.lang.String,java.lang.String,int) -> a
+pl.mg6.yafi.BaseFreechessActivity$1 -> pl.mg6.yafi.u:
+    long startTime -> a
+    pl.mg6.yafi.BaseFreechessActivity this$0 -> b
+    com.google.ads.AdView val$view -> c
+    void onPresentScreen(com.google.ads.Ad) -> c
+    void onLeaveApplication(com.google.ads.Ad) -> b
+    void onDismissScreen(com.google.ads.Ad) -> a
+    void onFailedToReceiveAd(com.google.ads.Ad,com.google.ads.AdRequest$ErrorCode) -> a
+pl.mg6.yafi.BaseFreechessActivity$2 -> pl.mg6.yafi.s:
+    pl.mg6.yafi.BaseFreechessActivity this$0 -> a
+    void onDismiss(android.content.DialogInterface) -> onDismiss
+pl.mg6.yafi.BoardActivity -> pl.mg6.yafi.BoardActivity:
+    pl.mg6.yafi.BoardView boardView -> c
+    android.widget.LinearLayout tabs -> d
+    android.widget.HorizontalScrollView tabsScrollPortrait -> e
+    android.widget.ScrollView tabsScrollLandscape -> f
+    android.widget.TextView whiteNameField -> g
+    android.widget.TextView whiteRatingField -> h
+    android.widget.TextView whiteTimeField -> i
+    android.widget.TextView blackNameField -> j
+    android.widget.TextView blackRatingField -> k
+    android.widget.TextView blackTimeField -> l
+    android.widget.TextView resultField -> m
+    android.widget.TextView descriptionField -> n
+    android.view.View reviewOverlay -> o
+    java.lang.Runnable updateTimesCallback -> p
+    java.util.List allGamesIds -> q
+    java.util.UUID currentGameId -> r
+    int currentPosition -> s
+    boolean showLag -> t
+    boolean premove -> u
+    java.util.Queue premoveQueue -> v
+    void onCreate(android.os.Bundle) -> onCreate
+    void onPause() -> onPause
+    void onStartHandlingMessages() -> a
+    void onFirstClick(android.view.View) -> onFirstClick
+    void onPreviousClick(android.view.View) -> onPreviousClick
+    void onNextClick(android.view.View) -> onNextClick
+    void onLastClick(android.view.View) -> onLastClick
+    void updateViews() -> e
+    void updateTimes() -> f
+    boolean handleMessage(android.os.Message) -> handleMessage
+    void addTab(java.util.UUID) -> a
+    boolean onContextItemSelected(android.view.MenuItem) -> onContextItemSelected
+    void onMove(int,int,int,int) -> a
+    boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    boolean onPrepareOptionsMenu(android.view.Menu) -> onPrepareOptionsMenu
+    boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    void access$0(pl.mg6.yafi.BoardActivity) -> a
+    void access$1(pl.mg6.yafi.BoardActivity,android.view.View) -> a
+    java.util.UUID access$2(pl.mg6.yafi.BoardActivity) -> b
+    void access$3(pl.mg6.yafi.BoardActivity,java.util.UUID) -> a
+    void access$4$5153624e(pl.mg6.yafi.BoardActivity) -> c
+    void access$5(pl.mg6.yafi.BoardActivity) -> d
+pl.mg6.yafi.BoardActivity$1 -> pl.mg6.yafi.g:
+    pl.mg6.yafi.BoardActivity this$0 -> a
+    void run() -> run
+pl.mg6.yafi.BoardActivity$2 -> pl.mg6.yafi.f:
+    pl.mg6.yafi.BoardActivity this$0 -> a
+    android.view.View val$selected -> b
+    void run() -> run
+pl.mg6.yafi.BoardActivity$3 -> pl.mg6.yafi.e:
+    pl.mg6.yafi.BoardActivity this$0 -> a
+    android.view.View val$selected -> b
+    void run() -> run
+pl.mg6.yafi.BoardActivity$4 -> pl.mg6.yafi.d:
+    pl.mg6.yafi.BoardActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+pl.mg6.yafi.BoardActivity$5 -> pl.mg6.yafi.c:
+    pl.mg6.yafi.BoardActivity this$0 -> a
+    void onCreateContextMenu(android.view.ContextMenu,android.view.View,android.view.ContextMenu$ContextMenuInfo) -> onCreateContextMenu
+pl.mg6.yafi.BoardView -> pl.mg6.yafi.BoardView:
+    pl.mg6.yafi.BoardView$OnMoveListener listener -> a
+    pl.mg6.yafi.model.data.Position position -> b
+    android.graphics.Paint paint -> c
+    android.graphics.RectF rect -> d
+    java.util.Map pictures -> e
+    int initFile -> f
+    int initRank -> g
+    int destFile -> h
+    int destRank -> i
+    float draggingX -> j
+    float draggingY -> k
+    int inputMethod -> l
+    int lightSquareColor -> m
+    int darkSquareColor -> n
+    boolean premove -> o
+    int state -> p
+    void init() -> b
+    void setMoveSent() -> a
+    void onDraw(android.graphics.Canvas) -> onDraw
+    void onMeasure(int,int) -> onMeasure
+    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+    void setOnMoveListener(pl.mg6.yafi.BoardView$OnMoveListener) -> a
+    void setPosition(pl.mg6.yafi.model.data.Position) -> a
+    int flip(int) -> a
+    android.os.Parcelable onSaveInstanceState() -> onSaveInstanceState
+    void onRestoreInstanceState(android.os.Parcelable) -> onRestoreInstanceState
+pl.mg6.yafi.BoardView$OnMoveListener -> pl.mg6.yafi.b:
+    void onMove(int,int,int,int) -> a
+pl.mg6.yafi.ChallengesActivity -> pl.mg6.yafi.ChallengesActivity:
+    pl.mg6.yafi.ChallengesActivity$ChallengesAdapter adapterSent -> c
+    android.widget.ListView listSent -> d
+    android.widget.TextView sentEmptyView -> e
+    pl.mg6.yafi.ChallengesActivity$ChallengesAdapter adapterReceived -> f
+    android.widget.ListView listReceived -> g
+    android.widget.TextView recevicedEmptyView -> h
+    java.lang.String menuName -> i
+    void onCreate(android.os.Bundle) -> onCreate
+    boolean onContextItemSelected(android.view.MenuItem) -> onContextItemSelected
+    void onStartHandlingMessages() -> a
+    void onRefreshClick(android.view.View) -> onRefreshClick
+    boolean handleMessage(android.os.Message) -> handleMessage
+    void onCommandClick(android.view.View) -> onCommandClick
+    pl.mg6.yafi.ChallengesActivity$ChallengesAdapter access$0(pl.mg6.yafi.ChallengesActivity) -> a
+    void access$1(pl.mg6.yafi.ChallengesActivity,java.lang.String) -> a
+    java.lang.String access$2(pl.mg6.yafi.ChallengesActivity) -> b
+    pl.mg6.yafi.ChallengesActivity$ChallengesAdapter access$3(pl.mg6.yafi.ChallengesActivity) -> c
+pl.mg6.yafi.ChallengesActivity$1 -> pl.mg6.yafi.h:
+    pl.mg6.yafi.ChallengesActivity this$0 -> a
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+pl.mg6.yafi.ChallengesActivity$2 -> pl.mg6.yafi.i:
+    pl.mg6.yafi.ChallengesActivity this$0 -> a
+    void onCreateContextMenu(android.view.ContextMenu,android.view.View,android.view.ContextMenu$ContextMenuInfo) -> onCreateContextMenu
+pl.mg6.yafi.ChallengesActivity$3 -> pl.mg6.yafi.j:
+    pl.mg6.yafi.ChallengesActivity this$0 -> a
+    void onCreateContextMenu(android.view.ContextMenu,android.view.View,android.view.ContextMenu$ContextMenuInfo) -> onCreateContextMenu
+pl.mg6.yafi.ChallengesActivity$ChallengesAdapter -> pl.mg6.yafi.q:
+    android.view.LayoutInflater layoutInflater -> a
+    int layoutId -> b
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    void removeWithName(java.lang.String) -> a
+pl.mg6.yafi.ChatActivity -> pl.mg6.yafi.ChatActivity:
+    android.widget.ListView outputList -> c
+    android.widget.EditText inputField -> d
+    android.widget.LinearLayout tabs -> e
+    android.widget.HorizontalScrollView tabsScrollPortrait -> f
+    android.widget.ScrollView tabsScrollLandscape -> g
+    pl.mg6.yafi.ChatActivity$ChatAdapter outputAdapter -> h
+    java.util.List allChatIds -> i
+    java.lang.String currentChatId -> j
+    boolean forceCreate -> k
+    java.lang.String menuName -> l
+    void onCreate(android.os.Bundle) -> onCreate
+    boolean onContextItemSelected(android.view.MenuItem) -> onContextItemSelected
+    void onPause() -> onPause
+    void onSendClick(android.view.View) -> onSendClick
+    boolean sendMessage() -> e
+    void onStartHandlingMessages() -> a
+    boolean handleMessage(android.os.Message) -> handleMessage
+    void addTab(java.lang.String) -> a
+    void updateViews() -> f
+    pl.mg6.yafi.ChatActivity$ChatAdapter access$0(pl.mg6.yafi.ChatActivity) -> a
+    void access$1(pl.mg6.yafi.ChatActivity,java.lang.String) -> a
+    java.lang.String access$2(pl.mg6.yafi.ChatActivity) -> b
+    java.lang.String access$3(pl.mg6.yafi.ChatActivity) -> c
+    boolean access$4(pl.mg6.yafi.ChatActivity) -> d
+    void access$5(pl.mg6.yafi.ChatActivity,android.view.View) -> a
+    void access$6(pl.mg6.yafi.ChatActivity,java.lang.String) -> b
+    void access$7(pl.mg6.yafi.ChatActivity) -> e
+pl.mg6.yafi.ChatActivity$1 -> pl.mg6.yafi.ah:
+    pl.mg6.yafi.ChatActivity this$0 -> a
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+pl.mg6.yafi.ChatActivity$2 -> pl.mg6.yafi.ag:
+    pl.mg6.yafi.ChatActivity this$0 -> a
+    void onCreateContextMenu(android.view.ContextMenu,android.view.View,android.view.ContextMenu$ContextMenuInfo) -> onCreateContextMenu
+pl.mg6.yafi.ChatActivity$3 -> pl.mg6.yafi.aj:
+    pl.mg6.yafi.ChatActivity this$0 -> a
+    boolean onEditorAction(android.widget.TextView,int,android.view.KeyEvent) -> onEditorAction
+pl.mg6.yafi.ChatActivity$4 -> pl.mg6.yafi.ai:
+    pl.mg6.yafi.ChatActivity this$0 -> a
+    android.widget.Button val$tab -> b
+    void run() -> run
+pl.mg6.yafi.ChatActivity$5 -> pl.mg6.yafi.al:
+    pl.mg6.yafi.ChatActivity this$0 -> a
+    android.view.View val$selected -> b
+    void run() -> run
+pl.mg6.yafi.ChatActivity$6 -> pl.mg6.yafi.ak:
+    pl.mg6.yafi.ChatActivity this$0 -> a
+    android.view.View val$selected -> b
+    void run() -> run
+pl.mg6.yafi.ChatActivity$7 -> pl.mg6.yafi.af:
+    pl.mg6.yafi.ChatActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+pl.mg6.yafi.ChatActivity$8 -> pl.mg6.yafi.ae:
+    pl.mg6.yafi.ChatActivity this$0 -> a
+    void onCreateContextMenu(android.view.ContextMenu,android.view.View,android.view.ContextMenu$ContextMenuInfo) -> onCreateContextMenu
+pl.mg6.yafi.ChatActivity$ChatAdapter -> pl.mg6.yafi.m:
+    android.view.LayoutInflater layoutInflater -> a
+    java.util.List items -> b
+    int getCount() -> getCount
+    pl.mg6.yafi.model.data.Communication getItem(int) -> a
+    long getItemId(int) -> getItemId
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    void setItems(java.util.List) -> a
+    void addItem(pl.mg6.yafi.model.data.Communication) -> a
+    java.lang.Object getItem(int) -> getItem
+pl.mg6.yafi.ConsoleActivity -> pl.mg6.yafi.ConsoleActivity:
+    android.widget.TextView outputField -> c
+    android.widget.EditText inputField -> d
+    pl.mg6.common.android.ScrollViewEx outputScroll -> e
+    android.widget.LinearLayout tabs -> f
+    void onCreate(android.os.Bundle) -> onCreate
+    void onStartHandlingMessages() -> a
+    boolean handleMessage(android.os.Message) -> handleMessage
+    android.widget.EditText access$0(pl.mg6.yafi.ConsoleActivity) -> a
+    void access$1(pl.mg6.yafi.ConsoleActivity,java.lang.String,java.lang.String,java.lang.String,int) -> a
+    android.widget.TextView access$2(pl.mg6.yafi.ConsoleActivity) -> b
+    pl.mg6.common.android.ScrollViewEx access$3(pl.mg6.yafi.ConsoleActivity) -> c
+pl.mg6.yafi.ConsoleActivity$1 -> pl.mg6.yafi.y:
+    pl.mg6.yafi.ConsoleActivity this$0 -> a
+    boolean onEditorAction(android.widget.TextView,int,android.view.KeyEvent) -> onEditorAction
+pl.mg6.yafi.ConsoleActivity$2 -> pl.mg6.yafi.x:
+    pl.mg6.yafi.ConsoleActivity this$0 -> a
+    void onSizeChanged$5b6f797d(int) -> a
+pl.mg6.yafi.ConsoleActivity$2$1 -> pl.mg6.yafi.k:
+    pl.mg6.yafi.ConsoleActivity$2 this$1 -> a
+    void run() -> run
+pl.mg6.yafi.ConsoleActivity$3 -> pl.mg6.yafi.w:
+    pl.mg6.yafi.ConsoleActivity this$0 -> a
+    java.lang.String val$command -> b
+    void onClick(android.view.View) -> onClick
+pl.mg6.yafi.InformationsActivity -> pl.mg6.yafi.InformationsActivity:
+    java.lang.String username -> c
+    int state -> d
+    int[] notesIds -> e
+    int[] currentRatingIds -> f
+    int[] gamesIds -> g
+    int[] ratingNames -> h
+    java.lang.String historicalGameId -> i
+    java.lang.String trackingLabel -> j
+    android.view.View$OnCreateContextMenuListener contextMenuListener -> k
+    void onCreate(android.os.Bundle) -> onCreate
+    void onStartHandlingMessages() -> a
+    boolean handleMessage(android.os.Message) -> handleMessage
+    void onHistory(pl.mg6.yafi.model.data.HistoryInfo) -> a
+    void onJournal(pl.mg6.yafi.model.data.JournalInfo) -> a
+    void onAdjourned(pl.mg6.yafi.model.data.AdjournedInfo) -> a
+    void onEntryClick(android.view.View) -> onEntryClick
+    boolean onContextItemSelected(android.view.MenuItem) -> onContextItemSelected
+    void access$0(pl.mg6.yafi.InformationsActivity,java.lang.String) -> a
+    java.lang.String access$1(pl.mg6.yafi.InformationsActivity) -> a
+    java.lang.String access$2(pl.mg6.yafi.InformationsActivity) -> b
+    void access$3(pl.mg6.yafi.InformationsActivity,java.lang.String) -> b
+pl.mg6.yafi.InformationsActivity$1 -> pl.mg6.yafi.z:
+    pl.mg6.yafi.InformationsActivity this$0 -> a
+    void onCreateContextMenu(android.view.ContextMenu,android.view.View,android.view.ContextMenu$ContextMenuInfo) -> onCreateContextMenu
+pl.mg6.yafi.ListUsersActivity -> pl.mg6.yafi.ListUsersActivity:
+    android.widget.ListView listView -> c
+    android.widget.TextView emptyView -> d
+    android.widget.ArrayAdapter listAdapter -> e
+    boolean sent -> f
+    boolean received -> g
+    java.lang.String menuName -> h
+    void onCreate(android.os.Bundle) -> onCreate
+    boolean onContextItemSelected(android.view.MenuItem) -> onContextItemSelected
+    void onStartHandlingMessages() -> a
+    boolean handleMessage(android.os.Message) -> handleMessage
+    android.widget.ArrayAdapter access$0(pl.mg6.yafi.ListUsersActivity) -> a
+    void access$1(pl.mg6.yafi.ListUsersActivity,java.lang.String) -> a
+    java.lang.String access$2(pl.mg6.yafi.ListUsersActivity) -> b
+pl.mg6.yafi.ListUsersActivity$1 -> pl.mg6.yafi.v:
+    pl.mg6.yafi.ListUsersActivity this$0 -> a
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+pl.mg6.yafi.ListUsersActivity$2 -> pl.mg6.yafi.t:
+    pl.mg6.yafi.ListUsersActivity this$0 -> a
+    void onCreateContextMenu(android.view.ContextMenu,android.view.View,android.view.ContextMenu$ContextMenuInfo) -> onCreateContextMenu
+pl.mg6.yafi.LoginActivity -> pl.mg6.yafi.LoginActivity:
+    android.widget.EditText usernameField -> c
+    android.widget.EditText passwordField -> d
+    android.widget.Button loginButton -> e
+    android.app.ProgressDialog connectingDialog -> f
+    android.app.AlertDialog unableToLogOnDialog -> g
+    java.lang.String unableToLogOnInfo -> h
+    int[] $SWITCH_TABLE$pl$mg6$yafi$model$FreechessConnection$ConnectionState -> i
+    void onCreate(android.os.Bundle) -> onCreate
+    void onResume() -> onResume
+    void onPause() -> onPause
+    void onStop() -> onStop
+    void onLoginClick(android.view.View) -> onLoginClick
+    void initLogin() -> e
+    void onStartHandlingMessages() -> a
+    boolean handleMessage(android.os.Message) -> handleMessage
+    void onSendingUsername() -> f
+    void onSendingPassword() -> g
+    void onLoggedOn() -> h
+    void onDisconnected() -> c
+    void dismissConnectingDialog() -> i
+    android.app.Dialog onCreateDialog(int) -> onCreateDialog
+    void onPrepareDialog(int,android.app.Dialog) -> onPrepareDialog
+    boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    android.widget.EditText access$0(pl.mg6.yafi.LoginActivity) -> a
+    android.widget.Button access$1(pl.mg6.yafi.LoginActivity) -> b
+    void access$2(pl.mg6.yafi.LoginActivity) -> c
+    int[] $SWITCH_TABLE$pl$mg6$yafi$model$FreechessConnection$ConnectionState() -> j
+    void access$4(pl.mg6.yafi.LoginActivity) -> d
+pl.mg6.yafi.LoginActivity$1 -> pl.mg6.yafi.ad:
+    pl.mg6.yafi.LoginActivity this$0 -> a
+    void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
+    void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
+    void afterTextChanged(android.text.Editable) -> afterTextChanged
+pl.mg6.yafi.LoginActivity$2 -> pl.mg6.yafi.ab:
+    pl.mg6.yafi.LoginActivity this$0 -> a
+    boolean onEditorAction(android.widget.TextView,int,android.view.KeyEvent) -> onEditorAction
+pl.mg6.yafi.LoginActivity$3 -> pl.mg6.yafi.ac:
+    pl.mg6.yafi.LoginActivity this$0 -> a
+    void onCancel(android.content.DialogInterface) -> onCancel
+pl.mg6.yafi.MatchActivity -> pl.mg6.yafi.MatchActivity:
+    android.widget.EditText userField -> c
+    android.widget.EditText timeField -> d
+    android.widget.EditText incrementField -> e
+    android.widget.Spinner typeField -> f
+    android.widget.CheckBox ratedField -> g
+    java.lang.String[] typeIds -> h
+    void onCreate(android.os.Bundle) -> onCreate
+    void onPause() -> onPause
+    void onMatchClick(android.view.View) -> onMatchClick
+pl.mg6.yafi.MenuActivity -> pl.mg6.yafi.MenuActivity:
+    android.app.AlertDialog confirmDisconnectDialog -> c
+    android.widget.CheckBox confirmDisconnectCheckbox -> d
+    android.view.ViewGroup updateRatePanel -> e
+    boolean triedShowRate -> f
+    void onCreate(android.os.Bundle) -> onCreate
+    void onBoardClick(android.view.View) -> onBoardClick
+    void onChatClick(android.view.View) -> onChatClick
+    void onSeekClick(android.view.View) -> onSeekClick
+    void onSoughtClick(android.view.View) -> onSoughtClick
+    void onMatchClick(android.view.View) -> onMatchClick
+    void onChallengesClick(android.view.View) -> onChallengesClick
+    void onSearchForGameClick(android.view.View) -> onSearchForGameClick
+    void onConsoleClick(android.view.View) -> onConsoleClick
+    void onUserPrefsClick(android.view.View) -> onUserPrefsClick
+    void onBackPressed() -> onBackPressed
+    void onStartHandlingMessages() -> a
+    void onUpdateRateClick(android.view.View) -> onUpdateRateClick
+    void onDisconnected() -> c
+    void onGameCreate() -> d
+    android.app.Dialog onCreateDialog(int) -> onCreateDialog
+    void onPrepareDialog(int,android.app.Dialog) -> onPrepareDialog
+    boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
+    boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
+    android.widget.CheckBox access$0(pl.mg6.yafi.MenuActivity) -> a
+    void access$1$51589fc2(pl.mg6.yafi.MenuActivity,java.lang.String,java.lang.String,java.lang.String) -> a
+pl.mg6.yafi.MenuActivity$1 -> pl.mg6.yafi.l:
+    pl.mg6.yafi.MenuActivity this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+pl.mg6.yafi.R -> pl.mg6.yafi.n:
+pl.mg6.yafi.R$styleable -> pl.mg6.yafi.aa:
+    int[] ImageListPreference -> a
+pl.mg6.yafi.SearchForGameActivity -> pl.mg6.yafi.SearchForGameActivity:
+pl.mg6.yafi.SeekActivity -> pl.mg6.yafi.SeekActivity:
+    android.widget.EditText timeField -> c
+    android.widget.EditText incrementField -> d
+    android.widget.Spinner typeField -> e
+    android.widget.CheckBox ratedField -> f
+    java.lang.String[] typeIds -> g
+    void onCreate(android.os.Bundle) -> onCreate
+    void onPause() -> onPause
+    void onSeekClick(android.view.View) -> onSeekClick
+pl.mg6.yafi.SoughtActivity -> pl.mg6.yafi.SoughtActivity:
+    boolean recevingSeeks -> c
+    pl.mg6.yafi.SoughtActivity$SoughtAdapter soughtAdapter -> d
+    android.widget.GridView soughtList -> e
+    android.widget.TextView emptyView -> f
+    java.lang.String menuName -> g
+    void onCreate(android.os.Bundle) -> onCreate
+    boolean onContextItemSelected(android.view.MenuItem) -> onContextItemSelected
+    void onStartHandlingMessages() -> a
+    void onStopHandlingMessages() -> b
+    boolean handleMessage(android.os.Message) -> handleMessage
+    pl.mg6.yafi.SoughtActivity$SoughtAdapter access$0(pl.mg6.yafi.SoughtActivity) -> a
+    void access$1(pl.mg6.yafi.SoughtActivity,pl.mg6.yafi.model.data.SeekInfo) -> a
+    void access$2(pl.mg6.yafi.SoughtActivity,java.lang.String) -> a
+    java.lang.String access$3(pl.mg6.yafi.SoughtActivity) -> b
+pl.mg6.yafi.SoughtActivity$1 -> pl.mg6.yafi.o:
+    pl.mg6.yafi.SoughtActivity this$0 -> a
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+pl.mg6.yafi.SoughtActivity$2 -> pl.mg6.yafi.p:
+    pl.mg6.yafi.SoughtActivity this$0 -> a
+    void onCreateContextMenu(android.view.ContextMenu,android.view.View,android.view.ContextMenu$ContextMenuInfo) -> onCreateContextMenu
+pl.mg6.yafi.SoughtActivity$SoughtAdapter -> pl.mg6.yafi.a:
+    android.view.LayoutInflater layoutInflater -> a
+    java.util.List items -> b
+    boolean areAllItemsEnabled() -> areAllItemsEnabled
+    boolean isEnabled(int) -> isEnabled
+    int getItemViewType(int) -> getItemViewType
+    int getViewTypeCount() -> getViewTypeCount
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    int getCount() -> getCount
+    pl.mg6.yafi.model.data.SeekInfo getItem(int) -> a
+    long getItemId(int) -> getItemId
+    void add(pl.mg6.yafi.model.data.SeekInfo) -> a
+    void addAll(pl.mg6.yafi.model.data.SeekInfoList) -> a
+    void removeAll(pl.mg6.yafi.model.data.SeekInfoList) -> b
+    java.lang.Object getItem(int) -> getItem
+    void access$1(pl.mg6.yafi.SoughtActivity$SoughtAdapter) -> a
+pl.mg6.yafi.UserPreferencesActivity -> pl.mg6.yafi.UserPreferencesActivity:
+    android.content.SharedPreferences$OnSharedPreferenceChangeListener listener -> a
+    void onCreate(android.os.Bundle) -> onCreate
+    void onResume() -> onResume
+    void onPause() -> onPause
+    void access$0$5fefb1c8(pl.mg6.yafi.UserPreferencesActivity,java.lang.String,java.lang.String,boolean) -> a
+    void access$1$5fef71f7(pl.mg6.yafi.UserPreferencesActivity,java.lang.String,java.lang.String,java.lang.String) -> a
+pl.mg6.yafi.UserPreferencesActivity$1 -> pl.mg6.yafi.r:
+    pl.mg6.yafi.UserPreferencesActivity this$0 -> a
+    void onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String) -> onSharedPreferenceChanged
+pl.mg6.yafi.YafiActivity -> pl.mg6.yafi.YafiActivity:
+    void onCreate(android.os.Bundle) -> onCreate
+pl.mg6.yafi.model.ConnectionProtocol -> pl.mg6.yafi.model.l:
+    int read(byte[]) -> a
+    void write(byte[]) -> b
+pl.mg6.yafi.model.FreechessConnection -> pl.mg6.yafi.model.c:
+    java.lang.String TAG -> a
+    pl.mg6.yafi.model.FreechessConnection$Listener listener -> b
+    java.lang.String username -> c
+    java.lang.String password -> d
+    java.lang.String interfaceName -> e
+    java.lang.String realUsername -> f
+    pl.mg6.yafi.model.FreechessConnection$ConnectionState state -> g
+    java.lang.Thread readerThread -> h
+    android.os.HandlerThread writerThread -> i
+    android.os.Handler writerHandler -> j
+    pl.mg6.yafi.model.ConnectionProtocol protocol -> k
+    java.lang.StringBuilder readerBuffer -> l
+    int[] $SWITCH_TABLE$pl$mg6$yafi$model$FreechessConnection$ConnectionState -> m
+    void connect() -> a
+    pl.mg6.yafi.model.FreechessConnection$ConnectionState getState() -> b
+    boolean isLoggedOn() -> c
+    void forceEnd() -> d
+    java.lang.String getRealUsername() -> e
+    void run() -> run
+    void loop() -> f
+    void parse(byte[],int) -> a
+    void send(java.lang.String) -> a
+    boolean handleMessage(android.os.Message) -> handleMessage
+    void notifyUnableToLogOn(java.lang.String) -> b
+    void notifyDisconnected() -> g
+    void notifyReceivedOutput(java.lang.String) -> c
+    void setListener(pl.mg6.yafi.model.FreechessConnection$Listener) -> a
+    int[] $SWITCH_TABLE$pl$mg6$yafi$model$FreechessConnection$ConnectionState() -> h
+pl.mg6.yafi.model.FreechessConnection$ConnectionState -> pl.mg6.yafi.model.e:
+    pl.mg6.yafi.model.FreechessConnection$ConnectionState NotConnected -> a
+    pl.mg6.yafi.model.FreechessConnection$ConnectionState Connecting -> b
+    pl.mg6.yafi.model.FreechessConnection$ConnectionState AfterUsernameRequest -> c
+    pl.mg6.yafi.model.FreechessConnection$ConnectionState AfterPasswordRequest -> d
+    pl.mg6.yafi.model.FreechessConnection$ConnectionState AfterNoPasswordRequired -> e
+    pl.mg6.yafi.model.FreechessConnection$ConnectionState UnableToLogOn -> f
+    pl.mg6.yafi.model.FreechessConnection$ConnectionState LoggedOn -> g
+    pl.mg6.yafi.model.FreechessConnection$ConnectionState Disconnected -> h
+    pl.mg6.yafi.model.FreechessConnection$ConnectionState[] ENUM$VALUES -> i
+    pl.mg6.yafi.model.FreechessConnection$ConnectionState[] values() -> values
+    pl.mg6.yafi.model.FreechessConnection$ConnectionState valueOf(java.lang.String) -> valueOf
+pl.mg6.yafi.model.FreechessConnection$Listener -> pl.mg6.yafi.model.a:
+    void onConnecting() -> a
+    void onInvalidUsername() -> b
+    void onSendingUsername() -> c
+    void onSendingPassword() -> d
+    void onInvalidPassword() -> e
+    void onUnableToLogOn(java.lang.String) -> a
+    void onLoggedOn() -> f
+    void onDisconnected() -> g
+    void onReceivedOutput(java.lang.String) -> b
+pl.mg6.yafi.model.FreechessModel -> pl.mg6.yafi.model.d:
+    java.lang.String TAG -> a
+    pl.mg6.yafi.model.FreechessModel$Listener listener -> b
+    java.lang.String output -> c
+    java.util.Map activeGames -> d
+    java.util.Map allGames -> e
+    java.util.Map allCommunication -> f
+    int currentVersion -> g
+    boolean currentVersionOld -> h
+    void setCurrentVersion(int) -> a
+    boolean isCurrentVersionOld() -> a
+    java.lang.String getOutput() -> b
+    pl.mg6.yafi.model.data.Game getGame(java.util.UUID) -> a
+    java.util.List getAllGamesIds() -> c
+    java.util.List getCommunicationById(java.lang.String) -> a
+    void addMessage(pl.mg6.yafi.model.data.Communication) -> a
+    java.util.List getAllCommunicationIds() -> d
+    boolean parse(java.lang.String) -> b
+    void parseGameInfoCreating(java.util.regex.Matcher) -> a
+    void parseGameInfoFollowing(java.util.regex.Matcher) -> b
+    void parseGameInfoRemovingObserved(java.util.regex.Matcher) -> c
+    void parseGameInfoAcceptRemovingObserved(java.util.regex.Matcher) -> d
+    void parseSeekInfoSet(java.util.regex.Matcher) -> e
+    void parseSeekInfoRemove(java.util.regex.Matcher) -> f
+    void parseListInfoShow(java.util.regex.Matcher) -> g
+    void parseFinger(java.util.regex.Matcher) -> h
+    void parseInchannelNumber(java.util.regex.Matcher) -> i
+    void parseHandlePrefix(java.util.regex.Matcher) -> j
+    void parseWhoIbslwbslx(java.lang.String) -> c
+    void handleCommunication(pl.mg6.yafi.model.data.Communication) -> b
+    void notifyGameCreate(java.util.UUID) -> b
+    void notifyGameUpdate(java.util.UUID) -> c
+    void notifySeekInfoRemove(pl.mg6.yafi.model.data.SeekInfoList) -> a
+    void notifyRemoveMatchOfferFrom(java.lang.String) -> d
+    void notifyRemoveMatchOfferTo(java.lang.String) -> e
+    void setListener(pl.mg6.yafi.model.FreechessModel$Listener) -> a
+pl.mg6.yafi.model.FreechessModel$1 -> pl.mg6.yafi.model.k:
+    pl.mg6.yafi.model.FreechessModel this$0 -> a
+    int compare(java.lang.String,java.lang.String) -> a
+    int compare(java.lang.Object,java.lang.Object) -> compare
+pl.mg6.yafi.model.FreechessModel$Listener -> pl.mg6.yafi.model.i:
+    void onGameCreate(java.util.UUID) -> a
+    void onGameUpdate(java.util.UUID) -> b
+    void onIllegalMove() -> h
+    void onPendingInfo(pl.mg6.yafi.model.data.PendingInfo) -> a
+    void onDrawOffer() -> i
+    void onAbortRequest() -> j
+    void onSeekInfoSet(pl.mg6.yafi.model.data.SeekInfoList) -> a
+    void onSeekInfoSetError() -> k
+    void onReceivedSeek(pl.mg6.yafi.model.data.SeekInfo) -> a
+    void onRemovedSeeks(pl.mg6.yafi.model.data.SeekInfoList) -> b
+    void onCommunication(pl.mg6.yafi.model.data.Communication) -> a
+    void onFinger(pl.mg6.yafi.model.data.FingerInfo) -> a
+    void onVariables(pl.mg6.yafi.model.data.VariablesInfo) -> a
+    void onHistory(pl.mg6.yafi.model.data.HistoryInfo) -> a
+    void onJournal(pl.mg6.yafi.model.data.JournalInfo) -> a
+    void onAdjourned(pl.mg6.yafi.model.data.AdjournedInfo) -> a
+    void onNoHistory(java.lang.String) -> c
+    void onNoJournal(java.lang.String) -> d
+    void onPrivateJournal() -> l
+    void onUnregJournal() -> m
+    void onNoAdjourned(java.lang.String) -> e
+    void onInchannelInfo(pl.mg6.yafi.model.data.InchannelInfo) -> a
+    void onRemoveMatchOfferFrom(java.lang.String) -> f
+    void onRemoveMatchOfferTo(java.lang.String) -> g
+pl.mg6.yafi.model.FreechessService -> pl.mg6.yafi.model.FreechessService:
+    java.lang.String TAG -> a
+    pl.mg6.yafi.model.FreechessService$LocalBinder binder -> b
+    pl.mg6.yafi.model.FreechessConnection connection -> c
+    pl.mg6.yafi.model.FreechessModel model -> d
+    void onCreate() -> onCreate
+    int onStartCommand(android.content.Intent,int,int) -> onStartCommand
+    android.os.IBinder onBind(android.content.Intent) -> onBind
+    boolean onUnbind(android.content.Intent) -> onUnbind
+    void onRebind(android.content.Intent) -> onRebind
+    void onDestroy() -> onDestroy
+    void cleanup() -> n
+    void onConnecting() -> a
+    void onInvalidUsername() -> b
+    void onSendingUsername() -> c
+    void onSendingPassword() -> d
+    void onInvalidPassword() -> e
+    void onUnableToLogOn(java.lang.String) -> a
+    void onLoggedOn() -> f
+    void onDisconnected() -> g
+    void onReceivedOutput(java.lang.String) -> b
+    void onGameCreate(java.util.UUID) -> a
+    void onGameUpdate(java.util.UUID) -> b
+    void onIllegalMove() -> h
+    void onPendingInfo(pl.mg6.yafi.model.data.PendingInfo) -> a
+    void onDrawOffer() -> i
+    void onAbortRequest() -> j
+    void onSeekInfoSet(pl.mg6.yafi.model.data.SeekInfoList) -> a
+    void onSeekInfoSetError() -> k
+    void onReceivedSeek(pl.mg6.yafi.model.data.SeekInfo) -> a
+    void onRemovedSeeks(pl.mg6.yafi.model.data.SeekInfoList) -> b
+    void onCommunication(pl.mg6.yafi.model.data.Communication) -> a
+    void onFinger(pl.mg6.yafi.model.data.FingerInfo) -> a
+    void onVariables(pl.mg6.yafi.model.data.VariablesInfo) -> a
+    void onHistory(pl.mg6.yafi.model.data.HistoryInfo) -> a
+    void onJournal(pl.mg6.yafi.model.data.JournalInfo) -> a
+    void onAdjourned(pl.mg6.yafi.model.data.AdjournedInfo) -> a
+    void onNoHistory(java.lang.String) -> c
+    void onNoJournal(java.lang.String) -> d
+    void onPrivateJournal() -> l
+    void onUnregJournal() -> m
+    void onNoAdjourned(java.lang.String) -> e
+    void onInchannelInfo(pl.mg6.yafi.model.data.InchannelInfo) -> a
+    void onRemoveMatchOfferFrom(java.lang.String) -> f
+    void onRemoveMatchOfferTo(java.lang.String) -> g
+    pl.mg6.yafi.model.FreechessConnection access$0(pl.mg6.yafi.model.FreechessService) -> a
+    pl.mg6.yafi.model.FreechessModel access$1(pl.mg6.yafi.model.FreechessService) -> b
+    void access$2(pl.mg6.yafi.model.FreechessService) -> c
+pl.mg6.yafi.model.FreechessService$FreechessServiceInterface -> pl.mg6.yafi.model.b:
+    void addCallbackHandler(android.os.Handler) -> a
+    void removeCallbackHandler(android.os.Handler) -> b
+    void sendInput(java.lang.String) -> a
+    java.lang.String getOutput() -> a
+    pl.mg6.yafi.model.data.Game getGame(java.util.UUID) -> a
+    java.util.List getAllGamesIds() -> b
+    java.util.List getChat(java.lang.String) -> b
+    void addMessage(pl.mg6.yafi.model.data.Communication) -> a
+    java.util.List getAllChatIds() -> c
+    pl.mg6.yafi.model.FreechessConnection$ConnectionState getState() -> d
+    boolean isLoggedOn() -> e
+    java.lang.String getRealUsername() -> f
+    void quit() -> g
+    boolean isCurrentVersionOld() -> h
+pl.mg6.yafi.model.FreechessService$LocalBinder -> pl.mg6.yafi.model.f:
+    java.util.List listeners -> a
+    pl.mg6.yafi.model.FreechessService this$0 -> b
+    void addCallbackHandler(android.os.Handler) -> a
+    void removeCallbackHandler(android.os.Handler) -> b
+    pl.mg6.yafi.model.FreechessConnection$ConnectionState getState() -> d
+    boolean isLoggedOn() -> e
+    java.lang.String getRealUsername() -> f
+    void sendInput(java.lang.String) -> a
+    java.lang.String getOutput() -> a
+    pl.mg6.yafi.model.data.Game getGame(java.util.UUID) -> a
+    java.util.List getAllGamesIds() -> b
+    java.util.List getChat(java.lang.String) -> b
+    void addMessage(pl.mg6.yafi.model.data.Communication) -> a
+    java.util.List getAllChatIds() -> c
+    void sendMessage(int) -> a
+    void sendMessage(int,java.lang.Object) -> a
+    void quit() -> g
+    boolean isCurrentVersionOld() -> h
+    void access$1(pl.mg6.yafi.model.FreechessService$LocalBinder,int) -> a
+    void access$2(pl.mg6.yafi.model.FreechessService$LocalBinder,int,java.lang.Object) -> a
+pl.mg6.yafi.model.FreechessUtils -> pl.mg6.yafi.model.j:
+    java.lang.StringBuilder builder -> au
+    java.util.regex.Pattern HACK_MULTIPLE_ACCEPTS -> a
+    java.util.regex.Pattern HACK_POSTED_MANUAL_SEEK -> b
+    java.util.regex.Pattern PRIVATE_TELL -> c
+    java.util.regex.Pattern SAY -> d
+    java.util.regex.Pattern PARTNER_TELL -> e
+    java.util.regex.Pattern CHANNEL_TELL -> f
+    java.util.regex.Pattern SHOUT -> g
+    java.util.regex.Pattern SHOUT_IT -> h
+    java.util.regex.Pattern CHESS_SHOUT -> i
+    java.util.regex.Pattern ANNOUNCEMENT -> j
+    java.util.regex.Pattern KIBITZ_WHISPER -> k
+    java.util.regex.Pattern SEEKINFO_SET -> l
+    java.util.regex.Pattern SEEKINFO_SET_SEEK -> m
+    java.util.regex.Pattern SEEKINFO_SET_ERROR -> n
+    java.util.regex.Pattern SEEKINFO_SEEK -> o
+    java.util.regex.Pattern SEEKINFO_REMOVE -> p
+    java.util.regex.Pattern SEEKINFO_UNSET -> q
+    java.util.regex.Pattern PENDING -> r
+    java.util.regex.Pattern DECLINE_MATCH -> s
+    java.util.regex.Pattern DECLINED_MATCH -> t
+    java.util.regex.Pattern WITHDRAW_MATCH -> u
+    java.util.regex.Pattern WITHDRAWN_MATCH -> v
+    java.util.regex.Pattern REMOVED_MATCH -> w
+    java.util.regex.Pattern PENDING_OFFER_TO -> x
+    java.util.regex.Pattern PENDING_OFFER_FROM -> y
+    java.util.regex.Pattern GAMEINFO_MOVE -> z
+    java.util.regex.Pattern GAMEINFO_ACCEPT_DECLINE_MOVE -> A
+    java.util.regex.Pattern GAMEINFO_ILLEGAL_MOVE -> B
+    java.util.regex.Pattern GAMEINFO_END -> C
+    java.util.regex.Pattern GAMEINFO_NOTE_END -> D
+    java.util.regex.Pattern GAMEINFO_ABORTED_END -> E
+    java.util.regex.Pattern GAMEINFO_CREATING -> F
+    java.util.regex.Pattern GAMEINFO_OBSERVING -> G
+    java.util.regex.Pattern GAMEINFO_FOLLOWING -> H
+    java.util.regex.Pattern GAMEINFO_EXAMINING -> I
+    java.util.regex.Pattern GAMEINFO_REMOVING_OBSERVED -> J
+    java.util.regex.Pattern GAMEINFO_ACCEPT_REMOVING_OBSERVED -> K
+    java.util.regex.Pattern GAMEINFO_REMOVING_EXAMINED -> L
+    java.util.regex.Pattern GAMEINFO_NOTE -> M
+    java.util.regex.Pattern GAMEINFO_NOTE_MOVE -> N
+    java.util.regex.Pattern GAMEINFO_NOTE_MOVE_NOTE -> O
+    java.util.regex.Pattern GAMEINFO_NOTE_VALUE_RESULT -> P
+    java.util.regex.Pattern GAMEINFO_MOVE_NOTE -> Q
+    java.util.regex.Pattern GAMEINFO_MORETIME_MOVE -> R
+    java.util.regex.Pattern GAMEINFO_MOVE_END -> S
+    java.util.regex.Pattern GAMEINFO_AUTOFLAGGING_MOVE -> T
+    java.util.regex.Pattern GAMEINFO_DRAW_OFFER -> U
+    java.util.regex.Pattern GAMEINFO_ABORT_REQUEST -> V
+    java.util.regex.Pattern GAME_ID -> W
+    java.util.regex.Pattern LISTINFO_SHOW -> X
+    java.util.regex.Pattern LISTINFO_ADD -> Y
+    java.util.regex.Pattern LISTINFO_SUB -> Z
+    java.util.regex.Pattern LISTINFO_SHOW_ENTRY -> aa
+    java.util.regex.Pattern FINGER -> ab
+    java.util.regex.Pattern VARIABLES -> ac
+    java.util.regex.Pattern HISTORY -> ad
+    java.util.regex.Pattern HISTORY_ENTRY -> ae
+    java.util.regex.Pattern JOURNAL -> af
+    java.util.regex.Pattern JOURNAL_ENTRY -> ag
+    java.util.regex.Pattern ADJOURNED -> ah
+    java.util.regex.Pattern ADJOURNED_ENTRY -> ai
+    java.util.regex.Pattern NO_HISTORY -> aj
+    java.util.regex.Pattern NO_JOURNAL -> ak
+    java.util.regex.Pattern PRIVATE_JOURNAL -> al
+    java.util.regex.Pattern UNREG_JOURNAL -> am
+    java.util.regex.Pattern NO_ADJOURNED -> an
+    java.util.regex.Pattern INCHANNEL_NUMBER -> ao
+    java.util.regex.Pattern INCHANNEL_USER -> ap
+    java.util.regex.Pattern HANDLE_PREFIX -> aq
+    java.util.regex.Pattern WHO_IBSLWBSLX -> ar
+    java.util.regex.Pattern WHO_IBSLWBSLX_LINE -> as
+    java.util.regex.Pattern COMMAND_NOT_FOUND -> at
+    java.util.regex.Pattern MOVES -> av
+    boolean validateUsername(java.lang.String) -> a
+    java.lang.String moveToString(int,int,int,int) -> a
+    boolean isGuest(int) -> a
+pl.mg6.yafi.model.TelnetProtocolImpl -> pl.mg6.yafi.model.h:
+    java.io.InputStream istream -> a
+    java.io.OutputStream ostream -> b
+    int read(byte[]) -> a
+    int read(byte[],int,int) -> a
+    void write(int) -> a
+    void write(byte[]) -> b
+    void write$1cf967a4(byte[],int) -> a
+    void flush() -> a
+pl.mg6.yafi.model.TimesealProtocolImpl -> pl.mg6.yafi.model.g:
+    pl.mg6.yafi.model.TelnetProtocolImpl telnet -> a
+    byte[] stamp -> b
+    byte[] stampReply -> c
+    byte[] about -> d
+    byte[] readBuffer -> e
+    byte[] writeBuffer -> f
+    int readBufferCount -> g
+    int writeBufferCount -> h
+    byte[] encodeBuffer -> i
+    long startTime -> j
+    int read(byte[]) -> a
+    void write(int) -> a
+    void write(byte[]) -> b
+    void write$1cf967a4(byte[],int) -> a
+pl.mg6.yafi.model.data.AbortPendingOffer -> pl.mg6.yafi.model.a.q:
+    java.lang.String toString() -> toString
+pl.mg6.yafi.model.data.AdjournPendingOffer -> pl.mg6.yafi.model.a.c:
+    java.lang.String toString() -> toString
+pl.mg6.yafi.model.data.AdjournedInfo -> pl.mg6.yafi.model.a.y:
+    java.lang.String TAG -> a
+    java.lang.String user -> b
+    java.util.List entries -> c
+    java.lang.String getUser() -> a
+    java.util.Iterator iterator() -> iterator
+    pl.mg6.yafi.model.data.AdjournedInfo fromMatch(java.util.regex.Matcher) -> a
+pl.mg6.yafi.model.data.AdjournedInfo$Entry -> pl.mg6.yafi.model.a.a:
+    pl.mg6.yafi.model.data.Color color -> b
+    java.lang.String opponentName -> c
+    boolean opponentOnline -> d
+    char type -> e
+    boolean rated -> f
+    int time -> g
+    int increment -> h
+    int whiteStrength -> i
+    int blackStrength -> j
+    pl.mg6.yafi.model.data.Color getColor() -> a
+    java.lang.String getOpponentName() -> b
+    int getTime() -> c
+    int getIncrement() -> d
+    int getWhiteStrength() -> e
+    int getBlackStrength() -> f
+    pl.mg6.yafi.model.data.AdjournedInfo$Entry access$0(java.util.regex.Matcher) -> a
+pl.mg6.yafi.model.data.ChallengePendingOffer -> pl.mg6.yafi.model.a.e:
+    boolean rated -> a
+    java.lang.String type -> b
+    int time -> c
+    int increment -> d
+    boolean isRated() -> a
+    java.lang.String getType() -> b
+    int getTime() -> c
+    int getIncrement() -> d
+pl.mg6.yafi.model.data.Color -> pl.mg6.yafi.model.a.h:
+    pl.mg6.yafi.model.data.Color WHITE -> a
+    pl.mg6.yafi.model.data.Color BLACK -> b
+pl.mg6.yafi.model.data.Communication -> pl.mg6.yafi.model.a.s:
+    java.lang.String id -> a
+    pl.mg6.yafi.model.data.Communication$Type type -> b
+    java.lang.String name -> c
+    java.lang.String message -> d
+    java.util.Date time -> e
+    java.lang.String getId() -> a
+    java.lang.String getName() -> b
+    java.lang.String getMessage() -> c
+    java.util.Date getTime() -> d
+    boolean isPrivate() -> e
+    pl.mg6.yafi.model.data.Communication createPrivateTell(java.lang.String,java.lang.String) -> a
+    pl.mg6.yafi.model.data.Communication createSay(java.lang.String,java.lang.String) -> b
+    pl.mg6.yafi.model.data.Communication createPartnerTell(java.lang.String,java.lang.String) -> c
+    pl.mg6.yafi.model.data.Communication createChannelTell(java.lang.String,java.lang.String,java.lang.String) -> a
+    pl.mg6.yafi.model.data.Communication createAnnouncement(java.lang.String,java.lang.String) -> d
+    pl.mg6.yafi.model.data.Communication createShout(java.lang.String,java.lang.String) -> e
+    pl.mg6.yafi.model.data.Communication createShoutIt(java.lang.String,java.lang.String) -> f
+    pl.mg6.yafi.model.data.Communication createChessShout(java.lang.String,java.lang.String) -> g
+    pl.mg6.yafi.model.data.Communication createKibitz(java.lang.String,java.lang.String,java.lang.String) -> b
+    pl.mg6.yafi.model.data.Communication createWhisper(java.lang.String,java.lang.String,java.lang.String) -> c
+    pl.mg6.yafi.model.data.Communication create(java.lang.String,java.lang.String,java.lang.String) -> d
+pl.mg6.yafi.model.data.Communication$Type -> pl.mg6.yafi.model.a.b:
+    pl.mg6.yafi.model.data.Communication$Type PrivateTell -> a
+    pl.mg6.yafi.model.data.Communication$Type Say -> b
+    pl.mg6.yafi.model.data.Communication$Type PartnerTell -> c
+    pl.mg6.yafi.model.data.Communication$Type ChannelTell -> d
+    pl.mg6.yafi.model.data.Communication$Type Announcement -> e
+    pl.mg6.yafi.model.data.Communication$Type Shout -> f
+    pl.mg6.yafi.model.data.Communication$Type ShoutIt -> g
+    pl.mg6.yafi.model.data.Communication$Type ChessShout -> h
+    pl.mg6.yafi.model.data.Communication$Type Kibitz -> i
+    pl.mg6.yafi.model.data.Communication$Type Whisper -> j
+    pl.mg6.yafi.model.data.Communication$Type[] ENUM$VALUES -> k
+    pl.mg6.yafi.model.data.Communication$Type[] values() -> values
+    pl.mg6.yafi.model.data.Communication$Type valueOf(java.lang.String) -> valueOf
+pl.mg6.yafi.model.data.DrawPendingOffer -> pl.mg6.yafi.model.a.o:
+    java.lang.String toString() -> toString
+pl.mg6.yafi.model.data.FingerInfo -> pl.mg6.yafi.model.a.d:
+    java.lang.String user -> a
+    java.lang.String[] titles -> b
+    java.lang.String[] NO_TITLES -> c
+    pl.mg6.yafi.model.data.RatingInfo blitz -> d
+    pl.mg6.yafi.model.data.RatingInfo standard -> e
+    pl.mg6.yafi.model.data.RatingInfo lightning -> f
+    pl.mg6.yafi.model.data.RatingInfo wild -> g
+    pl.mg6.yafi.model.data.RatingInfo buhouse -> h
+    pl.mg6.yafi.model.data.RatingInfo crazyhouse -> i
+    pl.mg6.yafi.model.data.RatingInfo suicide -> j
+    pl.mg6.yafi.model.data.RatingInfo losers -> k
+    pl.mg6.yafi.model.data.RatingInfo atomic -> l
+    java.util.List lines -> m
+    java.lang.String getUser() -> a
+    java.lang.String[] getTitles() -> b
+    pl.mg6.yafi.model.data.RatingInfo getBlitz() -> c
+    pl.mg6.yafi.model.data.RatingInfo getStandard() -> d
+    pl.mg6.yafi.model.data.RatingInfo getLightning() -> e
+    pl.mg6.yafi.model.data.RatingInfo getWild() -> f
+    pl.mg6.yafi.model.data.RatingInfo getBuhouse() -> g
+    pl.mg6.yafi.model.data.RatingInfo getCrazyhouse() -> h
+    pl.mg6.yafi.model.data.RatingInfo getSuicide() -> i
+    pl.mg6.yafi.model.data.RatingInfo getLosers() -> j
+    pl.mg6.yafi.model.data.RatingInfo getAtomic() -> k
+    int getLineCount() -> l
+    java.lang.String getLine(int) -> a
+    pl.mg6.yafi.model.data.FingerInfo fromMatch(java.util.regex.Matcher) -> a
+pl.mg6.yafi.model.data.Game -> pl.mg6.yafi.model.a.f:
+    java.util.List positions -> a
+    java.util.UUID uuid -> b
+    int id -> c
+    java.lang.String whiteName -> d
+    java.lang.String blackName -> e
+    java.lang.String whiteRating -> f
+    java.lang.String blackRating -> g
+    pl.mg6.yafi.model.data.Color toMove -> h
+    int whiteTime -> i
+    int blackTime -> j
+    long timestamp -> k
+    boolean timeRunning -> l
+    java.lang.String result -> m
+    java.lang.String description -> n
+    boolean flip -> o
+    int relation -> p
+    void addPosition(pl.mg6.yafi.model.data.Position) -> a
+    int getPositionCount() -> a
+    pl.mg6.yafi.model.data.Position getPosition(int) -> a
+    java.util.UUID getUUID() -> b
+    int getId() -> c
+    java.lang.String getWhiteName() -> d
+    java.lang.String getBlackName() -> e
+    java.lang.String getWhiteRating() -> f
+    void setWhiteRating(java.lang.String) -> a
+    java.lang.String getBlackRating() -> g
+    void setBlackRating(java.lang.String) -> b
+    boolean isTimeRunning() -> h
+    java.lang.String getResult() -> i
+    java.lang.String getDescription() -> j
+    int getRelation() -> k
+    void setRelation$13462e() -> l
+    int getCurrentWhiteTime() -> o
+    int getCurrentBlackTime() -> p
+    java.lang.String getCurrentWhiteTimeString() -> m
+    java.lang.String getCurrentBlackTimeString() -> n
+    void setResult(java.lang.String,java.lang.String) -> a
+pl.mg6.yafi.model.data.HistoricalGameEntry -> pl.mg6.yafi.model.a.m:
+    java.lang.String id -> a
+    java.lang.String getId() -> g
+pl.mg6.yafi.model.data.HistoryInfo -> pl.mg6.yafi.model.a.k:
+    java.lang.String TAG -> a
+    java.lang.String user -> b
+    java.util.List entries -> c
+    java.lang.String getUser() -> a
+    java.util.Iterator iterator() -> iterator
+    pl.mg6.yafi.model.data.HistoryInfo fromMatch(java.util.regex.Matcher) -> a
+pl.mg6.yafi.model.data.HistoryInfo$Entry -> pl.mg6.yafi.model.a.w:
+    int result -> b
+    int rating -> c
+    pl.mg6.yafi.model.data.Color color -> d
+    int opponentRating -> e
+    java.lang.String opponentName -> f
+    char type -> g
+    boolean rated -> h
+    int time -> i
+    int increment -> j
+    java.lang.String eco -> k
+    java.lang.String resultDescription -> l
+    java.lang.String date -> m
+    int getResult() -> a
+    int getRating() -> b
+    pl.mg6.yafi.model.data.Color getColor() -> c
+    int getOpponentRating() -> d
+    java.lang.String getOpponentName() -> e
+    int getTime() -> f
+    int getIncrement() -> h
+    pl.mg6.yafi.model.data.HistoryInfo$Entry access$0(java.util.regex.Matcher) -> a
+pl.mg6.yafi.model.data.InchannelInfo -> pl.mg6.yafi.model.a.i:
+    java.lang.String channelNumber -> a
+    java.lang.String channelName -> b
+    java.util.List users -> c
+    void add(java.lang.String) -> a
+    java.lang.String getChannelNumber() -> a
+    int getUsersCount() -> b
+    java.lang.String getUser(int) -> a
+pl.mg6.yafi.model.data.JournalInfo -> pl.mg6.yafi.model.a.p:
+    java.lang.String TAG -> a
+    java.lang.String user -> b
+    java.util.List entries -> c
+    java.lang.String getUser() -> a
+    java.util.Iterator iterator() -> iterator
+    pl.mg6.yafi.model.data.JournalInfo fromMatch(java.util.regex.Matcher) -> a
+pl.mg6.yafi.model.data.JournalInfo$Entry -> pl.mg6.yafi.model.a.u:
+    java.lang.String whiteName -> b
+    int whiteRating -> c
+    java.lang.String blackName -> d
+    int blackRating -> e
+    char type -> f
+    boolean rated -> g
+    int time -> h
+    int increment -> i
+    java.lang.String eco -> j
+    java.lang.String resultDescription -> k
+    java.lang.String result -> l
+    java.lang.String getWhiteName() -> a
+    int getWhiteRating() -> b
+    java.lang.String getBlackName() -> c
+    int getBlackRating() -> d
+    int getTime() -> e
+    int getIncrement() -> f
+    java.lang.String getResult() -> h
+    pl.mg6.yafi.model.data.JournalInfo$Entry access$0(java.util.regex.Matcher) -> a
+pl.mg6.yafi.model.data.PendingInfo -> pl.mg6.yafi.model.a.r:
+    java.util.List sentOffers -> a
+    java.util.List receivedOffers -> b
+    int getSentOfferCount() -> a
+    pl.mg6.yafi.model.data.PendingOffer getSentOffer(int) -> a
+    int getReceivedOffersCount() -> b
+    pl.mg6.yafi.model.data.PendingOffer getReceivedOffer(int) -> b
+    pl.mg6.yafi.model.data.PendingInfo fromMatch(java.util.regex.Matcher) -> a
+pl.mg6.yafi.model.data.PendingOffer -> pl.mg6.yafi.model.a.n:
+    int id -> a
+    java.lang.String name -> b
+    int getId() -> e
+    java.lang.String getName() -> f
+    pl.mg6.yafi.model.data.PendingOffer fromMatch(java.util.regex.Matcher) -> a
+pl.mg6.yafi.model.data.Position -> pl.mg6.yafi.model.a.v:
+    long timestamp -> a
+    java.lang.String[] placement -> b
+    pl.mg6.yafi.model.data.Color toMove -> c
+    int enPassantFile -> d
+    boolean[] casting -> e
+    int movesSinceIrreversible -> f
+    int gameId -> g
+    java.lang.String whiteName -> h
+    java.lang.String blackName -> i
+    int relation -> j
+    int initialTime -> k
+    int timeIncrement -> l
+    int whiteStrength -> m
+    int blackStrength -> n
+    int whiteTime -> o
+    int blackTime -> p
+    int nextMoveNumber -> q
+    java.lang.String verboseMove -> r
+    java.lang.String timeTaken -> s
+    java.lang.String prettyMove -> t
+    boolean flip -> u
+    boolean timeRunning -> v
+    int lag -> w
+    long getTimestamp() -> a
+    pl.mg6.yafi.model.data.Color getToMove() -> b
+    int getGameId() -> c
+    java.lang.String getWhiteName() -> d
+    java.lang.String getBlackName() -> e
+    int getRelation() -> f
+    int getWhiteTime() -> g
+    int getBlackTime() -> h
+    java.lang.String getVerboseMove() -> i
+    java.lang.String getPrettyMove() -> j
+    boolean isFlip() -> k
+    boolean isTimeRunning() -> l
+    int getLag() -> m
+    int getMoveIndex() -> n
+    char getPieceAt(int,int) -> a
+    pl.mg6.yafi.model.data.Position fromStyle12(java.lang.String) -> a
+pl.mg6.yafi.model.data.RatingInfo -> pl.mg6.yafi.model.a.l:
+    java.lang.String rating -> a
+    java.lang.String rd -> b
+    int wins -> c
+    int losses -> d
+    int draws -> e
+    int total -> f
+    java.lang.String best -> g
+    java.lang.String getRating() -> a
+    int getWins() -> b
+    int getDraws() -> c
+    int getTotal() -> d
+    java.lang.String getBest() -> e
+    pl.mg6.yafi.model.data.RatingInfo fromFingerMatch(java.util.regex.Matcher,int) -> a
+pl.mg6.yafi.model.data.SeekInfo -> pl.mg6.yafi.model.a.z:
+    int id -> a
+    java.lang.String name -> b
+    int titles -> c
+    int rating -> d
+    java.lang.String type -> e
+    int time -> f
+    int increment -> g
+    boolean rated -> h
+    boolean manual -> i
+    int getId() -> a
+    java.lang.String getName() -> b
+    int getTitles() -> c
+    int getRating() -> d
+    java.lang.String getType() -> e
+    int getTime() -> f
+    int getIncrement() -> g
+    boolean isRated() -> h
+    boolean isManual() -> i
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    pl.mg6.yafi.model.data.SeekInfo fromMatch(java.util.regex.Matcher) -> a
+    pl.mg6.yafi.model.data.SeekInfo withId(java.lang.String) -> a
+pl.mg6.yafi.model.data.SeekInfoList -> pl.mg6.yafi.model.a.t:
+    java.util.List list -> a
+    void add(pl.mg6.yafi.model.data.SeekInfo) -> a
+    java.util.Iterator iterator() -> iterator
+pl.mg6.yafi.model.data.TakebackPendingOffer -> pl.mg6.yafi.model.a.j:
+    int moves -> a
+    java.lang.String toString() -> toString
+pl.mg6.yafi.model.data.UserTitle -> pl.mg6.yafi.model.a.g:
+    java.util.Map abbrTextMap -> a
+    int abbrToText(java.lang.String) -> a
+pl.mg6.yafi.model.data.VariablesInfo -> pl.mg6.yafi.model.a.x:
+    java.lang.String user -> a
+    java.lang.String clientName -> b
+    java.lang.String getUser() -> a
+    java.lang.String getClientName() -> b
+    pl.mg6.yafi.model.data.VariablesInfo fromMatch(java.util.regex.Matcher) -> a

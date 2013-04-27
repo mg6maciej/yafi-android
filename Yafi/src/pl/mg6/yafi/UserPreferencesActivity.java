@@ -4,9 +4,13 @@ import pl.mg6.common.Settings;
 import pl.mg6.common.StringUtils;
 import pl.mg6.common.android.tracker.TrackedPreferenceActivity;
 import pl.mg6.common.android.tracker.Tracking;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.media.AudioManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Vibrator;
 
 import com.google.android.apps.analytics.easytracking.EasyTracker;
 
@@ -16,6 +20,13 @@ public class UserPreferencesActivity extends TrackedPreferenceActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.user_prefs);
+		if (Build.VERSION.SDK_INT >= 11) {
+			Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+			if (!vibrator.hasVibrator()) {
+				findPreference(Settings.PREF_VIBRATE).setEnabled(false);
+			}
+		}
+		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 	}
 	
 	@Override
@@ -71,6 +82,12 @@ public class UserPreferencesActivity extends TrackedPreferenceActivity {
 				} else if (Settings.PREF_BOARD_PREMOVE.equals(key)) {
 					boolean value = sharedPreferences.getBoolean(key, true);
 					trackEvent(Tracking.CATEGORY_SETTINGS, Tracking.ACTION_PREMOVE, null, value);
+				} else if (Settings.PREF_SOUND.equals(key)) {
+					boolean value = sharedPreferences.getBoolean(key, true);
+					trackEvent(Tracking.CATEGORY_SETTINGS, Tracking.ACTION_SOUND, null, value);
+				} else if (Settings.PREF_VIBRATE.equals(key)) {
+					boolean value = sharedPreferences.getBoolean(key, true);
+					trackEvent(Tracking.CATEGORY_SETTINGS, Tracking.ACTION_VIBRATE, null, value);
 				}
 			}
 		}

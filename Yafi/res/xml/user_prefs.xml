@@ -42,6 +42,16 @@
             android:summary="Allows you to initiate moves on opponent&apos;s turn"
             android:title="Premove" />
     </PreferenceCategory>
+    <PreferenceCategory android:title="Sound">
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="user_pref.sound"
+            android:title="Sound" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="user_pref.vibrate"
+            android:title="Vibrate" />
+    </PreferenceCategory>
     <PreferenceCategory android:title="Miscellaneous" >
         <CheckBoxPreference
             android:defaultValue="true"

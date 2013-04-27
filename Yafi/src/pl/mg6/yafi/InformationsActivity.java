@@ -210,7 +210,11 @@ public class InformationsActivity extends BaseFreechessActivity {
 			state = STATE_AFTER_VARIABLES;
 			View vars = ((ViewStub) findViewById(R.id.info_vars_stub)).inflate();
 			TextView interfaceField = (TextView) vars.findViewById(R.id.info_vars_interface);
-			interfaceField.setText(Html.fromHtml(String.format(getString(R.string.var_interface), TextUtils.htmlEncode(info.getClientName()))));
+			String clientName = info.getClientName();
+			if (clientName == null) {
+				clientName = "[unknown]";
+			}
+			interfaceField.setText(Html.fromHtml(String.format(getString(R.string.var_interface), TextUtils.htmlEncode(clientName))));
 		}
 	}
 

@@ -14,12 +14,15 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.larvalabs.svgandroid.SVGParser;
 
 public class BoardView extends View {
+	
+	private static final String TAG = BoardView.class.getSimpleName();
 	
 	private OnMoveListener listener;
 	
@@ -114,6 +117,10 @@ public class BoardView extends View {
 		premove = Settings.isBoardPremove(getContext());
 	}
 	
+	public void setStateNone() {
+		state = NONE;
+	}
+	
 	public void setMoveSent() {
 		state = MOVE_SENT;
 	}
@@ -148,6 +155,14 @@ public class BoardView extends View {
 			rect.left = 0;
 			rect.right = 8 * squareWidth;
 			rect.top = flip(destRank) * squareHeight;
+			rect.bottom = rect.top + squareHeight;
+			canvas.drawRect(rect, paint);
+		}
+		if (state == INITIAL || state == DRAGGING || state == CLICK || state == CLICK_CLICK) {
+			paint.setColor(Color.argb(150, 255, 255, 255));
+			rect.left = flip(initFile) * squareWidth;
+			rect.right = rect.left + squareWidth;
+			rect.top = flip(initRank) * squareHeight;
 			rect.bottom = rect.top + squareHeight;
 			canvas.drawRect(rect, paint);
 		}
@@ -227,8 +242,12 @@ public class BoardView extends View {
 				rect.bottom = rect.top + 1.5f * squareHeight;
 			}
 			char piece = position.getPieceAt(initFile, initRank);
-			Picture picture = pictures.get(piece);
-			canvas.drawPicture(picture, rect);
+			if (piece != '-') {
+				Picture picture = pictures.get(piece);
+				canvas.drawPicture(picture, rect);
+			} else {
+				Log.w(TAG, "empty: " + initFile + " " + initRank);
+			}
 		}
 	}
 	
@@ -248,6 +267,7 @@ public class BoardView extends View {
 			int action = event.getAction();
 			int file = flip((int) (event.getX() * 8.0f / getWidth()));
 			int rank = flip((int) (event.getY() * 8.0f / getHeight()));
+			Log.i("mago", "event: " + action + " " + file + " " + rank);
 			if (action == MotionEvent.ACTION_DOWN) {
 				if (state == NONE || state == MOVE_SENT) {
 					char piece = position.getPieceAt(file, rank);
@@ -326,7 +346,7 @@ public class BoardView extends View {
 	}
 	
 	public void setPosition(Position pos) {
-		if (state == MOVE_SENT) {
+		if (state == MOVE_SENT || pos.getPieceAt(initFile, initRank) == '-') {
 			state = NONE;
 		}
 		this.position = pos;

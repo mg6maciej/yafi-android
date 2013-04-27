@@ -9,6 +9,8 @@ public class Tracking {
 	public static final String ACTION_APP_VERSION = "AppVersion";
 	public static final String ACTION_DEVICE = "Device";
 	public static final String ACTION_SCREEN = "Screen";
+	public static final String ACTION_SOURCE = "Source";
+	public static final String[] LABEL_ARRAY_SOURCES = { null, "market.android.com", "yafi.pl" };
 	
 	public static final String CATEGORY_SETTINGS = "Settings";
 	public static final String ACTION_CONFIRM_DISCONNECTION = "ConfirmDisconnection";
@@ -21,6 +23,8 @@ public class Tracking {
 	public static final String ACTION_PIECES = "Pieces";
 	public static final String ACTION_COLORS = "Colors";
 	public static final String ACTION_PREMOVE = "Premove";
+	public static final String ACTION_SOUND = "Sound";
+	public static final String ACTION_VIBRATE = "Vibrate";
 	public static final String ACTION_HELP_IMPROVE = "HelpImprove";
 	
 	public static final String CATEGORY_GET_GAME = "GetGame";

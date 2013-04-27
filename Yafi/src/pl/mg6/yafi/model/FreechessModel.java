@@ -562,6 +562,8 @@ public class FreechessModel {
 		Position pos = Position.fromStyle12(style12);
 		Game game = new Game();
 		game.addPosition(pos);
+		activeGames.put(game.getId(), game);
+		allGames.put(game.getUUID(), game);
 		notifyGameCreate(game.getUUID());
 		notifyGameUpdate(game.getUUID());
 	}
@@ -807,7 +809,9 @@ public class FreechessModel {
 		SeekInfoList list = new SeekInfoList();
 		while (m.find()) {
 			SeekInfo seekInfo = SeekInfo.fromMatch(m);
-			list.add(seekInfo);
+			if (!"crazyhouse".equals(seekInfo.getType())) {
+				list.add(seekInfo);
+			}
 		}
 		notifySeekInfoSet(list);
 	}
@@ -818,7 +822,9 @@ public class FreechessModel {
 	
 	private void parseSeekInfoSeek(Matcher m) {
 		SeekInfo seekInfo = SeekInfo.fromMatch(m);
-		notifySeekInfoSeek(seekInfo);
+		if (!"crazyhouse".equals(seekInfo.getType())) {
+			notifySeekInfoSeek(seekInfo);
+		}
 	}
 	
 	private void parseSeekInfoRemove(Matcher m) {
@@ -946,13 +952,9 @@ public class FreechessModel {
 			String[] settings = line.split("#");
 			for (String setting : settings) {
 				String[] values = setting.split("\\|");
-				if (values.length >= 2 && "android".equalsIgnoreCase(values[0])) {
-					try {
-						int newestVersion = Integer.parseInt(values[1]);
-						currentVersionOld = newestVersion > currentVersion;
-					} catch (NumberFormatException ex) {
-						// ignore
-					}
+				if ("android".equalsIgnoreCase(values[0])) {
+					int newestVersion = Integer.parseInt(values[Settings.SOURCE_ID]);
+					currentVersionOld = newestVersion > currentVersion;
 				}
 			}
 		}

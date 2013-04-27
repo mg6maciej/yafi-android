@@ -9,6 +9,8 @@ import java.util.UUID;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 
 public final class Settings {
@@ -18,7 +20,11 @@ public final class Settings {
 	
 	public static final boolean LOG_LIFECYCLE = false;
 	public static final boolean LOG_SERVER_COMMUNICATION = false;
-	public static final boolean LOG_ADS = true;
+	public static final boolean LOG_ADS = false;
+	
+	public static final int SOURCE_ANDROID_MARKET = 1;
+	public static final int SOURCE_YAFI_PL = 2;
+	public static final int SOURCE_ID = SOURCE_ANDROID_MARKET;
 	
 	public static final boolean REMOVE_ADS_AFTER_CLICK = true;
 	
@@ -43,6 +49,9 @@ public final class Settings {
 	private static final boolean HELP_IMPROVE_DEFAULT_VALUE = true;
 	private static final String PREF_CONSOLE_COMMANDS = "user_pref.console_commands";
 	private static final int MIN_COMMAND_USE_COUNT = 3;
+	public static final String PREF_VIBRATE = "user_pref.vibrate";
+	public static final String PREF_SOUND = "user_pref.sound";
+	private static final boolean SOUND_DEFAULT_VALUE = true;
 	public static final int BOARD_INPUT_METHOD_DRAG_AND_DROP = 1;
 	public static final int BOARD_INPUT_METHOD_CLICK_CLICK = 2;
 	public static final int BOARD_INPUT_METHOD_BOTH = BOARD_INPUT_METHOD_DRAG_AND_DROP | BOARD_INPUT_METHOD_CLICK_CLICK;
@@ -254,6 +263,18 @@ public final class Settings {
 			}
 		}
 		return commands;
+	}
+	
+	public static boolean isVibrate(Context context) {
+		SharedPreferences prefs = getSharedPrefs(context);
+		boolean vibrate = prefs.getBoolean(PREF_VIBRATE, Build.VERSION.SDK_INT < 11 || ((Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE)).hasVibrator());
+		return vibrate;
+	}
+	
+	public static boolean isSound(Context context) {
+		SharedPreferences prefs = getSharedPrefs(context);
+		boolean sound = prefs.getBoolean(PREF_SOUND, SOUND_DEFAULT_VALUE);
+		return sound;
 	}
 	
 	public static void saveCurrentGame(Context context, UUID gameId) {

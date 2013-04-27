@@ -14,6 +14,7 @@ import pl.mg6.common.android.ads.BaseAdListener;
 import pl.mg6.common.android.tracker.Tracking;
 import pl.mg6.yafi.model.FreechessService;
 import pl.mg6.yafi.model.FreechessService.FreechessServiceInterface;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ComponentName;
@@ -21,6 +22,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Handler.Callback;
@@ -51,6 +53,7 @@ public class BaseFreechessActivity extends BaseActivity implements ServiceConnec
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		handler = new Handler(this);
+		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 	}
 	
 	@Override
@@ -78,9 +81,11 @@ public class BaseFreechessActivity extends BaseActivity implements ServiceConnec
 					@Override
 					public void onDismissScreen(Ad ad) {
 						super.onDismissScreen(ad);
-						view.stopLoading();
-						ViewGroup parent = (ViewGroup) view.getParent();
-						parent.removeView(view);
+						if (Settings.REMOVE_ADS_AFTER_CLICK) {
+							view.stopLoading();
+							ViewGroup parent = (ViewGroup) view.getParent();
+							parent.removeView(view);
+						}
 						Settings.setAdClicked(BaseFreechessActivity.this, true);
 						long endTime = TimeUtils.getTimestamp();
 						int time = (int) (endTime - startTime);

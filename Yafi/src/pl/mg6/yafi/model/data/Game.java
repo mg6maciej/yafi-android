@@ -54,7 +54,7 @@ public class Game {
 			throw new IllegalArgumentException();
 		}
 		timestamp = pos.getTimestamp();
-		if (pos.getBlackName().equals(whiteName)) {
+		if (pos.getBlackName().equals(whiteName) && pos.getWhiteName().equals(blackName)) {
 			// switch command
 			String rating = whiteRating;
 			whiteRating = blackRating;

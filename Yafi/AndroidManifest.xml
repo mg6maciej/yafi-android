@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     android:installLocation="auto"
     package="pl.mg6.yafi"
-    android:versionCode="17"
-    android:versionName="0.6.17" >
+    android:versionCode="20"
+    android:versionName="0.6.20" >
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -30,6 +30,7 @@
         <activity android:name="pl.mg6.yafi.LoginActivity" />
         <activity android:name="pl.mg6.yafi.MatchActivity" />
         <activity android:name="pl.mg6.yafi.MenuActivity" />
+        <activity android:name="pl.mg6.yafi.SearchForGameActivity" />
         <activity android:name="pl.mg6.yafi.SeekActivity" />
         <activity android:name="pl.mg6.yafi.SoughtActivity" />
         <activity

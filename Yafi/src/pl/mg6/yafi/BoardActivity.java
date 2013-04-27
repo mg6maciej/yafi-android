@@ -126,6 +126,12 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 		}
 	}
 	
+	@Override
+	protected void onStopHandlingMessages() {
+		super.onStopHandlingMessages();
+		boardView.setStateNone();
+	}
+	
 	public void onFirstClick(View view) {
 		Game game = service.getGame(currentGameId);
 		if (game != null) {
@@ -414,13 +420,15 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 	
 	@Override
 	public void onMove(int initFile, int initRank, int destFile, int destRank) {
-		String move = FreechessUtils.moveToString(initFile, initRank, destFile, destRank) + "\n";
-		Game game = service.getGame(currentGameId);
-		Position last = game.getPosition(game.getPositionCount() - 1);
-		if (last.getRelation() > 0) {
-			service.sendInput(move);
-		} else if (premove) {
-			premoveQueue.offer(move);
+		if (service != null) {
+			String move = FreechessUtils.moveToString(initFile, initRank, destFile, destRank) + "\n";
+			Game game = service.getGame(currentGameId);
+			Position last = game.getPosition(game.getPositionCount() - 1);
+			if (last.getRelation() > 0) {
+				service.sendInput(move);
+			} else if (premove) {
+				premoveQueue.offer(move);
+			}
 		}
 	}
 	

@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import pl.mg6.common.Settings;
 import pl.mg6.common.android.AndroidUtils;
+import pl.mg6.yafi.R;
 import pl.mg6.yafi.model.FreechessConnection.ConnectionState;
 import pl.mg6.yafi.model.data.Communication;
 import pl.mg6.yafi.model.data.FingerInfo;
@@ -21,6 +22,7 @@ import pl.mg6.yafi.model.data.VariablesInfo;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
@@ -77,11 +79,17 @@ public class FreechessService extends Service implements FreechessConnection.Lis
 	private FreechessConnection connection;
 	private FreechessModel model;
 	
+	private MediaPlayer movePlayer;
+	private MediaPlayer tellPlayer;
+	
 	@Override
 	public void onCreate() {
 		if (Settings.LOG_LIFECYCLE) {
 			Log.d(TAG, this + " onCreate");
 		}
+		movePlayer = MediaPlayer.create(this, R.raw.move);
+		tellPlayer = MediaPlayer.create(this, R.raw.tell);
+		
 	}
 	
 	@Override
@@ -216,10 +224,18 @@ public class FreechessService extends Service implements FreechessConnection.Lis
 	@Override
 	public void onGameUpdate(UUID gameId) {
 		binder.sendMessage(MSG_ID_GAME_UPDATE, gameId);
-		Game game = model.getGame(gameId);
-		if (game.getPosition(game.getPositionCount() - 1).getRelation() == 1) {
-			Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-			vibrator.vibrate(100);
+		if (Settings.isVibrate(this)) {
+			Game game = model.getGame(gameId);
+			if (game.getPosition(game.getPositionCount() - 1).getRelation() == 1) {
+				Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+				vibrator.vibrate(100);
+			}
+		}
+		if (Settings.isSound(this)) {
+			Game game = model.getGame(gameId);
+			if (game.getPosition(game.getPositionCount() - 1).getRelation() == 1) {
+				movePlayer.start();
+			}
 		}
 	}
 	
@@ -267,8 +283,13 @@ public class FreechessService extends Service implements FreechessConnection.Lis
 	public void onCommunication(Communication c) {
 		binder.sendMessage(MSG_ID_COMMUNICATION, c);
 		if (c.isPrivate()) {
-			Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-			vibrator.vibrate(new long[] {0,200,100,200}, -1);
+			if (Settings.isVibrate(this)) {
+				Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+				vibrator.vibrate(new long[] {0,200,100,200}, -1);
+			}
+			if (Settings.isSound(this)) {
+				tellPlayer.start();
+			}
 		}
 	}
 	

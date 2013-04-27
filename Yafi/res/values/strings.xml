@@ -23,6 +23,7 @@
     <string name="sought">Sought\ngames</string>
     <string name="match">Match</string>
     <string name="challenges">Challenges</string>
+    <string name="search_for_game">Search for game</string>
     <string name="console">Console</string>
     <string name="preferences">Preferences</string>
     <string name="send">Send</string>
