@@ -44,6 +44,7 @@
     <string name="search_for_game">Search for game</string>
     <string name="console">Console</string>
     <string name="preferences">Preferences</string>
+    <string name="contact">Bugs? Feedback? Contact developer</string>
     <string name="messages_and_news">Messages\nand news</string>
     <string name="send">Send</string>
     <string name="dont_ask_again">Don\'t ask again</string>
@@ -61,6 +62,7 @@
     <string name="time">Time (minutes)</string>
     <string name="increment">Increment (seconds)</string>
     <string name="rated">Rated</string>
+    <string name="flip">Flip</string>
     <string name="show_controls">Show controls</string>
     <string name="hide_controls">Hide controls</string>
     <string name="observe_high_rated_blitz">Observe high rated blitz game</string>

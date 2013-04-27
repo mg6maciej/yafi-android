@@ -44,7 +44,8 @@ public class FreechessUtils {
 	
 	public static final String PING_CMD = "__yafi_pong";
 	
-	private static final String STYLE_12 = "\u0007?\n<12> (.*)\n";
+	private static final String STYLE_12_X = "\u0007?\n<12> .*\n(?:<b1> game \\d+ white \\[\\w*\\] black \\[\\w*\\]\n)?";
+	private static final String STYLE_12 = "\u0007?\n<12> (.*)\n(?:<b1> game \\d+ white \\[\\w*\\] black \\[\\w*\\]\n)?";
 	private static final String HANDLE_X = "[A-Za-z]{3,}";
 	private static final String HANDLE = "(" + HANDLE_X + ")";
 	private static final String TITLES_X = "(?:\\([A-Z*()]+\\))?";
@@ -118,7 +119,9 @@ public class FreechessUtils {
 	
 	public static final Pattern PENDING_OFFER_FROM = Pattern.compile(" *(\\d+): " + HANDLE + " is offering (?:a (draw)|to (abort|adjourn) the game|to takeback the last (\\d+) half move\\(s\\)|a challenge: " + HANDLE_X + " \\( *[-\\d+]+[PE]?\\) (?:\\[(?:white|black)\\] )?" + HANDLE_X + " \\( *[-\\d+]+[PE]?\\) ((?:un)?rated) (\\S+) (\\d+) (\\d+))\\.\n");
 	
-	public static final Pattern GAMEINFO_MOVE = Pattern.compile("^" + STYLE_12 + "$");
+	public static final Pattern GAMEINFO_MOVE = Pattern.compile("^" + STYLE_12 + "((?:" + STYLE_12_X + ")*)$");
+	
+	public static final Pattern GAMEINFO_MOVE_ADDITIONAL = Pattern.compile(STYLE_12);
 	
 	public static final Pattern GAMEINFO_ACCEPT_DECLINE_MOVE = Pattern.compile("^(You (?:accept|decline) the (?:abort|adjourn|draw|switch|takeback) request from " + HANDLE_X + "\\.\n)" + STYLE_12 + "$");
 	
@@ -163,7 +166,9 @@ public class FreechessUtils {
 	
 	public static final Pattern GAMEINFO_ACCEPT_REMOVING_OBSERVED = Pattern.compile("^((?:You accept the match offer from " + HANDLE_X + "\\.\n|\n" + HANDLE_X + " accepts the match offer\\.\n)(?:Removing game \\d+ from observation list\\.\n)*)(?:\n<sr> ([\\d ]+)\n)?$");
 	
-	public static final Pattern GAMEINFO_REMOVING_EXAMINED = Pattern.compile("^You are no longer examining game (\\d+)\\.\n$");
+	public static final Pattern GAMEINFO_REMOVING_EXAMINED = Pattern.compile("^\n?You are no longer examining game (\\d+)\\.\n$");
+	
+	public static final Pattern GAMEINFO_MEXAMINED = Pattern.compile("^(Removing game \\d+ from observation list\\.\n\n" + HANDLE_X + " has made you an examiner of game \\d+\\.\n)" + STYLE_12 + "$");
 	
 	public static final Pattern GAMEINFO_NOTE = Pattern.compile("^\nGame (\\d+): (.*)\n$");
 	
@@ -173,7 +178,7 @@ public class FreechessUtils {
 	
 	public static final Pattern GAMEINFO_NOTE_VALUE_RESULT = Pattern.compile("^(.*) (1-0|0-1|1/2-1/2|\\*)$");
 	
-	public static final Pattern GAMEINFO_MOVE_NOTE = Pattern.compile("^" + STYLE_12 + "(\nGame \\d+: (.*)\n)$");
+	public static final Pattern GAMEINFO_MOVE_NOTE = Pattern.compile("^\n?" + STYLE_12 + "(\nGame \\d+: (.*)\n(?:\nGame \\d+: (.*)\n)?)$");
 	
 	public static final Pattern GAMEINFO_MORETIME_MOVE = Pattern.compile("^(\\d+ seconds were added to your opponents clock\n)" + STYLE_12 + "$");
 	
@@ -339,6 +344,8 @@ public class FreechessUtils {
 			+ "\\(\"snews <n>\" will display item number 'n'\\)\n)?"
 			+ "\n\nYou have (\\d+) messages? \\((\\d+) unread\\)\\.\n"
 			+ "Use \"messages u\" to view unread messages and \"clearmessages \\*\" to clear all\\.\n"
+			+ "(?:\nYour message file is full, (\\d+) messages is the maximum number allowed\\.\n"
+			+ "You will not be able to receive any more messages until you remove some\\.\n)?"
 			+ "(?:\nPresent company includes: ([A-Za-z ]+)\\.\n)?"
 			+ "(?:\nYour arrival was noted by: ([A-Za-z ]+)\\.\n)?$");
 	

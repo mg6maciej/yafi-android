@@ -11,6 +11,7 @@ public class Game {
 	private List<Position> positions;
 	
 	private UUID uuid;
+	private long gameTimestamp;
 	
 	private int id;
 	private String whiteName;
@@ -30,6 +31,7 @@ public class Game {
 	private String description;
 	
 	private boolean flip;
+	private boolean userFlip;
 	
 	private int relation;
 	
@@ -43,6 +45,7 @@ public class Game {
 	
 	public Game() {
 		uuid = UUID.randomUUID();
+		gameTimestamp = TimeUtils.getTimestamp();
 		id = -1;
 		positions = new ArrayList<Position>();
 	}
@@ -86,6 +89,10 @@ public class Game {
 		return uuid;
 	}
 	
+	public long getGameTimestamp() {
+		return gameTimestamp;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -127,7 +134,11 @@ public class Game {
 	}
 	
 	public boolean isFlip() {
-		return flip;
+		return flip ^ userFlip;
+	}
+	
+	public void toggleUserFlip() {
+		userFlip = !userFlip;
 	}
 	
 	public int getRelation() {

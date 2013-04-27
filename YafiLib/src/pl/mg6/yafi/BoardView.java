@@ -32,6 +32,8 @@ public class BoardView extends View {
 	
 	private Position position;
 	
+	private boolean flip;
+	
 	private Paint paint;
 	private RectF rect;
 	
@@ -207,7 +209,7 @@ public class BoardView extends View {
 				canvas.drawLine((initFile + 0.5f) * squareWidth, (initRank + 0.5f) * squareHeight,
 						(destFile + 0.5f) * squareWidth, (destRank + 0.5f) * squareHeight, paint);
 				paint.setStyle(Paint.Style.FILL);
-			} else if (!"none".equals(move)) {
+			} else if (!"none".equals(move) && move.charAt(2) != '@') {
 				int initFile = flip(move.charAt(2) - 'a');
 				int initRank = flip('8' - move.charAt(3));
 				int destFile = flip(move.charAt(5) - 'a');
@@ -403,8 +405,13 @@ public class BoardView extends View {
 		invalidate();
 	}
 	
+	public void setFlip(boolean flip) {
+		this.flip = flip;
+		invalidate();
+	}
+	
 	private int flip(int a) {
-		return position.isFlip() ? 7 - a : a;
+		return flip ? 7 - a : a;
 	}
 	
 	@Override

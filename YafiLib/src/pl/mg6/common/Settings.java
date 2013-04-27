@@ -49,7 +49,6 @@ public final class Settings {
 	private static final String PREF_SOUGHT_OPPONENT = "user_pref.sought_opponent";
 	private static final String PREF_SOUGHT_TIME = "user_pref.sought_time";
 	public static final String PREF_HELP_IMPROVE = "user_pref.help_improve";
-	private static final boolean HELP_IMPROVE_DEFAULT_VALUE = true;
 	private static final String PREF_CONSOLE_COMMANDS = "user_pref.console_commands";
 	private static final int MIN_COMMAND_USE_COUNT = 5;
 	private static final int MAX_COMMAND_COUNT = 16;
@@ -257,7 +256,7 @@ public final class Settings {
 	
 	public static boolean isHelpImprove(Context context) {
 		SharedPreferences prefs = getSharedPrefs(context);
-		boolean helpImprove = prefs.getBoolean(PREF_HELP_IMPROVE, HELP_IMPROVE_DEFAULT_VALUE);
+		boolean helpImprove = prefs.getBoolean(PREF_HELP_IMPROVE, !isPaidApp(context));
 		return helpImprove;
 	}
 	

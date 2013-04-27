@@ -341,6 +341,15 @@ public class LoginActivity extends BaseFreechessActivity {
 		if (id == R.id.mi_preferences) {
 			Intent intent = new Intent(this, UserPreferencesActivity.class);
 			startActivityForResult(intent, REQUEST_ID_USER_PREFS);
+		} else if (id == R.id.mi_contact) {
+			Intent intent = new Intent(Intent.ACTION_SEND);
+			intent.setType("message/rfc822");
+			intent.putExtra(Intent.EXTRA_EMAIL, new String[] { "maciek.gorski@gmail.com" });
+			String subject = Settings.isPaidApp(this)
+					? "Yafi Plus - feedback / bug report"
+					: "Yafi - feedback / bug report";
+			intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+			startActivity(intent);
 		} else {
 			return super.onOptionsItemSelected(item);
 		}

@@ -20,6 +20,7 @@ data = (
   ("ic_launcher_plus", (None, 48, None, None)),
   ("board_close_n", (None, 32, None, None)),
   ("board_close_p", (None, 32, None, None)),
+  ("board_close_ne", (None, 32, None, None)),
   ("board_first_n", (None, 60, 100, None)),
   ("board_first_p", (None, 60, 100, None)),
   ("board_last_n", (None, 60, 100, None)),

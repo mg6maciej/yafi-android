@@ -43,13 +43,17 @@ public class LicenseCheckActivity extends BaseActivity {
 		errorView = findViewById(R.id.license_check_error);
 		descriptionField = (TextView) findViewById(R.id.license_check_description);
 		goToMarketButton = (Button) findViewById(R.id.license_check_go_to_market);
-		
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
 		checkLicense();
 	}
 	
 	@Override
-	protected void onDestroy() {
-		super.onDestroy();
+	protected void onStop() {
+		super.onStop();
 		checker.onDestroy();
 	}
 	

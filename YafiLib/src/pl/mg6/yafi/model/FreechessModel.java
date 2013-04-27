@@ -277,6 +277,12 @@ public class FreechessModel {
 				return true;
 			}
 		}
+		m = FreechessUtils.GAMEINFO_MEXAMINED.matcher(output);
+		if (m.matches()) {
+			parseGameInfoMexamined(m);
+			this.output += m.group(1) + "yafi% ";
+			return true;
+		}
 		this.output += output + "yafi% ";
 		m = FreechessUtils.GAMEINFO_REMOVING_EXAMINED.matcher(output);
 		if (m.matches()) {
@@ -530,6 +536,17 @@ public class FreechessModel {
 	}
 	
 	private void parseGameInfoMove(Matcher m) {
+		parseMove(m);
+		String additionalMoves = m.group(2);
+		if (additionalMoves.length() > 0) {
+			m = FreechessUtils.GAMEINFO_MOVE_ADDITIONAL.matcher(additionalMoves);
+			while (m.find()) {
+				parseMove(m);
+			}
+		}
+	}
+	
+	private void parseMove(Matcher m) {
 		String style12 = m.group(1);
 		Position pos = Position.fromStyle12(style12);
 		Game game = activeGames.get(pos.getGameId());
@@ -683,11 +700,15 @@ public class FreechessModel {
 	private void parseGameInfoMoveNote(Matcher m) {
 		String style12 = m.group(1);
 		String note = m.group(3);
+		String note2 = m.group(4);
 		Position pos = Position.fromStyle12(style12);
 		Game game = activeGames.get(pos.getGameId());
 		if (game != null) {
 			game.addPosition(pos);
 			game.addNote(note);
+			if (note2 != null) {
+				game.addNote(note2);
+			}
 			notifyGameUpdate(game.getUUID());
 		} else if (pos.getRelation() == Game.RELATION_EXAMINING) {
 			game = new Game();
@@ -798,6 +819,16 @@ public class FreechessModel {
 		if (game != null) {
 			game.setResult("*", "[You are no longer examining this game.]");
 			game.setRelation(Game.RELATION_UNKNOWN);
+			notifyGameUpdate(game.getUUID());
+		}
+	}
+	
+	private void parseGameInfoMexamined(Matcher m) {
+		String style12 = m.group(2);
+		Position pos = Position.fromStyle12(style12);
+		Game game = activeGames.get(pos.getGameId());
+		if (game != null) {
+			game.addPosition(pos);
 			notifyGameUpdate(game.getUUID());
 		}
 	}

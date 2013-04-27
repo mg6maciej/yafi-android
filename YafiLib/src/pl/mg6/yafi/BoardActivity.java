@@ -20,7 +20,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -142,19 +141,29 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 		boardView.setStateNone();
 	}
 	
-	private void showGameEndDialog() {
+	private void showGameEndDialog(Game game) {
 		if (Settings.isShowGameEndDialog(this) && (gameEndDialog == null || !gameEndDialog.isShowing())) {
 			gameEndDialog = null;
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setTitle(service.getGame(currentGameId).getDescription());
+			builder.setTitle(game.getDescription());
 			View body = getLayoutInflater().inflate(R.layout.dont_ask_again, null);
 			builder.setView(body);
-			builder.setPositiveButton(R.string.rematch, new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					service.sendInput("rematch\n");
-				}
-			});
+			if (!game.getDescription().endsWith(" forfeits by disconnection")) {
+				builder.setPositiveButton(R.string.rematch, new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						service.sendInput("rematch\n");
+					}
+				});
+			}
+			if (!"*".equals(game.getResult())) {
+				builder.setNeutralButton(R.string.examine, new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						service.sendInput("exl\n");
+					}
+				});
+			}
 			builder.setNegativeButton(R.string.cancel, null);
 			gameEndDialog = builder.create();
 			gameEndDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -243,9 +252,10 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 		//if (pos.getRelation() == Game.RELATION_EXAMINING || currentPosition >= game.getPositionCount() - 2) {
 			currentPosition = game.getPositionCount() - 1;
 			boardView.setPosition(pos);
+			boardView.setFlip(game.isFlip());
 		//}
 		
-		if (!pos.isFlip()) {
+		if (!game.isFlip()) {
 			whiteNameField.setText(game.getWhiteName());
 			blackNameField.setText(game.getBlackName());
 			whiteRatingField.setText(game.getWhiteRating());
@@ -275,7 +285,7 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 				Position pos = game.getPosition(game.getPositionCount() - 1);
 				String newWhiteTime;
 				String newBlackTime;
-				if (!pos.isFlip()) {
+				if (!game.isFlip()) {
 					newWhiteTime = game.getCurrentWhiteTimeString();
 					newBlackTime = game.getCurrentBlackTimeString();
 				} else {
@@ -330,6 +340,10 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 	public boolean handleMessage(Message msg) {
 		switch (msg.what) {
 			case FreechessService.MSG_ID_GAME_CREATE:
+				UUID gameId = (UUID) msg.obj;
+				onGameUpdate(gameId);
+				onBoardTabClick(tabs.findViewWithTag(gameId));
+				return true;
 			case FreechessService.MSG_ID_GAME_UPDATE:
 				onGameUpdate((UUID) msg.obj);
 				return true;
@@ -347,7 +361,8 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 	}
 	
 	private void onGameUpdate(UUID gameId) {
-		if (service.getGame(gameId) == null) {
+		Game game = service.getGame(gameId);
+		if (game == null) {
 			return;
 		}
 		if (!allGamesIds.contains(gameId)) {
@@ -371,12 +386,16 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 				service.sendInput(premoveQueue.poll());
 				boardView.setMoveSent();
 			}
-			Game game = service.getGame(gameId);
 			if (game.getResult() != null && Math.abs(game.getPosition(0).getRelation()) == 1) {
-				showGameEndDialog();
+				showGameEndDialog(game);
 			}
 		} else {
 			tabs.findViewWithTag(gameId).findViewById(R.id.board_tab_update).setVisibility(View.VISIBLE);
+		}
+		int relation = game.getRelation();
+		if (!(relation == Game.RELATION_PLAYING_MY_MOVE || relation == Game.RELATION_PLAYING_OPPONENT_MOVE)) {
+			View tabClose = tabs.findViewWithTag(gameId).findViewById(R.id.board_tab_close);
+			tabClose.setEnabled(true);
 		}
 	}
 	
@@ -419,7 +438,20 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 		});
 		TextView tabDescription = (TextView) tab.findViewById(R.id.board_tab_desc);
 		tabDescription.setText(game.getWhiteName() + "\n" + game.getBlackName());
-		tabs.addView(tab);
+		int relation = game.getRelation();
+		if (relation == Game.RELATION_PLAYING_MY_MOVE || relation == Game.RELATION_PLAYING_OPPONENT_MOVE) {
+			View tabClose = tab.findViewById(R.id.board_tab_close);
+			tabClose.setEnabled(false);
+		}
+		int index;
+		for (index = 0; index < tabs.getChildCount(); index++) {
+			UUID otherId = (UUID) tabs.getChildAt(index).getTag();
+			Game other = service.getGame(otherId);
+			if (game.getGameTimestamp() > other.getGameTimestamp()) {
+				break;
+			}
+		}
+		tabs.addView(tab, index);
 	}
 	
 	public void onBoardTabClick(View view) {
@@ -562,6 +594,10 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 			service.sendInput("unobserve " + service.getGame(currentGameId).getId() + "\n");
 		} else if (id == R.id.mi_unexamine) {
 			service.sendInput("unexamine\n");
+		} else if (id == R.id.mi_flip) {
+			Game game = service.getGame(currentGameId);
+			game.toggleUserFlip();
+			updateViews();
 		} else if (id == R.id.mi_review) {
 			reviewOverlay.setVisibility(reviewOverlay.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
 			if (reviewOverlay.getVisibility() == View.GONE) {

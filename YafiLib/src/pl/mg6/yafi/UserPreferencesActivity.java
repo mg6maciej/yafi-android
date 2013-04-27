@@ -46,7 +46,7 @@ public class UserPreferencesActivity extends TrackedPreferenceActivity {
 		
 		@Override
 		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-			boolean helpImprove = sharedPreferences.getBoolean(Settings.PREF_HELP_IMPROVE, true);
+			boolean helpImprove = sharedPreferences.getBoolean(Settings.PREF_HELP_IMPROVE, !Settings.isPaidApp(UserPreferencesActivity.this));
 			if (Settings.PREF_HELP_IMPROVE.equals(key)) {
 				if (helpImprove) {
 					EasyTracker.getTracker().trackActivityStart(UserPreferencesActivity.this);
@@ -89,6 +89,9 @@ public class UserPreferencesActivity extends TrackedPreferenceActivity {
 				} else if (Settings.PREF_VIBRATE.equals(key)) {
 					boolean value = sharedPreferences.getBoolean(key, true);
 					trackEvent(Tracking.CATEGORY_SETTINGS, Tracking.ACTION_VIBRATE, null, value);
+				} else if (Settings.PREF_SHOW_GAME_END_DIALOG.equals(key)) {
+					boolean value = sharedPreferences.getBoolean(key, true);
+					trackEvent(Tracking.CATEGORY_SETTINGS, Tracking.ACTION_SHOW_GAME_END_DIALOG, null, value);
 				}
 			}
 		}

@@ -23,6 +23,9 @@
             android:title="@string/unexamine"/>
     </group>
 
+    <item
+        android:id="@+id/mi_flip"
+        android:title="@string/flip"/>
     <item android:id="@+id/mi_review"/>
 
 </menu>
