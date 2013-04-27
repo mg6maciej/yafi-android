@@ -144,14 +144,14 @@ public class BoardView extends View {
 		}
 		if (state == DRAGGING || state == CLICK_CLICK) {
 			paint.setColor(Color.argb(100, 255, 255, 255));
-			rect.left = destFile * squareWidth;
+			rect.left = flip(destFile) * squareWidth;
 			rect.right = rect.left + squareWidth;
 			rect.top = 0;
 			rect.bottom = 8 * squareHeight;
 			canvas.drawRect(rect, paint);
 			rect.left = 0;
 			rect.right = 8 * squareWidth;
-			rect.top = destRank * squareHeight;
+			rect.top = flip(destRank) * squareHeight;
 			rect.bottom = rect.top + squareHeight;
 			canvas.drawRect(rect, paint);
 		}
