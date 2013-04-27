@@ -338,6 +338,9 @@ public class NewsAndMessagesActivity extends BaseFreechessActivity {
 					TextView title = (TextView) newsView.findViewById(R.id.news_item_title);
 					newsView.setTag(item);
 					date.setText(item.getDate());
+					if (item.getTitle().contains("Yafi")) {
+						title.setTextColor(0xFFFFFFFF);
+					}
 					title.setText(item.getTitle());
 					AndroidUtils.linkify(title);
 					return newsView;
