@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/mi_draw"
+        android:title="@string/draw"/>
+    <item
+        android:id="@+id/mi_abort"
+        android:title="@string/abort"/>
+    <item
+        android:id="@+id/mi_resign"
+        android:title="@string/resign"/>
+    <item android:id="@+id/mi_review"/>
+
+</menu>

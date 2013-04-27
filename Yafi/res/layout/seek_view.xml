@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:orientation="vertical"
+    android:layout_height="fill_parent" >
+
+    <include layout="@layout/ad" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="30dp" >
+
+            <EditText
+                android:id="@+id/seek_time"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/time"
+                android:inputType="numberDecimal" />
+
+            <EditText
+                android:id="@+id/seek_increment"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/increment"
+                android:inputType="numberDecimal" />
+
+            <Spinner
+                android:id="@+id/seek_type"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:entries="@array/types" />
+
+            <CheckBox
+                android:id="@+id/seek_rated"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/rated" />
+
+            <Button
+                android:id="@+id/seek_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:onClick="onSeekClick"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="@string/seek" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

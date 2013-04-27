@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:installLocation="auto"
+    package="pl.mg6.yafi"
+    android:versionCode="12"
+    android:versionName="0.6.12" >
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <uses-sdk android:minSdkVersion="7" />
+
+    <supports-screens
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.NoTitleBar" >
+        <activity android:name="pl.mg6.yafi.BoardActivity" />
+        <activity android:name="pl.mg6.yafi.ChallengesActivity" />
+        <activity android:name="pl.mg6.yafi.ChatActivity" />
+        <activity android:name="pl.mg6.yafi.ConsoleActivity" />
+        <activity android:name="pl.mg6.yafi.InformationsActivity" />
+        <activity android:name="pl.mg6.yafi.ListUsersActivity" />
+        <activity android:name="pl.mg6.yafi.LoginActivity" />
+        <activity android:name="pl.mg6.yafi.MatchActivity" />
+        <activity android:name="pl.mg6.yafi.MenuActivity" />
+        <activity android:name="pl.mg6.yafi.SeekActivity" />
+        <activity android:name="pl.mg6.yafi.SoughtActivity" />
+        <activity
+            android:name="pl.mg6.yafi.UserPreferencesActivity"
+            android:label="@string/preferences"
+            android:theme="@android:style/Theme" />
+        <activity android:name="pl.mg6.yafi.YafiActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.google.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
+
+        <service android:name="pl.mg6.yafi.model.FreechessService" />
+    </application>
+
+</manifest>

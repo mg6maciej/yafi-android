@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/login" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:title="@string/confirm_disconnect"
+            android:key="user_pref.confirm_disconnect" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:title="@string/remember_password"
+            android:key="user_pref.remember_password" />
+        </PreferenceCategory>
+    <PreferenceCategory android:title="@string/board" >
+        <pl.mg6.common.android.ListPreferenceEx
+            android:defaultValue="3"
+            android:title="@string/input_method"
+            android:summary="@string/input_method_summary"
+            android:entries="@array/board_input_methods"
+            android:entryValues="@array/board_input_methods_values"
+            android:key="user_pref.board_input_method" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Miscellaneous" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:title="Help improve Yafi"
+            android:summary="Send anonymous usage statistics"
+            android:key="user_pref.help_improve" />
+        </PreferenceCategory>
+    
+</PreferenceScreen>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ScrollView
+        android:id="@+id/chat_tabs_scroll_landscape"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:id="@+id/chat_tabs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/chat_ad"
+        layout="@layout/ad" />
+
+    <ListView
+        android:id="@+id/chat_output"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/chat_input_parent"
+        android:layout_below="@+id/chat_ad"
+        android:layout_toRightOf="@+id/chat_tabs_scroll_landscape" >
+    </ListView>
+
+    <LinearLayout
+        android:id="@+id/chat_input_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/chat_tabs_scroll_landscape"
+        android:background="#888"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="5dp" >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:onClick="onSendClick"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="@string/send" />
+
+        <EditText
+            android:id="@+id/chat_input"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:imeActionLabel="@string/send"
+            android:inputType="textMultiLine" />
+    </LinearLayout>
+
+</RelativeLayout>

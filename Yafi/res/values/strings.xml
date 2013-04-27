@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Yafi</string>
+    <string name="username">Handle (username)</string>
+    <string name="password">Password</string>
+    <string name="remember_password">Remember password</string>
+    <string name="login">Login</string>
+    <string name="board">Board</string>
+    <string name="chat">Chat</string>
+    <string name="seek">Seek \na game</string>
+    <string name="sought">Sought\ngames</string>
+    <string name="match">Match</string>
+    <string name="challenges">Challenges</string>
+    <string name="console">Console</string>
+    <string name="preferences">Preferences</string>
+    <string name="send">Send</string>
+    <string name="dont_ask_again">Don\'t ask again</string>
+    <string name="draw">Draw</string>
+    <string name="abort">Abort</string>
+    <string name="resign">Resign</string>
+    <string name="time">Time (minutes)</string>
+    <string name="increment">Increment (seconds)</string>
+    <string name="rated">Rated</string>
+    <string name="show_controls">Show controls</string>
+    <string name="hide_controls">Hide controls</string>
+    <string name="informations">Informations</string>
+    <string name="accessibility_board_first">Go to starting position</string>
+    <string name="accessibility_board_previous">Go to previous position</string>
+    <string name="accessibility_board_next">Go to next position</string>
+    <string name="accessibility_board_last">Go to current position</string>
+    <string name="getting_sought_items">Getting sought items</string>
+    <string name="no_sought_items">No sought items</string>
+    <string name="you_are_playing_or_examining">You are playing or examining a game.\nSought information will not be displayed.</string>
+    <string name="confirm_disconnect">Confirm disconnection</string>
+    <string name="input_method">Input method</string>
+    <string name="input_method_summary">%s</string>
+    <string name="loading">Loading…</string>
+
+    <string-array name="types">
+        <item>Chess</item>
+        <item>Suicide</item>
+        <item>Atomic</item>
+        <item>Losers</item>
+        <item>Fischer Random</item>
+        <item>Upside Down</item>
+    </string-array>
+    <string-array name="types_ids">
+        <item>chess</item>
+        <item>suicide</item>
+        <item>atomic</item>
+        <item>losers</item>
+        <item>wfr</item>
+        <item>w5</item>
+    </string-array>
+    <string-array name="board_input_methods">
+        <item>Drag and Drop</item>
+        <item>Click Click</item>
+        <item>Both</item>
+    </string-array>
+    <string-array name="board_input_methods_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+</resources>
