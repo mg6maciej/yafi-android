@@ -64,7 +64,7 @@ public class BaseFreechessActivity extends BaseActivity implements ServiceConnec
 		super.onContentChanged();
 		View view = findViewById(R.id.ad_view);
 		if (view != null) {
-			if (Settings.REMOVE_ADS_AFTER_CLICK && Settings.isAdClicked(this) || Settings.isPaidApp(this)) {
+			if (Settings.isPaidApp(this)) {
 				ViewGroup parent = (ViewGroup) view.getParent();
 				parent.removeView(view);
 			} else {
@@ -85,12 +85,6 @@ public class BaseFreechessActivity extends BaseActivity implements ServiceConnec
 					@Override
 					public void onDismissScreen(Ad ad) {
 						super.onDismissScreen(ad);
-						if (Settings.REMOVE_ADS_AFTER_CLICK) {
-							adView.stopLoading();
-							ViewGroup parent = (ViewGroup) adView.getParent();
-							parent.removeView(adView);
-							Settings.setAdClicked(BaseFreechessActivity.this, true);
-						}
 						long endTime = TimeUtils.getTimestamp();
 						int time = (int) (endTime - startTime);
 						trackEvent(Tracking.CATEGORY_ADMOB, Tracking.ACTION_CLICKED, BaseFreechessActivity.this.getClass().getSimpleName(), time);

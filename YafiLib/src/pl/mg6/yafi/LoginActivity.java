@@ -105,9 +105,6 @@ public class LoginActivity extends BaseFreechessActivity {
 		super.onResume();
 		usernameField.setText(Settings.getUsername(this));
 		passwordField.setText(Settings.getPassword(this));
-		if (Settings.REMOVE_ADS_AFTER_CLICK) {
-			Settings.setAdClicked(this, false);
-		}
 	}
 	
 	@Override

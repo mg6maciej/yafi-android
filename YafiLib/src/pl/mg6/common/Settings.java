@@ -26,8 +26,6 @@ public final class Settings {
 	public static final int SOURCE_YAFI_PL = 2;
 	public static final int SOURCE_ID = SOURCE_ANDROID_MARKET;
 	
-	public static final boolean REMOVE_ADS_AFTER_CLICK = false;
-	
 	public static final String PREF_CONFIRM_DISCONNECT = "user_pref.confirm_disconnect";
 	private static final boolean CONFIRM_DISCONNECT_DEFAULT_VALUE = true;
 	private static final String PREF_USERNAME = "user_pref.username";
@@ -67,7 +65,6 @@ public final class Settings {
 	private static final String PREF_RATE_CLICKED = "app_pref.rate_clicked";
 	private static final String PREF_SHOW_RATE_DELAY = "app_pref.show_rate_delay";
 	private static final int SHOW_RATE_INITIAL_DELAY = 6;
-	private static final String PREF_AD_CLICKED = "app_pref.ad_clicked";
 	private static final String PREF_REGISTERED_USER = "app_pref.registered_user";
 	
 	private static SharedPreferences getSharedPrefs(Context context) {
@@ -375,18 +372,6 @@ public final class Settings {
 	public static void setRateClicked(Context context) {
 		SharedPreferences.Editor editor = getSharedPrefsEditor(context);
 		editor.putBoolean(PREF_RATE_CLICKED, true);
-		editor.commit();
-	}
-	
-	public static boolean isAdClicked(Context context) {
-		SharedPreferences prefs = getSharedPrefs(context);
-		boolean clicked = prefs.getBoolean(PREF_AD_CLICKED, false);
-		return clicked;
-	}
-	
-	public static void setAdClicked(Context context, boolean clicked) {
-		SharedPreferences.Editor editor = getSharedPrefsEditor(context);
-		editor.putBoolean(PREF_AD_CLICKED, clicked);
 		editor.commit();
 	}
 	
