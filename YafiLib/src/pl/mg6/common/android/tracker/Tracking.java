@@ -10,7 +10,7 @@ public class Tracking {
 	public static final String ACTION_DEVICE = "Device";
 	public static final String ACTION_SCREEN = "Screen";
 	public static final String ACTION_SOURCE = "Source";
-	public static final String[] LABEL_ARRAY_SOURCES = { null, "market.android.com", "yafi.pl" };
+	public static final String[] LABEL_ARRAY_SOURCES = { null, "market.android.com", "yafi.pl", "yafi-android-issues" };
 	
 	public static final String CATEGORY_SETTINGS = "Settings";
 	public static final String ACTION_CONFIRM_DISCONNECTION = "ConfirmDisconnection";

@@ -24,6 +24,7 @@ public final class Settings {
 	
 	public static final int SOURCE_ANDROID_MARKET = 1;
 	public static final int SOURCE_YAFI_PL = 2;
+	public static final int SOURCE_YAFI_ANDROID_ISSUES = 3;
 	public static final int SOURCE_ID = SOURCE_ANDROID_MARKET;
 	
 	public static final String PREF_CONFIRM_DISCONNECT = "user_pref.confirm_disconnect";
