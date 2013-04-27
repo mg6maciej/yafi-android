@@ -2,13 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     android:hardwareAccelerated="true"
     android:installLocation="auto"
-    package="pl.mg6.yafi"
+    package="pl.mg6.yafi.plus"
     android:versionCode="25"
     android:versionName="0.6.25" >
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="com.android.vending.CHECK_LICENSE" />
 
     <uses-sdk android:minSdkVersion="7" />
 
@@ -27,6 +28,7 @@
         <activity android:name="pl.mg6.yafi.ChatActivity" />
         <activity android:name="pl.mg6.yafi.ConsoleActivity" />
         <activity android:name="pl.mg6.yafi.InformationsActivity" />
+        <activity android:name="pl.mg6.yafi.LicenseCheckActivity" />
         <activity android:name="pl.mg6.yafi.ListUsersActivity" />
         <activity android:name="pl.mg6.yafi.LoginActivity" />
         <activity android:name="pl.mg6.yafi.MatchActivity" />
@@ -48,9 +50,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.google.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
 
         <service android:name="pl.mg6.yafi.model.FreechessService" />
     </application>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="console_tab_item_max_width">120dp</dimen>
+    <dimen name="board_land_text_left_padding">2dp</dimen>
+</resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:yafi="http://schemas.android.com/apk/res/pl.mg6.yafi" >
+    xmlns:yafi="http://schemas.android.com/apk/res/pl.mg6.yafi.lib" >
 
     <PreferenceCategory android:title="@string/login" >
         <CheckBoxPreference

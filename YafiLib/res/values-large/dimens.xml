@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="sought_item_size">120dp</dimen>
+    <dimen name="chat_tab_item_min_width">72dp</dimen>
+    <dimen name="board_tab_item_min_width">160dp</dimen>
+    <dimen name="console_tab_item_min_width">72dp</dimen>
+    <dimen name="console_tab_item_max_width">65536dp</dimen>
+    
+</resources>

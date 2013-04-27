@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <Button
+        android:id="@+id/send_message_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:onClick="onSendClick"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:text="@string/send" />
+
+    <EditText
+        android:id="@+id/send_message_username"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/send_message_send"
+        android:imeOptions="flagNoExtractUi"
+        android:inputType="textNoSuggestions" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/send_message_username" >
+
+        <EditText
+            android:id="@+id/send_message_message"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:hint="Enter message here"
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="textMultiLine"
+            android:minLines="2" >
+
+            <requestFocus />
+        </EditText>
+    </ScrollView>
+
+</RelativeLayout>

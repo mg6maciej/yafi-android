@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/logo_background"
+        android:src="@drawable/logo" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" >
+
+        <EditText
+            android:id="@+id/login_username"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/username"
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="textNoSuggestions"
+            android:maxLength="17"
+            android:nextFocusDown="@+id/login_password"
+            android:nextFocusRight="@+id/login_password" />
+
+        <EditText
+            android:id="@+id/login_password"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/login_username"
+            android:hint="@string/password"
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/login_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/login_password"
+            android:layout_below="@+id/login_password"
+            android:onClick="onLoginClick"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="@string/login_as_guest" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/login_fics_banner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:background="@drawable/fics_banner"
+        android:onClick="onFicsBannerClick" />
+
+</merge>

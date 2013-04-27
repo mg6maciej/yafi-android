@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="1dp"
+    android:background="@drawable/board_tab_background"
+    android:gravity="center"
+    android:onClick="onBoardTabClick"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/board_tab_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lines="2"
+        android:textColor="#000" />
+
+    <ImageView
+        android:id="@+id/board_tab_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginLeft="-6dp"
+        android:layout_weight="1"
+        android:scaleType="fitEnd"
+        android:src="@drawable/green_dot"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/board_tab_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/board_close"
+        android:onClick="onBoardCloseClick" />
+
+</LinearLayout>
