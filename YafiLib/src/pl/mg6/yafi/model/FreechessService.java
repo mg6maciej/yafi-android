@@ -29,6 +29,7 @@ import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.PowerManager;
 import android.os.Vibrator;
 import android.util.Log;
 
@@ -99,6 +100,8 @@ public class FreechessService extends Service implements FreechessConnection.Lis
 	private MediaPlayer movePlayer;
 	private MediaPlayer tellPlayer;
 	
+	private PowerManager.WakeLock wakeLock;
+	
 	@Override
 	public void onCreate() {
 		if (Settings.LOG_LIFECYCLE) {
@@ -107,6 +110,9 @@ public class FreechessService extends Service implements FreechessConnection.Lis
 		movePlayer = MediaPlayer.create(this, R.raw.move);
 		tellPlayer = MediaPlayer.create(this, R.raw.tell);
 		
+		PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+		wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "freechess.org connection");
+		wakeLock.setReferenceCounted(false);
 	}
 	
 	@Override
@@ -162,11 +168,15 @@ public class FreechessService extends Service implements FreechessConnection.Lis
 			model.setListener(null);
 			model = null;
 		}
+		
+		wakeLock.release();
 	}
 	
 	private void createConnection(String username, String password) {
 		
 		cleanup();
+		
+		wakeLock.acquire();
 		
 		model = new FreechessModel();
 		int currentVersion = AndroidUtils.getVersionCode(this);
