@@ -93,6 +93,7 @@ public final class FreechessConnection implements Runnable, Handler.Callback {
 	}
 	
 	private void runReaderThread() {
+		final Object[] socketAndErrors = new Object[3];
 		Socket socket = null;
 		InputStream istream = null;
 		OutputStream ostream = null;
@@ -100,10 +101,61 @@ public final class FreechessConnection implements Runnable, Handler.Callback {
 			state = ConnectionState.Connecting;
 			notifyConnecting();
 			
-			try {
-				socket = new Socket(SERVER_NAME, SERVER_PORT);
-			} catch (IOException ex) {
-				socket = new Socket(ALT_SERVER_NAME, ALT_SERVER_PORT);
+			synchronized (socketAndErrors) {
+				
+				new Thread() {
+					@Override
+					public void run() {
+						try {
+							Socket s = new Socket(SERVER_NAME, SERVER_PORT);
+							synchronized (socketAndErrors) {
+								if (socketAndErrors[0] == null) {
+									socketAndErrors[0] = s;
+									socketAndErrors.notify();
+								} else {
+									s.close();
+								}
+							}
+						} catch (IOException ex) {
+							synchronized (socketAndErrors) {
+								socketAndErrors[1] = ex;
+								if (socketAndErrors[2] != null) {
+									socketAndErrors.notify();
+								}
+							}
+						}
+					}
+				}.start();
+				
+				new Thread() {
+					@Override
+					public void run() {
+						try {
+							Socket s = new Socket(ALT_SERVER_NAME, ALT_SERVER_PORT);
+							synchronized (socketAndErrors) {
+								if (socketAndErrors[0] == null) {
+									socketAndErrors[0] = s;
+									socketAndErrors.notify();
+								} else {
+									s.close();
+								}
+							}
+						} catch (IOException ex) {
+							synchronized (socketAndErrors) {
+								socketAndErrors[2] = ex;
+								if (socketAndErrors[1] != null) {
+									socketAndErrors.notify();
+								}
+							}
+						}
+					}
+				}.start();
+				
+				socketAndErrors.wait();
+				socket = (Socket) socketAndErrors[0];
+				if (socket == null) {
+					throw (Exception) socketAndErrors[1];
+				}
 			}
 			istream = new BufferedInputStream(socket.getInputStream());
 			ostream = socket.getOutputStream();
@@ -163,7 +215,7 @@ public final class FreechessConnection implements Runnable, Handler.Callback {
 				}
 				istream = null;
 			}
-			if (socket != null) {
+			if (socketAndErrors[0] != null) {
 				try {
 					socket.close();
 				} catch (IOException ex) {
