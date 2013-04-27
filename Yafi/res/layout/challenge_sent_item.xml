@@ -47,6 +47,6 @@
         android:layout_centerVertical="true"
         android:onClick="onCommandClick"
         android:tag="withdraw"
-        android:text="Withdraw" />
+        android:text="@string/withdraw" />
 
 </RelativeLayout>

@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item
-        android:id="@+id/mi_draw"
-        android:title="@string/draw"/>
-    <item
-        android:id="@+id/mi_abort"
-        android:title="@string/abort"/>
-    <item
-        android:id="@+id/mi_resign"
-        android:title="@string/resign"/>
+    <group android:id="@+id/mg_play" >
+        <item
+            android:id="@+id/mi_draw"
+            android:title="@string/draw"/>
+        <item
+            android:id="@+id/mi_abort"
+            android:title="@string/abort"/>
+        <item
+            android:id="@+id/mi_resign"
+            android:title="@string/resign"/>
+    </group>
+    <group android:id="@+id/mg_observe" >
+        <item
+            android:id="@+id/mi_unobserve"
+            android:title="@string/unobserve"/>
+    </group>
+    <group android:id="@+id/mg_examine" >
+        <item
+            android:id="@+id/mi_unexamine"
+            android:title="@string/unexamine"/>
+    </group>
+
     <item android:id="@+id/mi_review"/>
 
 </menu>

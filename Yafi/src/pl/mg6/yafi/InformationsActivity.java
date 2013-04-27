@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pl.mg6.common.StringUtils;
+import pl.mg6.common.android.tracker.Tracking;
 import pl.mg6.yafi.model.FreechessService;
 import pl.mg6.yafi.model.data.AdjournedInfo;
 import pl.mg6.yafi.model.data.Color;
 import pl.mg6.yafi.model.data.FingerInfo;
+import pl.mg6.yafi.model.data.HistoricalGameEntry;
 import pl.mg6.yafi.model.data.HistoryInfo;
 import pl.mg6.yafi.model.data.JournalInfo;
 import pl.mg6.yafi.model.data.RatingInfo;
@@ -15,9 +17,14 @@ import pl.mg6.yafi.model.data.UserTitle;
 import pl.mg6.yafi.model.data.VariablesInfo;
 import android.os.Bundle;
 import android.os.Message;
+import android.text.Html;
+import android.text.TextUtils;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -69,13 +76,22 @@ public class InformationsActivity extends BaseFreechessActivity {
 		R.id.info_finger_rating_losers_games,
 		R.id.info_finger_rating_atomic_games,
 	};
-	private static final String[] ratingNames = {
-		"Blitz", "Standard", "Lightning",
-		"Wild", "Bughouse", "Crazyhouse",
-		"Suicide", "Losers", "Atomic",
+	private static final int[] ratingNames = {
+		R.string.type_blitz,
+		R.string.type_standard,
+		R.string.type_lightning,
+		R.string.type_wild,
+		R.string.type_bughouse,
+		R.string.type_crazyhouse,
+		R.string.type_suicide,
+		R.string.type_losers,
+		R.string.type_atomic,
 	};
-	private static final String RATING_WITHOUT_BEST = "%s\u00A0rating:\u00A0%s wins:\u00A0%d/%d";
-	private static final String RATING_WITH_BEST = "%s\u00A0rating:\u00A0%s (best\u00A0active\u00A0%s) wins:\u00A0%d/%d";
+	private static final String RATING_WITHOUT_BEST = "%s rating: %s wins: %d/%d";
+	private static final String RATING_WITH_BEST = "%s rating: %s (best active %s) wins: %d/%d";
+	
+	private String historicalGameId;
+	private String trackingLabel;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -145,7 +161,7 @@ public class InformationsActivity extends BaseFreechessActivity {
 				TextView titlesField = (TextView) finger.findViewById(R.id.info_finger_titles);
 				String[] titles = new String[info.getTitles().length];
 				for (int i = 0; i < titles.length; i++) {
-					titles[i] = UserTitle.abbrToText(info.getTitles()[i]);
+					titles[i] = getString(UserTitle.abbrToText(info.getTitles()[i]));
 				}
 				titlesField.setText(StringUtils.join(", ", titles));
 			}
@@ -167,9 +183,9 @@ public class InformationsActivity extends BaseFreechessActivity {
 					current.setVisibility(View.VISIBLE);
 					String text;
 					if (ratingInfo.getBest() == null) {
-						text = String.format(RATING_WITHOUT_BEST, ratingNames[i], ratingInfo.getRating(), ratingInfo.getWins(), ratingInfo.getTotal());
+						text = String.format(RATING_WITHOUT_BEST, getString(ratingNames[i]), ratingInfo.getRating(), ratingInfo.getWins(), ratingInfo.getTotal());
 					} else {
-						text = String.format(RATING_WITH_BEST, ratingNames[i], ratingInfo.getRating(), ratingInfo.getBest(), ratingInfo.getWins(), ratingInfo.getTotal());
+						text = String.format(RATING_WITH_BEST, getString(ratingNames[i]), ratingInfo.getRating(), ratingInfo.getBest(), ratingInfo.getWins(), ratingInfo.getTotal());
 					}
 					current.setText(text);
 					ProgressBar games = (ProgressBar) finger.findViewById(gamesIds[i]);
@@ -194,7 +210,7 @@ public class InformationsActivity extends BaseFreechessActivity {
 			state = STATE_AFTER_VARIABLES;
 			View vars = ((ViewStub) findViewById(R.id.info_vars_stub)).inflate();
 			TextView interfaceField = (TextView) vars.findViewById(R.id.info_vars_interface);
-			interfaceField.setText(info.getClientName());
+			interfaceField.setText(Html.fromHtml(String.format(getString(R.string.var_interface), TextUtils.htmlEncode(info.getClientName()))));
 		}
 	}
 
@@ -206,6 +222,7 @@ public class InformationsActivity extends BaseFreechessActivity {
 			for (HistoryInfo.Entry infoEntry : info) {
 				View entryView = getLayoutInflater().inflate(R.layout.info_history_entry, history, false);
 				entryView.setTag(infoEntry);
+				entryView.setOnCreateContextMenuListener(contextMenuListener);
 				
 				TextView whiteNameField = (TextView) entryView.findViewById(R.id.info_history_entry_white_name);
 				whiteNameField.setText(infoEntry.getColor() == Color.WHITE ? username : infoEntry.getOpponentName());
@@ -257,6 +274,7 @@ public class InformationsActivity extends BaseFreechessActivity {
 			for (JournalInfo.Entry infoEntry : info) {
 				View entryView = getLayoutInflater().inflate(R.layout.info_journal_entry, journal, false);
 				entryView.setTag(infoEntry);
+				entryView.setOnCreateContextMenuListener(contextMenuListener);
 				
 				TextView whiteNameField = (TextView) entryView.findViewById(R.id.info_journal_entry_white_name);
 				whiteNameField.setText(infoEntry.getWhiteName());
@@ -317,6 +335,7 @@ public class InformationsActivity extends BaseFreechessActivity {
 			for (AdjournedInfo.Entry infoEntry : info) {
 				View entryView = getLayoutInflater().inflate(R.layout.info_adjourned_entry, adjourned, false);
 				entryView.setTag(infoEntry);
+				entryView.setOnCreateContextMenuListener(contextMenuListener);
 				
 				TextView whiteNameField = (TextView) entryView.findViewById(R.id.info_adjourned_entry_white_name);
 				whiteNameField.setText(infoEntry.getColor() == Color.WHITE ? username : infoEntry.getOpponentName());
@@ -346,18 +365,42 @@ public class InformationsActivity extends BaseFreechessActivity {
 		}
 	}
 	
-	public void onHistoryEntryClick(View view) {
-		HistoryInfo.Entry entry = (HistoryInfo.Entry) view.getTag();
-		service.sendInput("examine " + username + " " + entry.getId() + "\n");
+	public void onEntryClick(View view) {
+		view.showContextMenu();
 	}
 	
-	public void onJournalEntryClick(View view) {
-		JournalInfo.Entry entry = (JournalInfo.Entry) view.getTag();
-		service.sendInput("examine " + username + " " + entry.getId() + "\n");
+	private View.OnCreateContextMenuListener contextMenuListener = new View.OnCreateContextMenuListener() {
+		
+		@Override
+		public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+			HistoricalGameEntry entry = (HistoricalGameEntry) v.getTag();
+			historicalGameId = entry.getId();
+			menu.setHeaderTitle(username + " " + historicalGameId);
+			getMenuInflater().inflate(R.menu.informations, menu);
+			if (entry instanceof HistoryInfo.Entry) {
+				trackingLabel = Tracking.LABEL_INFO_HISTORY;
+			} else if (entry instanceof JournalInfo.Entry) {
+				trackingLabel = Tracking.LABEL_INFO_JOURNAL;
+			} else if (entry instanceof AdjournedInfo.Entry) {
+				trackingLabel = Tracking.LABEL_INFO_ADJOURNED;
+			} else {
+				trackingLabel = null;
+			}
+		}
+	};
+	
+	public boolean onContextItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.mi_examine:
+				sendExamine();
+				return true;
+		}
+		return super.onContextItemSelected(item); 
 	}
 	
-	public void onAdjournedEntryClick(View view) {
-		AdjournedInfo.Entry entry = (AdjournedInfo.Entry) view.getTag();
-		service.sendInput("examine " + username + " " + entry.getOpponentName() + "\n");
+	private void sendExamine() {
+		service.sendInput("examine " + username + " " + historicalGameId + "\n");
+		service.sendInput("forward 999\n");
+		trackEvent(Tracking.CATEGORY_SHOW_GAME, Tracking.ACTION_EXAMINE, trackingLabel, 0);
 	}
 }

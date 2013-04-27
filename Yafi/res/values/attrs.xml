@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ImageListPreference">
+        <attr name="layout" format="reference" />
+        <attr name="entryId" format="reference" />
+        <attr name="imageId" format="reference" />
+        <attr name="checkableId" format="reference" />
+        <attr name="images" format="reference" />
+    </declare-styleable>
+
+</resources>

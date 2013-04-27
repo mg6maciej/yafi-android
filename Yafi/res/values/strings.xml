@@ -2,14 +2,24 @@
 <resources>
 
     <string name="app_name">Yafi</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
     <string name="username">Handle (username)</string>
     <string name="password">Password</string>
     <string name="remember_password">Remember password</string>
     <string name="login">Login</string>
     <string name="login_as_guest">Login as Guest</string>
+    <string name="connecting">Connecting…</string>
+    <string name="sending_username">Sending username.</string>
+    <string name="sending_password">Sending password.</string>
+    <string name="invalid_username">Invalid username</string>
+    <string name="invalid_password">Invalid password</string>
+    <string name="unable_to_log_on">Unable to log on</string>
+    <string name="unable_to_connect">Unable to connect</string>
+    <string name="unable_to_connect_message">Please check your internet connection settings.</string>
     <string name="board">Board</string>
     <string name="chat">Chat</string>
-    <string name="seek">Seek \na game</string>
+    <string name="seek">Seek\na game</string>
     <string name="sought">Sought\ngames</string>
     <string name="match">Match</string>
     <string name="challenges">Challenges</string>
@@ -20,11 +30,19 @@
     <string name="draw">Draw</string>
     <string name="abort">Abort</string>
     <string name="resign">Resign</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Decline</string>
+    <string name="withdraw">Withdraw</string>
+    <string name="unobserve">Stop observing</string>
+    <string name="unexamine">Stop examining</string>
+    <string name="examine">Examine</string>
     <string name="time">Time (minutes)</string>
     <string name="increment">Increment (seconds)</string>
     <string name="rated">Rated</string>
     <string name="show_controls">Show controls</string>
     <string name="hide_controls">Hide controls</string>
+    <string name="observe_high_rated_blitz">Observe high rated blitz game</string>
+    <string name="observe_high_rated_standard">Observe high rated standard game</string>
     <string name="informations">Informations</string>
     <string name="accessibility_board_first">Go to starting position</string>
     <string name="accessibility_board_previous">Go to previous position</string>
@@ -33,12 +51,65 @@
     <string name="getting_sought_items">Getting sought items</string>
     <string name="no_sought_items">No sought items</string>
     <string name="you_are_playing_or_examining">You are playing or examining a game.\nSought information will not be displayed.</string>
+    <string name="you_may_not_announce">You may not announce.</string>
+    <string name="want_to_disconnect_question">Do you want to disconnect?</string>
     <string name="confirm_disconnect">Confirm disconnection</string>
+    <string name="disconnected">Disconnected</string>
+    <string name="ok">OK</string>
+    <string name="new_version_available">New version of Yafi available!</string>
+    <string name="update">Update</string>
+    <string name="if_enjoy_please_rate">If you enjoy using Yafi,\nplease take a moment to rate it.</string>
+    <string name="rate_yafi">Rate Yafi</string>
+    <string name="enter_username">Enter username</string>
+    <string name="board_no_game_description">To start playing, go to "Sought" screen and choose game posted by other player.</string>
+    <string name="illegal_move">Illegal move.</string>
+    <string name="draw_offered">Draw offered.</string>
+    <string name="abort_requested">Abort requested.</string>
     <string name="input_method">Input method</string>
     <string name="input_method_summary">%s</string>
     <string name="colors">Colors</string>
     <string name="colors_summary">%s</string>
     <string name="loading">Loading…</string>
+    <string name="games_adjourned">Adjourned games</string>
+    <string name="games_history">Recent history</string>
+    <string name="games_journal">Journal entries</string>
+    <string name="adjourned_empty">No adjourned games.</string>
+    <string name="history_empty">No history games.</string>
+    <string name="journal_empty">No journal games.</string>
+    <string name="journal_private">Journal is private.</string>
+    <string name="refresh">Refresh</string>
+    <string name="type_blitz">Blitz</string>
+    <string name="type_standard">Standard</string>
+    <string name="type_lightning">Lightning</string>
+    <string name="type_wild">Wild</string>
+    <string name="type_bughouse">Bughouse</string>
+    <string name="type_crazyhouse">Crazyhouse</string>
+    <string name="type_suicide">Suicide</string>
+    <string name="type_losers">Losers</string>
+    <string name="type_atomic">Atomic</string>
+    <string name="received_offers">Received offers</string>
+    <string name="sent_offers">Sent offers</string>
+    <string name="challenges_getting">Getting challenges list</string>
+    <string name="challenges_sent_empty">No offers sent.</string>
+    <string name="challenges_received_empty">No offers received.</string>
+    <string name="listusers_getting">Getting users list</string>
+    <string name="title_admin">Administrator</string>
+    <string name="title_sr">Service Representative</string>
+    <string name="title_tm">Tournament Manager</string>
+    <string name="title_td">Non-playing Computer Program</string>
+    <string name="title_advisor">Chess Advisor</string>
+    <string name="title_comp">Computer Program</string>
+    <string name="title_unreg">Unregistered User</string>
+    <string name="title_blind">Blindfolded User</string>
+    <string name="title_team">Team Account</string>
+    <string name="title_demo">Demonstration Account</string>
+    <string name="title_gm">Grandmaster</string>
+    <string name="title_im">International Master</string>
+    <string name="title_fm">FIDE Master</string>
+    <string name="title_wgm">Woman Grandmaster</string>
+    <string name="title_wim">Woman International Master</string>
+    <string name="title_wfm">Woman FIDE Master</string>
+    <string name="var_interface">Interface: &lt;b>%s&lt;/b></string>
 
     <string-array name="types">
         <item>Chess</item>
@@ -84,5 +155,40 @@
         <item>sky_plum</item>
         <item>scarlet_aluminium</item>
     </string-array>
+
+    <array name="board_colors_images">
+        <item>@drawable/board_colors_default</item>
+        <item>@drawable/board_colors_red</item>
+        <item>@drawable/board_colors_green</item>
+        <item>@drawable/board_colors_blue</item>
+        <item>@drawable/board_colors_butter_chameleon</item>
+        <item>@drawable/board_colors_sky_plum</item>
+        <item>@drawable/board_colors_scarlet_aluminium</item>
+    </array>
+
+    <string-array name="board_pieces">
+        <item>Default</item>
+        <item>Celtic</item>
+        <item>Fantasy</item>
+        <item>Spatial</item>
+        <item>Eyes</item>
+    </string-array>
+    <string-array name="board_pieces_values">
+        <item>default</item>
+        <item>celtic</item>
+        <item>fantasy</item>
+        <item>spatial</item>
+        <item>eyes</item>
+    </string-array>
+
+    <!--
+    array name="board_pieces_images">
+        <item>@drawable/board_pieces_default</item>
+        <item>@drawable/board_pieces_celtic</item>
+        <item>@drawable/board_pieces_fantasy</item>
+        <item>@drawable/board_pieces_spatial</item>
+        <item>@drawable/board_pieces_eyes</item>
+    </array
+    -->
 
 </resources>

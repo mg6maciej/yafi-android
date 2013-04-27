@@ -13,7 +13,7 @@ public class AdjournedInfo implements Iterable<AdjournedInfo.Entry> {
 	
 	private static final String TAG = AdjournedInfo.class.getSimpleName();
 	
-	public static class Entry {
+	public static class Entry extends HistoricalGameEntry {
 		
 		private Color color;
 		
@@ -74,6 +74,7 @@ public class AdjournedInfo implements Iterable<AdjournedInfo.Entry> {
 			Entry entry = new Entry();
 			entry.color = "W".equals(m.group(1)) ? Color.WHITE : Color.BLACK;
 			entry.opponentName = m.group(2);
+			entry.id = entry.opponentName;
 			entry.opponentOnline = "Y".equals(m.group(3));
 			entry.type = m.group(5).charAt(0);
 			entry.rated = "r".equals(m.group(6));

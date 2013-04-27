@@ -1,5 +1,8 @@
 package pl.mg6.yafi;
 
+import java.util.List;
+
+import pl.mg6.common.Settings;
 import pl.mg6.common.android.OnSizeChangedListener;
 import pl.mg6.common.android.ScrollViewEx;
 import pl.mg6.common.android.ViewUtils;
@@ -9,7 +12,9 @@ import android.os.Bundle;
 import android.os.Message;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class ConsoleActivity extends BaseFreechessActivity {
@@ -17,6 +22,10 @@ public class ConsoleActivity extends BaseFreechessActivity {
 	private TextView outputField;
 	private EditText inputField;
 	private ScrollViewEx outputScroll;
+
+	private LinearLayout tabs;
+//	private HorizontalScrollView tabsScrollPortrait;
+//	private ScrollView tabsScrollLandscape;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +39,10 @@ public class ConsoleActivity extends BaseFreechessActivity {
 				String input = inputField.getText().toString().trim();
 				int length = input.length();
 				if (length > 0) {
-					String cmd = input.split(" ")[0].toLowerCase();
-					input += "\n";
-					service.sendInput(input);
+					service.sendInput(input + "\n");
 					inputField.setText("");
+					Settings.addCommand(ConsoleActivity.this, input);
+					String cmd = input.split(" ")[0].toLowerCase();
 					trackEvent(Tracking.CATEGORY_VETERAN, Tracking.ACTION_COMMAND, cmd, length);
 					return true;
 				}
@@ -59,6 +68,31 @@ public class ConsoleActivity extends BaseFreechessActivity {
 				}
 			}
 		});
+		tabs = (LinearLayout) findViewById(R.id.console_tabs);
+		List<String> frequentlyUsedCommands = Settings.getFrequentlyUsedCommands(this);
+		if (frequentlyUsedCommands != null) {
+			for (String command : frequentlyUsedCommands) {
+				addTab(command);
+			}
+		}
+//		tabsScrollPortrait = (HorizontalScrollView) findViewById(R.id.console_tabs_scroll_portrait);
+//		tabsScrollLandscape = (ScrollView) findViewById(R.id.chat_tabs_scroll_landscape);
+	}
+	
+	private void addTab(final String command) {
+		Button b = new Button(this);
+		b.setText(command);
+		b.setMinWidth(getResources().getDimensionPixelSize(R.dimen.console_tab_item_min_width));
+		b.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				service.sendInput(command + "\n");
+				Settings.addCommand(ConsoleActivity.this, command);
+				String cmd = command.split(" ")[0].toLowerCase();
+				trackEvent(Tracking.CATEGORY_VETERAN, Tracking.ACTION_COMMAND_CLICK, cmd, command.length());
+			}
+		});
+		tabs.addView(b);
 	}
 	
 	@Override

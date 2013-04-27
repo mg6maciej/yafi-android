@@ -172,7 +172,7 @@ public class ChatActivity extends BaseFreechessActivity {
 			if (message.length() > 0) {
 				message = HtmlEntityEncoder.encode(message);
 				if (Communication.ID_ANNOUNCEMENT.equals(currentChatId)) {
-					Toast.makeText(this, "You may not announce.", Toast.LENGTH_SHORT).show();
+					Toast.makeText(this, R.string.you_may_not_announce, Toast.LENGTH_SHORT).show();
 					return true;
 				} else if (Communication.ID_SHOUT.equals(currentChatId)) {
 					service.sendInput("shout " + message + "\n");

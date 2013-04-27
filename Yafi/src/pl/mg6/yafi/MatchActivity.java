@@ -87,9 +87,9 @@ public class MatchActivity extends BaseFreechessActivity {
 			service.sendInput(String.format(MATCH_FORMAT, user, time, increment, type, (rated ? "r" : "u")));
 			String label = type + " " + (rated ? "r" : "u") + " " + time + " " + increment;
 			int value = time + 2 * increment / 3;
-			trackEvent(Tracking.CATEGORY_GETGAME, Tracking.ACTION_MATCH, label, value);
+			trackEvent(Tracking.CATEGORY_GET_GAME, Tracking.ACTION_MATCH, label, value);
 		} else {
-			Toast.makeText(this, "Enter username", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, R.string.enter_username, Toast.LENGTH_SHORT).show();
 		}
 	}
 }

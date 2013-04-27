@@ -48,7 +48,7 @@
         android:layout_centerVertical="true"
         android:onClick="onCommandClick"
         android:tag="decline"
-        android:text="Decline" />
+        android:text="@string/decline" />
 
     <pl.mg6.common.android.ButtonEx
         android:layout_width="wrap_content"
@@ -57,6 +57,6 @@
         android:layout_toLeftOf="@+id/challenge_item_decline"
         android:onClick="onCommandClick"
         android:tag="accept"
-        android:text="Accept" />
+        android:text="@string/accept" />
 
 </RelativeLayout>

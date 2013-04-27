@@ -79,6 +79,6 @@ public class SeekActivity extends BaseFreechessActivity {
 		service.sendInput(String.format(SEEK_FORMAT, time, increment, type, (rated ? "r" : "u")));
 		String label = type + " " + (rated ? "r" : "u") + " " + time + " " + increment;
 		int value = time + 2 * increment / 3;
-		trackEvent(Tracking.CATEGORY_GETGAME, Tracking.ACTION_SEEK, label, value);
+		trackEvent(Tracking.CATEGORY_GET_GAME, Tracking.ACTION_SEEK, label, value);
 	}
 }

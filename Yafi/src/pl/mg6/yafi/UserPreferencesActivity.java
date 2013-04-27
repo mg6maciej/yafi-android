@@ -53,11 +53,11 @@ public class UserPreferencesActivity extends TrackedPreferenceActivity {
 				} else if (Settings.PREF_BOARD_INPUT_METHOD.equals(key)) {
 					String value = sharedPreferences.getString(key, null);
 					if ("1".equals(value)) {
-						value = "DragAndDrop";
+						value = Tracking.LABEL_DRAG_AND_DROP;
 					} else if ("2".equals(value)) {
-						value = "ClickClick";
+						value = Tracking.LABEL_CLICK_CLICK;
 					} else if ("3".equals(value)) {
-						value = "Both";
+						value = Tracking.LABEL_BOTH;
 					}
 					trackEvent(Tracking.CATEGORY_SETTINGS, Tracking.ACTION_INPUT_METHOD, value, 0);
 				} else if (Settings.PREF_BOARD_PIECES.equals(key)) {

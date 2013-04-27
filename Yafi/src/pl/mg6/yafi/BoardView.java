@@ -30,9 +30,6 @@ public class BoardView extends View {
 	
 	private Map<Character, Picture> pictures;
 	
-	private static Map<String, Integer> lightSquareColors;
-	private static Map<String, Integer> darkSquareColors;
-	
 	private int initFile;
 	private int initRank;
 	private int destFile;
@@ -89,33 +86,32 @@ public class BoardView extends View {
 		pictures.put('q', SVGParser.getSVGFromResource(getResources(), R.raw.default_black_queen).getPicture());
 		pictures.put('k', SVGParser.getSVGFromResource(getResources(), R.raw.default_black_king).getPicture());
 		
-		if (lightSquareColors == null) {
-			lightSquareColors = new HashMap<String, Integer>();
-			darkSquareColors = new HashMap<String, Integer>();
-			lightSquareColors.put("default", Color.rgb(255, 206, 158));
-			darkSquareColors.put("default", Color.rgb(209, 139, 71));
-			lightSquareColors.put("red", Color.rgb(255, 158, 158));
-			darkSquareColors.put("red", Color.rgb(209, 71, 71));
-			lightSquareColors.put("green", Color.rgb(206, 255, 158));
-			darkSquareColors.put("green", Color.rgb(139, 209, 71));
-			lightSquareColors.put("blue", Color.rgb(158, 201, 255));
-			darkSquareColors.put("blue", Color.rgb(71, 133, 209));
-			lightSquareColors.put("butter_chameleon", Color.rgb(254, 244, 158));
-			darkSquareColors.put("butter_chameleon", Color.rgb(178, 236, 122));
-			lightSquareColors.put("sky_plum", Color.rgb(174, 201, 228));
-			darkSquareColors.put("sky_plum", Color.rgb(204, 176, 201));
-			lightSquareColors.put("scarlet_aluminium", Color.rgb(238, 238, 236));
-			darkSquareColors.put("scarlet_aluminium", Color.rgb(248, 152, 152));
-		}
-		
 		inputMethod = Settings.getBoardInputMethod(getContext());
 		String colorsKey = Settings.getBoardColors(getContext());
-		lightSquareColor = lightSquareColors.get(colorsKey);
-		darkSquareColor = darkSquareColors.get(colorsKey);
-	}
-	
-	public void setPremove(boolean premove) {
-		this.premove = premove;
+		if ("red".equals(colorsKey)) {
+			lightSquareColor = Color.rgb(255, 158, 158);
+			darkSquareColor = Color.rgb(209, 71, 71);
+		} else if ("green".equals(colorsKey)) {
+			lightSquareColor = Color.rgb(206, 255, 158);
+			darkSquareColor = Color.rgb(139, 209, 71);
+		} else if ("blue".equals(colorsKey)) {
+			lightSquareColor = Color.rgb(158, 201, 255);
+			darkSquareColor = Color.rgb(71, 133, 209);
+		} else if ("butter_chameleon".equals(colorsKey)) {
+			lightSquareColor = Color.rgb(254, 244, 158);
+			darkSquareColor = Color.rgb(178, 236, 122);
+		} else if ("sky_plum".equals(colorsKey)) {
+			lightSquareColor = Color.rgb(174, 201, 228);
+			darkSquareColor = Color.rgb(204, 176, 201);
+		} else if ("scarlet_aluminium".equals(colorsKey)) {
+			lightSquareColor = Color.rgb(238, 238, 236);
+			darkSquareColor = Color.rgb(248, 152, 152);
+		} else {
+			lightSquareColor = Color.rgb(255, 206, 158);
+			darkSquareColor = Color.rgb(209, 139, 71);
+		}
+		
+		premove = Settings.isBoardPremove(getContext());
 	}
 	
 	public void setMoveSent() {

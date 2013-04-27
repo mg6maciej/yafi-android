@@ -42,6 +42,8 @@ public class FreechessUtils {
 		return (titles & UserTitle.UNREGISTERED) == UserTitle.UNREGISTERED;
 	}
 	
+	public static final String PING_CMD = "__yafi_pong";
+	
 	private static final String STYLE_12 = "\u0007?\n<12> (.*)\n";
 	private static final String HANDLE_X = "[A-Za-z]{3,}";
 	private static final String HANDLE = "(" + HANDLE_X + ")";
@@ -50,6 +52,15 @@ public class FreechessUtils {
 	private static final String OPTIONAL_RATING_ADJUSTMENT = "(?:\n\\w+ rating adjustment: \\d+ --> \\d+\n(?:\\w+ \\w?rank: .*\n)*(?:You have achieved your best active rating so far\\.\n)?|\nNo ratings adjustment done\\.\n)?";
 	
 	public static final String ID_KIBITZ = "kibitzes";
+	
+	public static final Pattern HACK_MULTIPLE_ACCEPTS = Pattern.compile("^\n" + HANDLE_X + " accepts your seek\\.\n");
+	
+	public static final Pattern HACK_POSTED_MANUAL_SEEK = Pattern.compile(
+			"^\nYour seek matches one posted by " + HANDLE_X + "\\.\n"
+			+ "Issuing match request since the seek was set to manual\\.\n"
+			+ "Issuing: " + HANDLE_X + " \\( *[-\\d+]+[PE]?\\) " + HANDLE_X + " \\( *[-\\d+]+[PE]?\\) (?:un)?rated \\S+ \\d+ \\d+\\.\n"
+			+ "(?:Your \\w+ rating will change: .*\n"
+			+ "Your new RD will be [\\d.]+\n)?");
 	
 	public static final Pattern PRIVATE_TELL = Pattern.compile("^\n" + HANDLE + TITLES_X + " tells you: (.*)\n$");
 	
@@ -115,7 +126,7 @@ public class FreechessUtils {
 	
 	public static final Pattern GAMEINFO_END = Pattern.compile("^\n\\{Game (\\d+) \\(" + HANDLE_X + " vs\\. " + HANDLE_X + "\\) (.*?)\\} (1-0|0-1|1/2-1/2|\\*)\n" + OPTIONAL_RATING_ADJUSTMENT + "$");
 	
-	public static final Pattern GAMEINFO_NOTE_END = Pattern.compile("^\nGame (\\d+): .*\n\n\\{Game \\1 \\(" + HANDLE_X + " vs\\. " + HANDLE_X + "\\) (.*?)\\} (1-0|0-1|1/2-1/2|\\*)\n" + OPTIONAL_RATING_ADJUSTMENT + "$");
+	public static final Pattern GAMEINFO_NOTE_END = Pattern.compile("^\nGame \\d+: (.*)\n\n\\{Game (\\d+) \\(" + HANDLE_X + " vs\\. " + HANDLE_X + "\\) (.*?)\\} (1-0|0-1|1/2-1/2|\\*)\n" + OPTIONAL_RATING_ADJUSTMENT + "$");
 	
 	public static final Pattern GAMEINFO_ABORTED_END = Pattern.compile("^(?:The game has been aborted|\nYour opponent has aborted the game) on move one\\.\n\n\\{Game (\\d+) \\(" + HANDLE_X + " vs\\. " + HANDLE_X + "\\) (.*?)\\} (1-0|0-1|1/2-1/2|\\*)\n$");
 	
@@ -141,15 +152,27 @@ public class FreechessUtils {
 			+ "\nCreating: " + HANDLE_X + " \\( *([-\\d+]+)[PE]?\\) " + HANDLE_X + " \\( *([-\\d+]+)[PE]?\\) (?:un)?rated \\S+ \\d+ \\d+(?: \\(adjourned\\))?\n"
 			+ "\\{Game \\d+ \\(" + HANDLE_X + " vs\\. " + HANDLE_X + "\\) (?:Creating|Continuing) (?:un)?rated \\S+ match\\.\\}\n)" + STYLE_12 + "$");
 	
-	public static final Pattern GAMEINFO_OBSERVING = Pattern.compile("^((?:\n\n)?You are now observing game \\d+\\.\nGame \\d+: " + HANDLE_X + " \\( *([-\\d+]+)[PE]?\\) " + HANDLE_X + " \\( *([-\\d+]+)[PE]?\\) (?:un)?rated \\S+ \\d+ \\d+\n)" + STYLE_12 + "$");
+	public static final Pattern GAMEINFO_OBSERVING = Pattern.compile("^(\n{0,2}You are now observing game \\d+\\.\nGame \\d+: " + HANDLE_X + " \\( *([-\\d+]+)[PE]?\\) " + HANDLE_X + " \\( *([-\\d+]+)[PE]?\\) (?:un)?rated \\S+ \\d+ \\d+\n)" + STYLE_12 + "$");
+	
+	public static final Pattern GAMEINFO_FOLLOWING = Pattern.compile("^((?:(?:You will no longer be following (?:strongest player's|" + HANDLE_X + "'s) games\\.\n)?You will now be following (?:strongest players'|" + HANDLE_X + "'s) games\\.\n|\n?((?:Removing game \\d+ from observation list\\.\n)+))You are now observing game \\d+\\.\nGame \\d+: " + HANDLE_X + " \\( *([-\\d+]+)[PE]?\\) " + HANDLE_X + " \\( *([-\\d+]+)[PE]?\\) (?:un)?rated \\S+ \\d+ \\d+\n)" + STYLE_12 + "$");
+	
+	public static final Pattern GAMEINFO_EXAMINING = Pattern.compile("^(Starting a game in examine \\(scratch\\) mode\\.\n)" + STYLE_12 + "$");
 	
 	public static final Pattern GAMEINFO_REMOVING_OBSERVED = Pattern.compile("^(\n?(?:Removing game \\d+ from observation list\\.\n)+)(?:\n<sr> ([\\d ]+)\n)?$");
 	
 	public static final Pattern GAMEINFO_ACCEPT_REMOVING_OBSERVED = Pattern.compile("^((?:You accept the match offer from " + HANDLE_X + "\\.\n|\n" + HANDLE_X + " accepts the match offer\\.\n)(?:Removing game \\d+ from observation list\\.\n)*)(?:\n<sr> ([\\d ]+)\n)?$");
 	
+	public static final Pattern GAMEINFO_REMOVING_EXAMINED = Pattern.compile("^You are no longer examining game (\\d+)\\.\n$");
+	
 	public static final Pattern GAMEINFO_NOTE = Pattern.compile("^\nGame (\\d+): (.*)\n$");
 	
 	public static final Pattern GAMEINFO_NOTE_MOVE = Pattern.compile("^(\n?Game \\d+: (.*)\n)" + STYLE_12 + "$");
+	
+	public static final Pattern GAMEINFO_NOTE_MOVE_NOTE = Pattern.compile("^(\n?Game \\d+: (.*)\n)" + STYLE_12 + "(\nGame \\d+: (.*)\n)$");
+	
+	public static final Pattern GAMEINFO_NOTE_VALUE_RESULT = Pattern.compile("^(.*) (1-0|0-1|1/2-1/2|\\*)$");
+	
+	public static final Pattern GAMEINFO_MOVE_NOTE = Pattern.compile("^" + STYLE_12 + "(\nGame \\d+: (.*)\n)$");
 	
 	public static final Pattern GAMEINFO_MORETIME_MOVE = Pattern.compile("^(\\d+ seconds were added to your opponents clock\n)" + STYLE_12 + "$");
 	
@@ -267,4 +290,16 @@ public class FreechessUtils {
 	public static final Pattern WHO_IBSLWBSLX = Pattern.compile("^" + HANDLE_X + "[ ^~:#.&][\\da-fA-F]{2}\\d+[P E]\\d+[P E]\\d+[P E]\\d+[P E]\\d+[P E]\\d+[P E]\\d+[P E]\\d+[P E]\\d+[P E],[\\da-fA-F]{2}\n");
 	
 	public static final Pattern WHO_IBSLWBSLX_LINE = Pattern.compile(HANDLE + "[ ^~:#.&][\\da-f]{2}\\d+[P E]\\d+[P E]\\d+[P E]\\d+[P E]\\d+[P E]\\d+[P E]\\d+[P E]\\d+[P E]\\d+[P E],[\\da-fA-F]{2}\n");
+	
+	public static final Pattern COMMAND_NOT_FOUND = Pattern.compile("^(\\S+): Command not found\\.\n$");
+	
+	public static final Pattern MOVES = Pattern.compile(
+			"^\nMovelist for game (\\d+):\n\n"
+			+ HANDLE + " \\((UNR|\\d+)\\) vs\\. " + HANDLE + " \\((UNR|\\d+)\\) --- .*\n"
+			+ "(Rated|Unrated) (\\S+) match, initial time: (\\d+) minutes, increment: (\\d+) seconds\\.\n\n"
+			+ "(?:<12> (.*)\n\n)?"
+			+ "Move  " + HANDLE_X + " +" + HANDLE_X + "\n"
+			+ "----  ---------------------   ---------------------\n"
+			+ "((?: *\\d+.*\n)*)"
+			+ " *\\{(.*)\\} (1-0|0-1|1/2-1/2|\\*)\n\n");
 }

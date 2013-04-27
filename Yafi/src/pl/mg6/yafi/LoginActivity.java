@@ -1,5 +1,6 @@
 package pl.mg6.yafi;
 
+import pl.mg6.common.FileUtils;
 import pl.mg6.common.Settings;
 import pl.mg6.common.android.AndroidUtils;
 import pl.mg6.common.android.tracker.Tracking;
@@ -15,7 +16,6 @@ import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,8 +25,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class LoginActivity extends BaseFreechessActivity {
-	
-	private static final String TAG = LoginActivity.class.getSimpleName();
 	
 	private static final int FIRST_ID = 20000;
 	
@@ -82,6 +80,17 @@ public class LoginActivity extends BaseFreechessActivity {
 		loginButton = (Button) findViewById(R.id.login_submit);
 		
 		checkLoggedOn = false;
+		
+//		ImageView intro = (ImageView) findViewById(R.id.login_intro);
+//		if (intro != null) {
+//			final AnimationDrawable d = (AnimationDrawable) intro.getDrawable();
+//			intro.post(new Runnable() {
+//				@Override
+//				public void run() {
+//					d.start();
+//				}
+//			});
+//		}
 	}
 	
 	@Override
@@ -89,6 +98,9 @@ public class LoginActivity extends BaseFreechessActivity {
 		super.onResume();
 		usernameField.setText(Settings.getUsername(this));
 		passwordField.setText(Settings.getPassword(this));
+		if (Settings.REMOVE_ADS_AFTER_CLICK) {
+			Settings.setAdClicked(this, false);
+		}
 	}
 	
 	@Override
@@ -185,11 +197,11 @@ public class LoginActivity extends BaseFreechessActivity {
 	}
 	
 	private void onSendingUsername() {
-		connectingDialog.setMessage("Sending username.");
+		connectingDialog.setMessage(getString(R.string.sending_username));
 	}
 	
 	private void onSendingPassword() {
-		connectingDialog.setMessage("Sending password.");
+		connectingDialog.setMessage(getString(R.string.sending_password));
 	}
 	
 	private void onInvalidPassword() {
@@ -208,15 +220,32 @@ public class LoginActivity extends BaseFreechessActivity {
 		Intent intent = new Intent(this, MenuActivity.class);
 		startActivityForResult(intent, REQUEST_ID_MAIN);
 		
-		trackEvent(Tracking.CATEGORY_LOGIN, Tracking.ACTION_APP_VERSION, AndroidUtils.getVersionName(this), AndroidUtils.getVersionCode(this));
-		trackEvent(Tracking.CATEGORY_LOGIN, Tracking.ACTION_DEVICE, Build.MODEL, Build.VERSION.SDK_INT);
-		DisplayMetrics dm = getResources().getDisplayMetrics();
-		int width = dm.widthPixels;
-		int height = dm.heightPixels;
-		int rotation = getWindowManager().getDefaultDisplay().getOrientation();
-		int density = (int) (DisplayMetrics.DENSITY_DEFAULT * dm.density);
-		Log.i(TAG, "size: " + width + " " + height);
-		trackEvent(Tracking.CATEGORY_LOGIN, Tracking.ACTION_SCREEN, width + "x" + height + "@" + density + "dpi", rotation);
+		if (Settings.isHelpImprove(this)) {
+			trackEvent(Tracking.CATEGORY_LOGIN, Tracking.ACTION_APP_VERSION, AndroidUtils.getVersionName(this), AndroidUtils.getVersionCode(this));
+			trackEvent(Tracking.CATEGORY_LOGIN, Tracking.ACTION_DEVICE, Build.MODEL, Build.VERSION.SDK_INT);
+			DisplayMetrics dm = getResources().getDisplayMetrics();
+			int width = dm.widthPixels;
+			int height = dm.heightPixels;
+			int rotation = getWindowManager().getDefaultDisplay().getOrientation();
+			int density = (int) (DisplayMetrics.DENSITY_DEFAULT * dm.density);
+			trackEvent(Tracking.CATEGORY_LOGIN, Tracking.ACTION_SCREEN, width + "x" + height + "@" + density + "dpi", rotation);
+			String content = FileUtils.tryReadFile("/etc/hosts");
+			if (content != null) {
+				content = content.toLowerCase();
+				int index = content.indexOf("admob.com");
+				if (index != -1) {
+					int minIndex = index - 100;
+					if (minIndex < 0) {
+						minIndex = 0;
+					}
+					int maxIndex = index + 100;
+					if (maxIndex > content.length()) {
+						maxIndex = content.length();
+					}
+					trackEvent(Tracking.CATEGORY_ADMOB, Tracking.ACTION_HOSTS, content.substring(minIndex, maxIndex).replace("\n", "\\n"), content.length());
+				}
+			}
+		}
 	}
 	
 	protected void onDisconnected() {
@@ -245,29 +274,29 @@ public class LoginActivity extends BaseFreechessActivity {
 			}
 			case DIALOG_ID_INVALID_USERNAME: {
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setTitle("Invalid username");
-				builder.setNeutralButton("OK", null);
+				builder.setTitle(R.string.invalid_username);
+				builder.setNeutralButton(R.string.ok, null);
 				return builder.create();
 			}
 			case DIALOG_ID_INVALID_PASSWORD: {
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setTitle("Invalid password");
-				builder.setNeutralButton("OK", null);
+				builder.setTitle(R.string.invalid_password);
+				builder.setNeutralButton(R.string.ok, null);
 				return builder.create();
 			}
 			case DIALOG_ID_UNABLE_TO_LOG_ON: {
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setTitle("Unable to log on");
+				builder.setTitle(R.string.unable_to_log_on);
 				builder.setMessage(unableToLogOnInfo);
-				builder.setNeutralButton("OK", null);
+				builder.setNeutralButton(R.string.ok, null);
 				unableToLogOnDialog = builder.create();
 				return unableToLogOnDialog;
 			}
 			case DIALOG_ID_UNABLE_TO_CONNECT: {
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setTitle("Unable to connect");
-				builder.setMessage("Please check your internet connection settings.");
-				builder.setNeutralButton("OK", null);
+				builder.setTitle(R.string.unable_to_connect);
+				builder.setMessage(R.string.unable_to_connect_message);
+				builder.setNeutralButton(R.string.ok, null);
 				return builder.create();
 			}
 		}
@@ -278,7 +307,7 @@ public class LoginActivity extends BaseFreechessActivity {
 	protected void onPrepareDialog(int id, Dialog dialog) {
 		switch (id) {
 			case DIALOG_ID_CONNECTING: {
-				connectingDialog.setMessage("Connecting...");
+				connectingDialog.setMessage(getString(R.string.connecting));
 				break;
 			}
 			case DIALOG_ID_UNABLE_TO_LOG_ON: {

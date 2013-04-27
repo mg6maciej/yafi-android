@@ -14,9 +14,8 @@ public class HistoryInfo implements Iterable<HistoryInfo.Entry> {
 	
 	private static final String TAG = HistoryInfo.class.getSimpleName();
 	
-	public static class Entry {
+	public static class Entry extends HistoricalGameEntry {
 		
-		private int id;
 		private int result;
 		private int rating;
 		private Color color;
@@ -29,10 +28,6 @@ public class HistoryInfo implements Iterable<HistoryInfo.Entry> {
 		private String eco;
 		private String resultDescription;
 		private String date;
-		
-		public int getId() {
-			return id;
-		}
 		
 		public int getResult() {
 			return result;
@@ -84,7 +79,7 @@ public class HistoryInfo implements Iterable<HistoryInfo.Entry> {
 		
 		private static Entry fromMatch(Matcher m) {
 			Entry entry = new Entry();
-			entry.id = Integer.parseInt(m.group(1));
+			entry.id = m.group(1);
 			entry.result = "+".equals(m.group(2)) ? 1 : "-".equals(m.group(2)) ? -1 : 0;
 			entry.rating = Integer.parseInt(m.group(3));
 			entry.color = "W".equals(m.group(4)) ? Color.WHITE : Color.BLACK;

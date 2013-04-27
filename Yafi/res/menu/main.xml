@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/mi_observe_blitz"
+        android:title="@string/observe_high_rated_blitz"/>
+    <item
+        android:id="@+id/mi_observe_standard"
+        android:title="@string/observe_high_rated_standard"/>
+
+</menu>

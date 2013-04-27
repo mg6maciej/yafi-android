@@ -4,8 +4,6 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <include layout="@layout/ad" />
-
     <HorizontalScrollView
         android:id="@+id/chat_tabs_scroll_portrait"
         android:layout_width="fill_parent"

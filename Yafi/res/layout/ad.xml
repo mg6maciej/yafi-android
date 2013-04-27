@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.ads.AdView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
-    android:id="@+id/adView"
+    android:id="@+id/ad_view"
     android:layout_width="wrap_content"
     android:layout_height="50dp"
     android:layout_alignParentRight="true"
     android:layout_gravity="right"
     ads:adSize="BANNER"
-    ads:adUnitId="a14eff5593f0b1d"
-    ads:loadAdOnCreate="true"
-    ads:testDevices="TEST_EMULATOR, ADC437B053BD10CA22B9DCF950994CD8" />
+    ads:adUnitId="a14eff5593f0b1d" />

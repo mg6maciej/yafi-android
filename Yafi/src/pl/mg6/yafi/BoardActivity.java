@@ -94,7 +94,6 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 		currentGameId = Settings.loadCurrentGame(this);
 		
 		premove = Settings.isBoardPremove(this);
-		boardView.setPremove(premove);
 	}
 	
 	@Override
@@ -123,43 +122,59 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 			});
 		} else {
 			currentGameId = null;
-			Toast.makeText(this, "To start playing, go to \"Sought\" screen\nand choose game posted by other player.", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, R.string.board_no_game_description, Toast.LENGTH_LONG).show();
 		}
 	}
 	
 	public void onFirstClick(View view) {
 		Game game = service.getGame(currentGameId);
-		if (game != null && currentPosition > 0) {
-			currentPosition = 0;
-			Position pos = game.getPosition(currentPosition);
-			boardView.setPosition(pos);
+		if (game != null) {
+			if (game.getRelation() == Game.RELATION_EXAMINING) {
+				service.sendInput("backward 999\n");
+			} else if (currentPosition > 0) {
+				currentPosition = 0;
+				Position pos = game.getPosition(currentPosition);
+				boardView.setPosition(pos);
+			}
 		}
 	}
 	
 	public void onPreviousClick(View view) {
 		Game game = service.getGame(currentGameId);
-		if (game != null && currentPosition > 0) {
-			currentPosition--;
-			Position pos = game.getPosition(currentPosition);
-			boardView.setPosition(pos);
+		if (game != null) {
+			if (game.getRelation() == Game.RELATION_EXAMINING) {
+				service.sendInput("backward\n");
+			} else if (currentPosition > 0) {
+				currentPosition--;
+				Position pos = game.getPosition(currentPosition);
+				boardView.setPosition(pos);
+			}
 		}
 	}
 	
 	public void onNextClick(View view) {
 		Game game = service.getGame(currentGameId);
-		if (game != null && currentPosition < game.getPositionCount() - 1) {
-			currentPosition++;
-			Position pos = game.getPosition(currentPosition);
-			boardView.setPosition(pos);
+		if (game != null) {
+			if (game.getRelation() == Game.RELATION_EXAMINING) {
+				service.sendInput("forward\n");
+			} else if (currentPosition < game.getPositionCount() - 1) {
+				currentPosition++;
+				Position pos = game.getPosition(currentPosition);
+				boardView.setPosition(pos);
+			}			
 		}
 	}
 	
 	public void onLastClick(View view) {
 		Game game = service.getGame(currentGameId);
-		if (game != null && currentPosition < game.getPositionCount() - 1) {
-			currentPosition = game.getPositionCount() - 1;
-			Position pos = game.getPosition(currentPosition);
-			boardView.setPosition(pos);
+		if (game != null) {
+			if (game.getRelation() == Game.RELATION_EXAMINING) {
+				service.sendInput("forward 999\n");
+			} else if (currentPosition < game.getPositionCount() - 1) {
+				currentPosition = game.getPositionCount() - 1;
+				Position pos = game.getPosition(currentPosition);
+				boardView.setPosition(pos);
+			}
 		}
 	}
 	
@@ -173,7 +188,7 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 	private void updateViews() {
 		Game game = service.getGame(currentGameId);
 		Position pos = game.getPosition(game.getPositionCount() - 1);
-		if (currentPosition >= game.getPositionCount() - 2) {
+		if (pos.getRelation() == Game.RELATION_EXAMINING || currentPosition >= game.getPositionCount() - 2) {
 			currentPosition = game.getPositionCount() - 1;
 			boardView.setPosition(pos);
 		}
@@ -308,15 +323,15 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 	}
 	
 	private void onIllegalMove() {
-		Toast.makeText(this, "Illegal move.", Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, R.string.illegal_move, Toast.LENGTH_SHORT).show();
 	}
 	
 	private void onDrawOffer() {
-		Toast.makeText(this, "Draw offered.", Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, R.string.draw_offered, Toast.LENGTH_SHORT).show();
 	}
 	
 	private void onAbortRequest() {
-		Toast.makeText(this, "Abort requested.", Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, R.string.abort_requested, Toast.LENGTH_SHORT).show();
 	}
 	
 	private void addTab(UUID id) {
@@ -347,15 +362,16 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 				UUID id = (UUID) v.getTag();
 				Game game = service.getGame(id);
 				String myName = service.getRealUsername();
+				final String format = "%s %s";
 				if (!myName.equals(game.getWhiteName())) {
-					menu.add("Match " + game.getWhiteName());
-					menu.add("Chat " + game.getWhiteName());
-					menu.add("Informations " + game.getWhiteName());
+					menu.add(String.format(format, getString(R.string.match), game.getWhiteName()));
+					menu.add(String.format(format, getString(R.string.chat), game.getWhiteName()));
+					menu.add(String.format(format, getString(R.string.informations), game.getWhiteName()));
 				}
 				if (!myName.equals(game.getBlackName())) {
-					menu.add("Match " + game.getBlackName());
-					menu.add("Chat " + game.getBlackName());
-					menu.add("Informations " + game.getBlackName());
+					menu.add(String.format(format, getString(R.string.match), game.getBlackName()));
+					menu.add(String.format(format, getString(R.string.chat), game.getBlackName()));
+					menu.add(String.format(format, getString(R.string.informations), game.getBlackName()));
 				}
 			}
 		});
@@ -365,13 +381,13 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		String[] title = item.getTitle().toString().split(" ");
-		if ("Match".equals(title[0])) {
+		if (getString(R.string.match).equals(title[0])) {
 			doMatch(title[1]);
 			return true;
-		} else if ("Chat".equals(title[0])) {
+		} else if (getString(R.string.chat).equals(title[0])) {
 			doChat(title[1]);
 			return true;
-		} else if ("Informations".equals(title[0])) {
+		} else if (getString(R.string.informations).equals(title[0])) {
 			doInfo(title[1]);
 			return true;
 		}
@@ -419,15 +435,17 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		super.onPrepareOptionsMenu(menu);
 		Game currentGame = service.getGame(currentGameId);
-		if (currentGame == null || currentGame.getResult() != null || Math.abs(currentGame.getPosition(currentPosition).getRelation()) != 1) {
-			menu.findItem(R.id.mi_abort).setEnabled(false);
-			menu.findItem(R.id.mi_draw).setEnabled(false);
-			menu.findItem(R.id.mi_resign).setEnabled(false);
-		} else {
-			menu.findItem(R.id.mi_abort).setEnabled(true);
-			menu.findItem(R.id.mi_draw).setEnabled(true);
+		int relation = Game.RELATION_UNKNOWN;
+		if (currentGame != null) {
+			relation = currentGame.getRelation();
+		}
+		boolean playing = relation == Game.RELATION_PLAYING_MY_MOVE || relation == Game.RELATION_PLAYING_OPPONENT_MOVE;
+		menu.setGroupVisible(R.id.mg_play, playing);
+		if (playing) {
 			menu.findItem(R.id.mi_resign).setEnabled(currentGame.getPositionCount() > 2);
 		}
+		menu.setGroupVisible(R.id.mg_observe, relation == Game.RELATION_OBSERVING || relation == Game.RELATION_OBSERVING_EXAMINED);
+		menu.setGroupVisible(R.id.mg_examine, relation == Game.RELATION_EXAMINING);
 		MenuItem review = menu.findItem(R.id.mi_review);
 		if (reviewOverlay.getVisibility() == View.VISIBLE) {
 			review.setTitle(R.string.hide_controls);
@@ -448,6 +466,12 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 				return true;
 			case R.id.mi_resign:
 				service.sendInput("resign\n");
+				return true;
+			case R.id.mi_unobserve:
+				service.sendInput("unobserve " + service.getGame(currentGameId).getId() + "\n");
+				return true;
+			case R.id.mi_unexamine:
+				service.sendInput("unexamine\n");
 				return true;
 			case R.id.mi_review:
 				reviewOverlay.setVisibility(reviewOverlay.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);

@@ -31,6 +31,16 @@ public class Game {
 	
 	private boolean flip;
 	
+	private int relation;
+	
+	public static final int RELATION_UNKNOWN = -666;
+	public static final int RELATION_ISOLATED_POSITION = -3;
+	public static final int RELATION_OBSERVING_EXAMINED = -2;
+	public static final int RELATION_PLAYING_OPPONENT_MOVE = -1;
+	public static final int RELATION_OBSERVING = 0;
+	public static final int RELATION_PLAYING_MY_MOVE = 1;
+	public static final int RELATION_EXAMINING = 2;
+	
 	public Game() {
 		uuid = UUID.randomUUID();
 		id = -1;
@@ -57,6 +67,7 @@ public class Game {
 		blackTime = pos.getBlackTime();
 		timeRunning = pos.isTimeRunning();
 		flip = pos.isFlip();
+		relation = pos.getRelation();
 		while (getPositionCount() > 0 && pos.getMoveIndex() <= positions.get(getPositionCount() - 1).getMoveIndex()) {
 			positions.remove(getPositionCount() - 1);
 		}
@@ -117,6 +128,14 @@ public class Game {
 	
 	public boolean isFlip() {
 		return flip;
+	}
+	
+	public int getRelation() {
+		return relation;
+	}
+	
+	public void setRelation(int relation) {
+		this.relation = relation;
 	}
 	
 	public int getCurrentWhiteTime() {

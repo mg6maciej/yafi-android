@@ -45,4 +45,8 @@ public class TrackedActivity extends Activity {
 			EasyTracker.getTracker().trackEvent(category, action, label, value);
 		}
 	}
+	
+	protected void trackEvent(String category, String action, String label, boolean value) {
+		trackEvent(category, action, label, value ? 100 : 0);
+	}
 }

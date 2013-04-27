@@ -16,16 +16,11 @@
         </LinearLayout>
     </ScrollView>
 
-    <include
-        android:id="@+id/chat_ad"
-        layout="@layout/ad" />
-
     <ListView
         android:id="@+id/chat_output"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_above="@+id/chat_input_parent"
-        android:layout_below="@+id/chat_ad"
         android:layout_toRightOf="@+id/chat_tabs_scroll_landscape" >
     </ListView>
 

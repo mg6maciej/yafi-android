@@ -113,6 +113,18 @@ public class FreechessModel {
 	
 	public boolean parse(String output) {
 		Matcher m;
+		m = FreechessUtils.HACK_MULTIPLE_ACCEPTS.matcher(output);
+		if (m.find()) {
+			this.output += m.group() + "yafi% ";
+			parse(output.substring(m.end()));
+			return true;
+		}
+		m = FreechessUtils.HACK_POSTED_MANUAL_SEEK.matcher(output);
+		if (m.find()) {
+			this.output += m.group() + "yafi% ";
+			parse(output.substring(m.end()));
+			return true;
+		}
 		m = FreechessUtils.GAMEINFO_MOVE.matcher(output);
 		if (m.matches()) {
 			parseGameInfoMove(m);
@@ -142,10 +154,34 @@ public class FreechessModel {
 			this.output += m.group(1) + "yafi% ";
 			return true;
 		}
+		m = FreechessUtils.GAMEINFO_FOLLOWING.matcher(output);
+		if (m.matches()) {
+			parseGameInfoFollowing(m);
+			this.output += m.group(1) + "yafi% ";
+			return true;
+		}
+		m = FreechessUtils.GAMEINFO_EXAMINING.matcher(output);
+		if (m.matches()) {
+			parseGameInfoExamining(m);
+			this.output += m.group(1) + "yafi% ";
+			return true;
+		}
 		m = FreechessUtils.GAMEINFO_NOTE_MOVE.matcher(output);
 		if (m.matches()) {
 			parseGameInfoNoteMove(m);
 			this.output += m.group(1) + "yafi% ";
+			return true;
+		}
+		m = FreechessUtils.GAMEINFO_NOTE_MOVE_NOTE.matcher(output);
+		if (m.matches()) {
+			parseGameInfoNoteMoveNote(m);
+			this.output += m.group(1) + m.group(4) + "yafi% ";
+			return true;
+		}
+		m = FreechessUtils.GAMEINFO_MOVE_NOTE.matcher(output);
+		if (m.matches()) {
+			parseGameInfoMoveNote(m);
+			this.output += m.group(2) + "yafi% ";
 			return true;
 		}
 		m = FreechessUtils.GAMEINFO_MORETIME_MOVE.matcher(output);
@@ -207,7 +243,21 @@ public class FreechessModel {
 			this.output += m.group(1) + "yafi% ";
 			return true;
 		}
+		m = FreechessUtils.COMMAND_NOT_FOUND.matcher(output);
+		if (m.matches()) {
+			if (parseCommandNotFound(m)) {
+				this.output += output + "yafi% ";
+				return true;
+			} else {
+				return false;
+			}
+		}
 		this.output += output + "yafi% ";
+		m = FreechessUtils.GAMEINFO_REMOVING_EXAMINED.matcher(output);
+		if (m.matches()) {
+			parseGameInfoRemovingExamined(m);
+			return true;
+		}
 		m = FreechessUtils.DECLINE_MATCH.matcher(output);
 		if (m.matches()) {
 			parseDeclineMatch(m);
@@ -406,6 +456,13 @@ public class FreechessModel {
 		if (game != null) {
 			game.addPosition(pos);
 			notifyGameUpdate(game.getUUID());
+		} else if (pos.getRelation() == Game.RELATION_EXAMINING) {
+			game = new Game();
+			game.addPosition(pos);
+			activeGames.put(game.getId(), game);
+			allGames.put(game.getUUID(), game);
+			notifyGameCreate(game.getUUID());
+			notifyGameUpdate(game.getUUID());
 		}
 	}
 	
@@ -450,6 +507,7 @@ public class FreechessModel {
 				game = activeGames.remove(gameId);
 				if (game != null) {
 					game.setResult("*", "[This game was removed from observation list.]");
+					game.setRelation(Game.RELATION_UNKNOWN);
 					notifyGameUpdate(game.getUUID());
 				}
 			}
@@ -467,6 +525,44 @@ public class FreechessModel {
 		game.addPosition(pos);
 		activeGames.put(game.getId(), game);
 		allGames.put(game.getUUID(), game);
+		notifyGameCreate(game.getUUID());
+		notifyGameUpdate(game.getUUID());
+	}
+	
+	private void parseGameInfoFollowing(Matcher m) {
+		String removed = m.group(2);
+		String whiteRating = m.group(3);
+		String blackRating = m.group(4);
+		String style12 = m.group(5);
+		if (removed != null) {
+			m = FreechessUtils.GAME_ID.matcher(removed);
+			while (m.find()) {
+				int gameId = Integer.parseInt(m.group());
+				Game game = activeGames.remove(gameId);
+				if (game != null) {
+					game.setResult("*", "[This game was removed from observation list.]");
+					game.setRelation(Game.RELATION_UNKNOWN);
+					notifyGameUpdate(game.getUUID());
+				}
+			}
+		}
+		Position pos = Position.fromStyle12(style12);
+		Game game = new Game();
+		game.setWhiteRating(whiteRating);
+		game.setBlackRating(blackRating);
+		game.addPosition(pos);
+		activeGames.put(game.getId(), game);
+		allGames.put(game.getUUID(), game);
+		notifyGameCreate(game.getUUID());
+		notifyGameUpdate(game.getUUID());
+	}
+	
+	private void parseGameInfoExamining(Matcher m) {
+		String style12 = m.group(2);
+		Position pos = Position.fromStyle12(style12);
+		Game game = new Game();
+		game.addPosition(pos);
+		notifyGameCreate(game.getUUID());
 		notifyGameUpdate(game.getUUID());
 	}
 	
@@ -478,6 +574,45 @@ public class FreechessModel {
 		if (game != null) {
 			game.addNote(note);
 			game.addPosition(pos);
+			notifyGameUpdate(game.getUUID());
+		}
+	}
+	
+	private void parseGameInfoNoteMoveNote(Matcher m) {
+		String note1 = m.group(2);
+		String style12 = m.group(3);
+		String note2 = m.group(5);
+		Position pos = Position.fromStyle12(style12);
+		Game game = activeGames.get(pos.getGameId());
+		if (game != null) {
+			game.addNote(note1);
+			game.addPosition(pos);
+			game.addNote(note2);
+			m = FreechessUtils.GAMEINFO_NOTE_VALUE_RESULT.matcher(note2);
+			if (m.matches()) {
+				String description = m.group(1);
+				String result = m.group(2);
+				game.setResult(result, description);
+			}
+			notifyGameUpdate(game.getUUID());
+		}
+	}
+	
+	private void parseGameInfoMoveNote(Matcher m) {
+		String style12 = m.group(1);
+		String note = m.group(3);
+		Position pos = Position.fromStyle12(style12);
+		Game game = activeGames.get(pos.getGameId());
+		if (game != null) {
+			game.addPosition(pos);
+			game.addNote(note);
+			notifyGameUpdate(game.getUUID());
+		} else if (pos.getRelation() == Game.RELATION_EXAMINING) {
+			game = new Game();
+			game.addPosition(pos);
+			activeGames.put(game.getId(), game);
+			allGames.put(game.getUUID(), game);
+			notifyGameCreate(game.getUUID());
 			notifyGameUpdate(game.getUUID());
 		}
 	}
@@ -501,6 +636,7 @@ public class FreechessModel {
 		if (game != null) {
 			game.addPosition(pos);
 			game.setResult(result, description);
+			game.setRelation(Game.RELATION_UNKNOWN);
 			notifyGameUpdate(game.getUUID());
 		}
 	}
@@ -536,6 +672,7 @@ public class FreechessModel {
 			Game game = activeGames.remove(gameId);
 			if (game != null) {
 				game.setResult("*", "[This game was removed from observation list.]");
+				game.setRelation(Game.RELATION_UNKNOWN);
 				notifyGameUpdate(game.getUUID());
 			}
 		}
@@ -557,8 +694,29 @@ public class FreechessModel {
 			Game game = activeGames.remove(gameId);
 			if (game != null) {
 				game.setResult("*", "[This game was removed from observation list.]");
+				game.setRelation(Game.RELATION_UNKNOWN);
 				notifyGameUpdate(game.getUUID());
 			}
+		}
+	}
+	
+	private boolean parseCommandNotFound(Matcher m) {
+		String cmd = m.group(1);
+		if (FreechessUtils.PING_CMD.equals(cmd)) {
+			//notifyPingCommand();
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	private void parseGameInfoRemovingExamined(Matcher m) {
+		int gameId = Integer.parseInt(m.group(1));
+		Game game = activeGames.remove(gameId);
+		if (game != null) {
+			game.setResult("*", "[You are no longer examining this game.]");
+			game.setRelation(Game.RELATION_UNKNOWN);
+			notifyGameUpdate(game.getUUID());
 		}
 	}
 	
@@ -604,17 +762,21 @@ public class FreechessModel {
 		Game game = activeGames.remove(gameId);
 		if (game != null) {
 			game.setResult(result, description);
+			game.setRelation(Game.RELATION_UNKNOWN);
 			notifyGameUpdate(game.getUUID());
 		}
 	}
 	
 	private void parseGameInfoNoteEnd(Matcher m) {
-		int gameId = Integer.parseInt(m.group(1));
-		String description = m.group(2);
-		String result = m.group(3);
+		String note = m.group(1);
+		int gameId = Integer.parseInt(m.group(2));
+		String description = m.group(3);
+		String result = m.group(4);
 		Game game = activeGames.remove(gameId);
 		if (game != null) {
+			game.addNote(note);
 			game.setResult(result, description);
+			game.setRelation(Game.RELATION_UNKNOWN);
 			notifyGameUpdate(game.getUUID());
 		}
 	}
@@ -626,6 +788,7 @@ public class FreechessModel {
 		Game game = activeGames.remove(gameId);
 		if (game != null) {
 			game.setResult(result, description);
+			game.setRelation(Game.RELATION_UNKNOWN);
 			notifyGameUpdate(game.getUUID());
 		}
 	}

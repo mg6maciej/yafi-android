@@ -10,6 +10,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -40,7 +42,7 @@ public class MenuActivity extends BaseFreechessActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.menu_view);
+		setContentView(R.layout.main_view);
 		updateRatePanel = (ViewGroup) findViewById(R.id.main_update_rate_panel);
 	}
 	
@@ -107,8 +109,8 @@ public class MenuActivity extends BaseFreechessActivity {
 			updateRatePanel.setVisibility(View.VISIBLE);
 			TextView text = (TextView) updateRatePanel.findViewById(R.id.main_update_rate_text);
 			Button button = (Button) updateRatePanel.findViewById(R.id.main_update_rate_button);
-			text.setText("New version of Yafi available!");
-			button.setText("Download");
+			text.setText(R.string.new_version_available);
+			button.setText(R.string.update);
 			button.setTag(false);
 		} else if (!(triedShowRate || !Settings.canShowRate(this))) {
 			triedShowRate = true;
@@ -116,8 +118,8 @@ public class MenuActivity extends BaseFreechessActivity {
 				updateRatePanel.setVisibility(View.VISIBLE);
 				TextView text = (TextView) updateRatePanel.findViewById(R.id.main_update_rate_text);
 				Button button = (Button) updateRatePanel.findViewById(R.id.main_update_rate_button);
-				text.setText("If you enjoy using Yafi,\nplease take a moment to rate it.");
-				button.setText("Rate Yafi");
+				text.setText(R.string.if_enjoy_please_rate);
+				button.setText(R.string.rate_yafi);
 				button.setTag(true);
 			}
 		}
@@ -153,20 +155,21 @@ public class MenuActivity extends BaseFreechessActivity {
 		switch (id) {
 			case DIALOG_ID_CONFIRM_DISCONNECT: {
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setTitle("Do you want to disconnect?");
+				builder.setTitle(R.string.want_to_disconnect_question);
 				View body = getLayoutInflater().inflate(R.layout.confirm_disconnect_dialog, null);
 				builder.setView(body);
-				builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+				builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						if (confirmDisconnectCheckbox.isChecked()) {
 							Settings.setConfirmDisconnect(MenuActivity.this, false);
+							trackEvent(Tracking.CATEGORY_SETTINGS, Tracking.ACTION_CONFIRM_DISCONNECTION, Tracking.LABEL_DIALOG, false);
 						}
 						service.quit();
 						finish();
 					}
 				});
-				builder.setNegativeButton("Cancel", null);
+				builder.setNegativeButton(R.string.cancel, null);
 				confirmDisconnectDialog = builder.create();
 				confirmDisconnectCheckbox = (CheckBox) body.findViewById(R.id.confirm_disconnect_checkbox);
 				return confirmDisconnectDialog;
@@ -183,5 +186,27 @@ public class MenuActivity extends BaseFreechessActivity {
 				confirmDisconnectCheckbox.setChecked(false);
 			}
 		}
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.mi_observe_blitz:
+				service.sendInput("observe /b\n");
+				trackEvent(Tracking.CATEGORY_SHOW_GAME, Tracking.ACTION_OBSERVE, Tracking.LABEL_HIGH_RATED_BLITZ, 0);
+				return true;
+			case R.id.mi_observe_standard:
+				service.sendInput("observe /s\n");
+				trackEvent(Tracking.CATEGORY_SHOW_GAME, Tracking.ACTION_OBSERVE, Tracking.LABEL_HIGH_RATED_STANDARD, 0);
+				return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 }

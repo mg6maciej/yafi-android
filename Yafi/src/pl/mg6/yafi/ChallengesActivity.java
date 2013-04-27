@@ -130,8 +130,8 @@ public class ChallengesActivity extends BaseFreechessActivity {
 		service.sendInput("pending\n");
 		adapterSent.clear();
 		adapterReceived.clear();
-		sentEmptyView.setText("Getting challenges list");
-		recevicedEmptyView.setText("Getting challenges list");
+		sentEmptyView.setText(R.string.challenges_getting);
+		recevicedEmptyView.setText(R.string.challenges_getting);
 	}
 	
 	@Override
@@ -160,7 +160,7 @@ public class ChallengesActivity extends BaseFreechessActivity {
 			}
 		}
 		adapterSent.notifyDataSetChanged();
-		sentEmptyView.setText("No offers sent.");
+		sentEmptyView.setText(R.string.challenges_sent_empty);
 		
 		adapterReceived.setNotifyOnChange(false);
 		adapterReceived.clear();
@@ -171,7 +171,7 @@ public class ChallengesActivity extends BaseFreechessActivity {
 			}
 		}
 		adapterReceived.notifyDataSetChanged();
-		recevicedEmptyView.setText("No offers received.");
+		recevicedEmptyView.setText(R.string.challenges_received_empty);
 	}
 	
 	private void onRemoveMatchTo(String user) {
@@ -193,7 +193,7 @@ public class ChallengesActivity extends BaseFreechessActivity {
 			int increment = cpo.getIncrement();
 			String label = type + " " + (rated ? "r" : "u") + " " + time + " " + increment;
 			int value = time + 2 * increment / 3;
-			trackEvent(Tracking.CATEGORY_GETGAME, Tracking.ACTION_CHALLENGE, label, value);
+			trackEvent(Tracking.CATEGORY_GET_GAME, Tracking.ACTION_CHALLENGE, label, value);
 		}
 	}
 	

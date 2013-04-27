@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/main_board"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:lines="2"
+            android:onClick="onBoardClick"
+            android:text="@string/board" />
+
+        <Button
+            android:id="@+id/main_chat"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/main_board"
+            android:lines="2"
+            android:onClick="onChatClick"
+            android:text="@string/chat" />
+
+        <Button
+            android:id="@+id/main_match"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/main_chat"
+            android:lines="2"
+            android:onClick="onMatchClick"
+            android:text="@string/match" />
+
+        <Button
+            android:id="@+id/main_seek"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/main_board"
+            android:layout_marginTop="20dp"
+            android:lines="2"
+            android:onClick="onSeekClick"
+            android:text="@string/seek" />
+
+        <Button
+            android:id="@+id/main_sought"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/main_chat"
+            android:layout_alignTop="@+id/main_seek"
+            android:lines="2"
+            android:onClick="onSoughtClick"
+            android:text="@string/sought" />
+
+        <Button
+            android:id="@+id/main_challenges"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/main_match"
+            android:layout_alignTop="@+id/main_sought"
+            android:lines="2"
+            android:onClick="onChallengesClick"
+            android:text="@string/challenges" />
+
+        <Button
+            android:id="@+id/main_console"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/main_seek"
+            android:layout_marginTop="20dp"
+            android:lines="2"
+            android:onClick="onConsoleClick"
+            android:text="@string/console" />
+
+        <Button
+            android:id="@+id/main_user_prefs"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/main_sought"
+            android:layout_alignTop="@+id/main_console"
+            android:lines="2"
+            android:onClick="onUserPrefsClick"
+            android:text="@string/preferences" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/main_update_rate_panel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/main_update_rate_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center" />
+
+        <Button
+            android:id="@+id/main_update_rate_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onUpdateRateClick" />
+    </LinearLayout>
+
+</merge>

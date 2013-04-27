@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/pl.mg6.yafi" >
 
     <PreferenceCategory android:title="@string/login" >
         <CheckBoxPreference
@@ -17,21 +18,28 @@
             android:entries="@array/board_input_methods"
             android:entryValues="@array/board_input_methods_values"
             android:key="user_pref.board_input_method"
+            android:negativeButtonText="@string/cancel"
             android:summary="@string/input_method_summary"
             android:title="@string/input_method" />
 
         <pl.mg6.common.android.ImageListPreference
+            app:checkableId="@+id/pref_board_colors_item_radio"
             android:defaultValue="default"
             android:entries="@array/board_colors"
+            app:entryId="@+id/pref_board_colors_item_text"
             android:entryValues="@array/board_colors_values"
+            app:imageId="@+id/pref_board_colors_item_image"
+            app:images="@array/board_colors_images"
             android:key="user_pref.board_colors"
+            app:layout="@layout/pref_board_colors_item"
+            android:negativeButtonText="@string/cancel"
             android:summary="@string/colors_summary"
             android:title="@string/colors" />
 
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="user_pref.board_premove"
-            android:summary="Allows you to initiate moves on opponent's turn"
+            android:summary="Allows you to initiate moves on opponent&apos;s turn"
             android:title="Premove" />
     </PreferenceCategory>
     <PreferenceCategory android:title="Miscellaneous" >

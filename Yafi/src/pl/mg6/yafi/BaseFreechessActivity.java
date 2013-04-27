@@ -2,8 +2,16 @@ package pl.mg6.yafi;
 
 import java.util.UUID;
 
+import com.google.ads.Ad;
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
+import com.google.ads.AdRequest.ErrorCode;
+
 import pl.mg6.common.Settings;
+import pl.mg6.common.TimeUtils;
 import pl.mg6.common.android.BaseActivity;
+import pl.mg6.common.android.ads.BaseAdListener;
+import pl.mg6.common.android.tracker.Tracking;
 import pl.mg6.yafi.model.FreechessService;
 import pl.mg6.yafi.model.FreechessService.FreechessServiceInterface;
 import android.app.AlertDialog;
@@ -19,6 +27,7 @@ import android.os.Handler.Callback;
 import android.os.IBinder;
 import android.os.Message;
 import android.util.Log;
+import android.view.ViewGroup;
 
 public class BaseFreechessActivity extends BaseActivity implements ServiceConnection, Callback {
 	
@@ -42,6 +51,53 @@ public class BaseFreechessActivity extends BaseActivity implements ServiceConnec
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		handler = new Handler(this);
+	}
+	
+	@Override
+	public void onContentChanged() {
+		super.onContentChanged();
+		final AdView view = (AdView) findViewById(R.id.ad_view);
+		if (view != null) {
+			if (Settings.REMOVE_ADS_AFTER_CLICK && Settings.isAdClicked(this)) {
+				ViewGroup parent = (ViewGroup) view.getParent();
+				parent.removeView(view);
+			} else {
+				view.setAdListener(new BaseAdListener() {
+					private long startTime = 0L;
+					@Override
+					public void onPresentScreen(Ad ad) {
+						super.onPresentScreen(ad);
+						startTime = TimeUtils.getTimestamp();
+					}
+					
+					@Override
+					public void onLeaveApplication(Ad ad) {
+						super.onLeaveApplication(ad);
+						startTime = TimeUtils.getTimestamp();
+					}
+					@Override
+					public void onDismissScreen(Ad ad) {
+						super.onDismissScreen(ad);
+						view.stopLoading();
+						ViewGroup parent = (ViewGroup) view.getParent();
+						parent.removeView(view);
+						Settings.setAdClicked(BaseFreechessActivity.this, true);
+						long endTime = TimeUtils.getTimestamp();
+						int time = (int) (endTime - startTime);
+						trackEvent(Tracking.CATEGORY_ADMOB, Tracking.ACTION_CLICKED, BaseFreechessActivity.this.getClass().getSimpleName(), time);
+					}
+					@Override
+					public void onFailedToReceiveAd(Ad ad, ErrorCode code) {
+						super.onFailedToReceiveAd(ad, code);
+						trackEvent(Tracking.CATEGORY_ADMOB, Tracking.ACTION_FAILED_TO_LOAD, code.name(), 0);
+					}
+				});
+				AdRequest request = new AdRequest();
+				request.addTestDevice(AdRequest.TEST_EMULATOR);
+				request.addTestDevice("ADC437B053BD10CA22B9DCF950994CD8");
+				view.loadAd(request);
+			}
+		}
 	}
 	
 	@Override
@@ -136,8 +192,8 @@ public class BaseFreechessActivity extends BaseActivity implements ServiceConnec
 		switch (id) {
 			case DIALOG_ID_DISCONNECTED: {
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setTitle("Disconnected");
-				builder.setNeutralButton("OK", null);
+				builder.setTitle(R.string.disconnected);
+				builder.setNeutralButton(R.string.ok, null);
 				disconnectedDialog = builder.create();
 				disconnectedDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
 					@Override

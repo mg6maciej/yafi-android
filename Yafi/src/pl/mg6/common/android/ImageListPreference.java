@@ -3,40 +3,45 @@ package pl.mg6.common.android;
 import pl.mg6.yafi.R;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Checkable;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 public class ImageListPreference extends ListPreferenceEx {
 	
-	private static int[] images = {
-		R.drawable.board_colors_default,
-		R.drawable.board_colors_red,
-		R.drawable.board_colors_green,
-		R.drawable.board_colors_blue,
-		R.drawable.board_colors_butter_chameleon,
-		R.drawable.board_colors_sky_plum,
-		R.drawable.board_colors_scarlet_aluminium,
-	};
-
-	public ImageListPreference(Context context) {
-		super(context);
-	}
-
+	private int layoutResId;
+	private int entryId;
+	private int imageId;
+	private int checkableId;
+	private int imagesResId;
+	
 	public ImageListPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		init(context, attrs);
+	}
+	
+	private void init(Context context, AttributeSet attrs) {
+		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ImageListPreference);
+		layoutResId = a.getResourceId(R.styleable.ImageListPreference_layout, 0);
+		entryId = a.getResourceId(R.styleable.ImageListPreference_entryId, 0);
+		imageId = a.getResourceId(R.styleable.ImageListPreference_imageId, 0);
+		checkableId = a.getResourceId(R.styleable.ImageListPreference_checkableId, 0);
+		imagesResId = a.getResourceId(R.styleable.ImageListPreference_images, 0);
+		a.recycle();
 	}
 	
 	@Override
 	protected void onPrepareDialogBuilder(Builder builder) {
 		super.onPrepareDialogBuilder(builder);
-		ListAdapter adapter = new ImageListPreferenceAdapter(getContext(), getEntryValues(), getEntries(), getValue());
+		ListAdapter adapter = new ImageListPreferenceAdapter(getContext(), getEntryValues(), getValue(), getEntries());
 		builder.setAdapter(adapter, this);
 	}
 	
@@ -46,33 +51,40 @@ public class ImageListPreference extends ListPreferenceEx {
 		
 		private CharSequence[] values;
 		
+		private String selectedValue;
+		
 		private CharSequence[] texts;
 		
-		private String selected;
+		private Drawable[] images;
 		
-		public ImageListPreferenceAdapter(Context context, CharSequence[] values, CharSequence[] texts, String selected) {
+		public ImageListPreferenceAdapter(Context context, CharSequence[] values, String selectedValue, CharSequence[] texts) {
 			super(context, 0, values);
 			layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			this.values = values;
+			this.selectedValue = selectedValue;
 			this.texts = texts;
-			this.selected = selected;
+			this.images = new Drawable[values.length];
+			TypedArray a = context.getResources().obtainTypedArray(imagesResId);
+			for (int i = 0; i < values.length; i++) {
+				this.images[i] = a.getDrawable(i);
+			}
+			a.recycle();
 		}
 		
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			if (convertView == null) {
-				convertView = layoutInflater.inflate(R.layout.pref_board_colors_item, parent, false);
+				convertView = layoutInflater.inflate(layoutResId, parent, false);
 			}
-			ImageView image = (ImageView) convertView.findViewById(R.id.pref_board_colors_item_image);
-			TextView text = (TextView) convertView.findViewById(R.id.pref_board_colors_item_text);
-			RadioButton radio = (RadioButton) convertView.findViewById(R.id.pref_board_colors_item_radio);
+			TextView text = (TextView) convertView.findViewById(entryId);
+			ImageView image = (ImageView) convertView.findViewById(imageId);
+			Checkable checkable = (Checkable) convertView.findViewById(checkableId);
 
-			convertView.setBackgroundResource(android.R.drawable.list_selector_background);
 			convertView.setTag(values[position]);
 			convertView.setOnClickListener(listener);
 			text.setText(texts[position]);
-			image.setImageResource(images[position]);
-			radio.setChecked(selected.equals(values[position]));
+			image.setImageDrawable(images[position]);
+			checkable.setChecked(selectedValue.equals(values[position]));
 			
 			return convertView;
 		}

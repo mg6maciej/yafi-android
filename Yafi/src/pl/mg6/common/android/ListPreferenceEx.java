@@ -6,10 +6,6 @@ import android.util.AttributeSet;
 
 public class ListPreferenceEx extends ListPreference {
 
-	public ListPreferenceEx(Context context) {
-		super(context);
-	}
-
 	public ListPreferenceEx(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
@@ -24,8 +20,8 @@ public class ListPreferenceEx extends ListPreference {
 	public CharSequence getSummary() {
         CharSequence entry = getEntry();
         CharSequence summary = super.getSummary();
-        if (summary == null || entry == null) {
-            return super.getSummary();
+        if (entry == null || summary == null) {
+            return summary;
         } else {
             return String.format(summary.toString(), entry);
         }

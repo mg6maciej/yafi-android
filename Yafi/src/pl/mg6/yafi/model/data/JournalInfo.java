@@ -13,9 +13,7 @@ public class JournalInfo implements Iterable<JournalInfo.Entry> {
 	
 	private static final String TAG = JournalInfo.class.getSimpleName();
 	
-	public static class Entry {
-		
-		private String id;
+	public static class Entry extends HistoricalGameEntry {
 		
 		private String whiteName;
 		
@@ -38,10 +36,6 @@ public class JournalInfo implements Iterable<JournalInfo.Entry> {
 		private String resultDescription;
 		
 		private String result;
-		
-		public String getId() {
-			return id;
-		}
 		
 		public String getWhiteName() {
 			return whiteName;

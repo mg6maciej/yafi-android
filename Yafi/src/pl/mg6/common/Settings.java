@@ -1,5 +1,10 @@
 package pl.mg6.common;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import android.content.Context;
@@ -13,6 +18,9 @@ public final class Settings {
 	
 	public static final boolean LOG_LIFECYCLE = false;
 	public static final boolean LOG_SERVER_COMMUNICATION = false;
+	public static final boolean LOG_ADS = true;
+	
+	public static final boolean REMOVE_ADS_AFTER_CLICK = true;
 	
 	public static final String PREF_CONFIRM_DISCONNECT = "user_pref.confirm_disconnect";
 	private static final boolean CONFIRM_DISCONNECT_DEFAULT_VALUE = true;
@@ -33,6 +41,8 @@ public final class Settings {
 	private static final String PREF_MATCH_RATED = "user_pref.match_rated";
 	public static final String PREF_HELP_IMPROVE = "user_pref.help_improve";
 	private static final boolean HELP_IMPROVE_DEFAULT_VALUE = true;
+	private static final String PREF_CONSOLE_COMMANDS = "user_pref.console_commands";
+	private static final int MIN_COMMAND_USE_COUNT = 3;
 	public static final int BOARD_INPUT_METHOD_DRAG_AND_DROP = 1;
 	public static final int BOARD_INPUT_METHOD_CLICK_CLICK = 2;
 	public static final int BOARD_INPUT_METHOD_BOTH = BOARD_INPUT_METHOD_DRAG_AND_DROP | BOARD_INPUT_METHOD_CLICK_CLICK;
@@ -43,6 +53,7 @@ public final class Settings {
 	private static final String PREF_RATE_CLICKED = "app_pref.rate_clicked";
 	private static final String PREF_SHOW_RATE_DELAY = "app_pref.show_rate_delay";
 	private static final int SHOW_RATE_INITIAL_DELAY = 6;
+	private static final String PREF_AD_CLICKED = "app_pref.ad_clicked";
 	
 	private static SharedPreferences getSharedPrefs(Context context) {
 		return PreferenceManager.getDefaultSharedPreferences(context);
@@ -196,6 +207,55 @@ public final class Settings {
 		return helpImprove;
 	}
 	
+	public static void addCommand(Context context, String command) {
+		SharedPreferences prefs = getSharedPrefs(context);
+		String pref = prefs.getString(PREF_CONSOLE_COMMANDS, null);
+		Set<String> commands = new HashSet<String>();
+		if (pref != null) {
+			for (String tmp : pref.split("\n")) {
+				commands.add(tmp);
+			}
+		}
+		int count = 0;
+		for (String old : commands) {
+			int index = old.indexOf(' ');
+			if (old.substring(index + 1).equals(command)) {
+				count = Integer.parseInt(old.substring(0, index));
+				commands.remove(old);
+				break;
+			}
+		}
+		count++;
+		commands.add(String.format("%06d %s", count, command));
+		SharedPreferences.Editor editor = prefs.edit();
+		editor.putString(PREF_CONSOLE_COMMANDS, StringUtils.join("\n", commands.toArray(new String[0])));
+		editor.commit();
+	}
+	
+	public static List<String> getFrequentlyUsedCommands(Context context) {
+		List<String> commands = null;
+		SharedPreferences prefs = getSharedPrefs(context);
+		String pref = prefs.getString(PREF_CONSOLE_COMMANDS, null);
+		if (pref != null) {
+			commands = new ArrayList<String>();
+			for (String tmp : pref.split("\n")) {
+				commands.add(tmp);
+			}
+			Collections.sort(commands, Collections.reverseOrder());
+			for (int i = commands.size() - 1; i >= 0; i--) {
+				String command = commands.get(i);
+				int index = command.indexOf(' ');
+				int count = Integer.parseInt(command.substring(0, index));
+				if (count < MIN_COMMAND_USE_COUNT) {
+					commands.remove(i);
+				} else {
+					commands.set(i, command.substring(index + 1));
+				}
+			}
+		}
+		return commands;
+	}
+	
 	public static void saveCurrentGame(Context context, UUID gameId) {
 		SharedPreferences.Editor editor = getSharedPrefsEditor(context);
 		String pref = null;
@@ -247,6 +307,18 @@ public final class Settings {
 	public static void setRateClicked(Context context) {
 		SharedPreferences.Editor editor = getSharedPrefsEditor(context);
 		editor.putBoolean(PREF_RATE_CLICKED, true);
+		editor.commit();
+	}
+	
+	public static boolean isAdClicked(Context context) {
+		SharedPreferences prefs = getSharedPrefs(context);
+		boolean clicked = prefs.getBoolean(PREF_AD_CLICKED, false);
+		return clicked;
+	}
+	
+	public static void setAdClicked(Context context, boolean clicked) {
+		SharedPreferences.Editor editor = getSharedPrefsEditor(context);
+		editor.putBoolean(PREF_AD_CLICKED, clicked);
 		editor.commit();
 	}
 }

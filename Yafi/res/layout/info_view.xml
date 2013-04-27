@@ -1,127 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:layout_height="fill_parent"
+    android:scrollbarStyle="insideInset" >
 
-    <include layout="@layout/ad" />
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:scrollbarStyle="insideInset" >
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/info_username"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:gravity="center" />
 
-            <TextView
-                android:id="@+id/info_username"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center" />
+        <ViewStub
+            android:id="@+id/info_finger_stub"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout="@layout/info_finger" />
 
-            <ViewStub
-                android:id="@+id/info_finger_stub"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout="@layout/info_finger" />
+        <ViewStub
+            android:id="@+id/info_vars_stub"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout="@layout/info_vars" />
 
-            <ViewStub
-                android:id="@+id/info_vars_stub"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout="@layout/info_vars" />
+        <include
+            android:id="@+id/info_finger_vars_loading"
+            layout="@layout/common_item_loading" />
 
-            <include
-                android:id="@+id/info_finger_vars_loading"
-                layout="@layout/common_item_loading" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/games_history" />
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Recent history" />
+        <ViewStub
+            android:id="@+id/info_history_stub"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout="@layout/info_history" />
 
-            <ViewStub
-                android:id="@+id/info_history_stub"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout="@layout/info_history" />
+        <TextView
+            android:id="@+id/info_no_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/history_empty"
+            android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/info_no_history"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="No history games."
-                android:visibility="gone" />
-            
-            <include
-                android:id="@+id/info_history_loading"
-                layout="@layout/common_item_loading" />
+        <include
+            android:id="@+id/info_history_loading"
+            layout="@layout/common_item_loading" />
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Journal entries" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/games_journal" />
 
-            <ViewStub
-                android:id="@+id/info_journal_stub"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout="@layout/info_journal" />
+        <ViewStub
+            android:id="@+id/info_journal_stub"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout="@layout/info_journal" />
 
-            <TextView
-                android:id="@+id/info_no_journal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="No journal games."
-                android:visibility="gone" />
+        <TextView
+            android:id="@+id/info_no_journal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/journal_empty"
+            android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/info_private_journal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Journal is private."
-                android:visibility="gone" />
-            
-            <TextView
-                android:id="@+id/info_unreg_journal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="No journal games."
-                android:visibility="gone" />
-            
-            <include
-                android:id="@+id/info_journal_loading"
-                layout="@layout/common_item_loading" />
+        <TextView
+            android:id="@+id/info_private_journal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/journal_private"
+            android:visibility="gone" />
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Adjourned games" />
+        <TextView
+            android:id="@+id/info_unreg_journal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/journal_empty"
+            android:visibility="gone" />
 
-            <ViewStub
-                android:id="@+id/info_adjourned_stub"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout="@layout/info_adjourned" />
+        <include
+            android:id="@+id/info_journal_loading"
+            layout="@layout/common_item_loading" />
 
-            <TextView
-                android:id="@+id/info_no_adjourned"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="No adjourned games."
-                android:visibility="gone" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/games_adjourned" />
 
-            <include
-                android:id="@+id/info_adjourned_loading"
-                layout="@layout/common_item_loading" />
-        </LinearLayout>
-    </ScrollView>
+        <ViewStub
+            android:id="@+id/info_adjourned_stub"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout="@layout/info_adjourned" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/info_no_adjourned"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/adjourned_empty"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/info_adjourned_loading"
+            layout="@layout/common_item_loading" />
+    </LinearLayout>
+
+</ScrollView>
