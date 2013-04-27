@@ -4,7 +4,7 @@
     <string name="ga_api_key">UA-29148240-1</string>
 
     <bool name="ga_debug">false</bool>
-    <bool name="ga_dryRun">true</bool>
+    <bool name="ga_dryRun">false</bool>
     <bool name="ga_auto_activity_tracking">true</bool>
 
     <integer name="ga_dispatchPeriod">30</integer>

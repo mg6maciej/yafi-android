@@ -76,18 +76,18 @@ public class BoardView extends View {
 		rect = new RectF();
 		
 		pictures = new HashMap<Character, Picture>();
-		pictures.put('P', SVGParser.getSVGFromResource(getResources(), R.raw.white_pawn).getPicture());
-		pictures.put('N', SVGParser.getSVGFromResource(getResources(), R.raw.white_knight).getPicture());
-		pictures.put('B', SVGParser.getSVGFromResource(getResources(), R.raw.white_bishop).getPicture());
-		pictures.put('R', SVGParser.getSVGFromResource(getResources(), R.raw.white_rook).getPicture());
-		pictures.put('Q', SVGParser.getSVGFromResource(getResources(), R.raw.white_queen).getPicture());
-		pictures.put('K', SVGParser.getSVGFromResource(getResources(), R.raw.white_king).getPicture());
-		pictures.put('p', SVGParser.getSVGFromResource(getResources(), R.raw.black_pawn).getPicture());
-		pictures.put('n', SVGParser.getSVGFromResource(getResources(), R.raw.black_knight).getPicture());
-		pictures.put('b', SVGParser.getSVGFromResource(getResources(), R.raw.black_bishop).getPicture());
-		pictures.put('r', SVGParser.getSVGFromResource(getResources(), R.raw.black_rook).getPicture());
-		pictures.put('q', SVGParser.getSVGFromResource(getResources(), R.raw.black_queen).getPicture());
-		pictures.put('k', SVGParser.getSVGFromResource(getResources(), R.raw.black_king).getPicture());
+		pictures.put('P', SVGParser.getSVGFromResource(getResources(), R.raw.default_white_pawn).getPicture());
+		pictures.put('N', SVGParser.getSVGFromResource(getResources(), R.raw.default_white_knight).getPicture());
+		pictures.put('B', SVGParser.getSVGFromResource(getResources(), R.raw.default_white_bishop).getPicture());
+		pictures.put('R', SVGParser.getSVGFromResource(getResources(), R.raw.default_white_rook).getPicture());
+		pictures.put('Q', SVGParser.getSVGFromResource(getResources(), R.raw.default_white_queen).getPicture());
+		pictures.put('K', SVGParser.getSVGFromResource(getResources(), R.raw.default_white_king).getPicture());
+		pictures.put('p', SVGParser.getSVGFromResource(getResources(), R.raw.default_black_pawn).getPicture());
+		pictures.put('n', SVGParser.getSVGFromResource(getResources(), R.raw.default_black_knight).getPicture());
+		pictures.put('b', SVGParser.getSVGFromResource(getResources(), R.raw.default_black_bishop).getPicture());
+		pictures.put('r', SVGParser.getSVGFromResource(getResources(), R.raw.default_black_rook).getPicture());
+		pictures.put('q', SVGParser.getSVGFromResource(getResources(), R.raw.default_black_queen).getPicture());
+		pictures.put('k', SVGParser.getSVGFromResource(getResources(), R.raw.default_black_king).getPicture());
 		
 		if (lightSquareColors == null) {
 			lightSquareColors = new HashMap<String, Integer>();
