@@ -122,7 +122,7 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 			createViews();
 			currentPosition = Integer.MAX_VALUE;
 			updateViews();
-			final View selected = tabs.getChildAt(allGamesIds.indexOf(currentGameId));
+			final View selected = tabs.findViewWithTag(currentGameId);
 			selected.post(new Runnable() {
 				@Override
 				public void run() {
@@ -371,7 +371,7 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 		}
 		if (currentGameId == null) {
 			currentGameId = gameId;
-			final View selected = tabs.getChildAt(allGamesIds.indexOf(currentGameId));
+			final View selected = tabs.findViewWithTag(currentGameId);
 			selected.post(new Runnable() {
 				@Override
 				public void run() {
