@@ -1,5 +1,8 @@
 package pl.mg6.common.android;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import pl.mg6.common.Settings;
 import pl.mg6.common.android.tracker.TrackedActivity;
 import android.content.Intent;
@@ -9,6 +12,24 @@ import android.util.Log;
 public class BaseActivity extends TrackedActivity {
 	
 	private static final String TAG = BaseActivity.class.getSimpleName();
+	
+	private static List<String> aliveActivities = new ArrayList<String>();
+	
+	public BaseActivity() {
+		if (Settings.LOG_LIFECYCLE) {
+			aliveActivities.add(getClass().getSimpleName() + hashCode());
+			Log.d(TAG, this + " constructor; count=" + aliveActivities.size());
+		}
+	}
+	
+	@Override
+	protected void finalize() throws Throwable {
+		super.finalize();
+		if (Settings.LOG_LIFECYCLE) {
+			aliveActivities.remove(getClass().getSimpleName() + hashCode());
+			Log.d(TAG, this + " finalize; count=" + aliveActivities.size());
+		}
+	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

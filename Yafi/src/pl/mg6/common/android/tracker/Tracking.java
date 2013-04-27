@@ -8,11 +8,15 @@ public class Tracking {
 	public static final String CATEGORY_LOGIN = "Login";
 	public static final String ACTION_APP_VERSION = "AppVersion";
 	public static final String ACTION_DEVICE = "Device";
+	public static final String ACTION_SCREEN = "Screen";
 	
 	public static final String CATEGORY_SETTINGS = "Settings";
 	public static final String ACTION_CONFIRM_DISCONNECTION = "ConfirmDisconnection";
 	public static final String ACTION_REMEMBER_PASSWORD = "RememberPassword";
 	public static final String ACTION_INPUT_METHOD = "InputMethod";
+	public static final String ACTION_PIECES = "Pieces";
+	public static final String ACTION_COLORS = "Colors";
+	public static final String ACTION_PREMOVE = "Premove";
 	public static final String ACTION_HELP_IMPROVE = "HelpImprove";
 	
 	public static final String CATEGORY_GETGAME = "GetGame";
@@ -23,4 +27,8 @@ public class Tracking {
 	
 	public static final String CATEGORY_VETERAN = "Veteran";
 	public static final String ACTION_COMMAND = "Command";
+	
+	public static final String CATEGORY_EXTERNAL = "External";
+	public static final String ACTION_UPDATE = "Update";
+	public static final String ACTION_RATE = "Rate";
 }

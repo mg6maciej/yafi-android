@@ -25,6 +25,13 @@ data = (
   ("board_next_p", (None, 60, 100, None)),
   ("board_previous_n", (None, 60, 100, None)),
   ("board_previous_p", (None, 60, 100, None)),
+  ("board_colors_default", (None, 64, None, None)),
+  ("board_colors_red", (None, 64, None, None)),
+  ("board_colors_green", (None, 64, None, None)),
+  ("board_colors_blue", (None, 64, None, None)),
+  ("board_colors_butter_chameleon", (None, 64, None, None)),
+  ("board_colors_sky_plum", (None, 64, None, None)),
+  ("board_colors_scarlet_aluminium", (None, 64, None, None)),
 )
 for d in data:
   name = d[0]

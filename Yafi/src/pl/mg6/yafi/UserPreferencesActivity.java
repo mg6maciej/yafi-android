@@ -1,18 +1,16 @@
 package pl.mg6.yafi;
 
 import pl.mg6.common.Settings;
+import pl.mg6.common.StringUtils;
 import pl.mg6.common.android.tracker.TrackedPreferenceActivity;
 import pl.mg6.common.android.tracker.Tracking;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.google.android.apps.analytics.easytracking.EasyTracker;
 
 public class UserPreferencesActivity extends TrackedPreferenceActivity {
-	
-	private static final String TAG = UserPreferencesActivity.class.getSimpleName();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +60,17 @@ public class UserPreferencesActivity extends TrackedPreferenceActivity {
 						value = "Both";
 					}
 					trackEvent(Tracking.CATEGORY_SETTINGS, Tracking.ACTION_INPUT_METHOD, value, 0);
+				} else if (Settings.PREF_BOARD_PIECES.equals(key)) {
+					String value = sharedPreferences.getString(key, null);
+					value = StringUtils.underlinedToPascalCase(value);
+					trackEvent(Tracking.CATEGORY_SETTINGS, Tracking.ACTION_PIECES, value, 0);
+				} else if (Settings.PREF_BOARD_COLORS.equals(key)) {
+					String value = sharedPreferences.getString(key, null);
+					value = StringUtils.underlinedToPascalCase(value);
+					trackEvent(Tracking.CATEGORY_SETTINGS, Tracking.ACTION_COLORS, value, 0);
+				} else if (Settings.PREF_BOARD_PREMOVE.equals(key)) {
+					boolean value = sharedPreferences.getBoolean(key, true);
+					trackEvent(Tracking.CATEGORY_SETTINGS, Tracking.ACTION_PREMOVE, null, value);
 				}
 			}
 		}

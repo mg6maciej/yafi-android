@@ -26,7 +26,7 @@ public class ChallengesActivity extends BaseFreechessActivity {
 	private static final int REQUEST_ID_CHAT = 100001;
 	private static final int REQUEST_ID_INFO = 100002;
 	
-	private static final String TAG = ChallengesActivity.class.getSimpleName();
+	//private static final String TAG = ChallengesActivity.class.getSimpleName();
 	
 	private ChallengesAdapter adapterSent;
 	private ListView listSent;

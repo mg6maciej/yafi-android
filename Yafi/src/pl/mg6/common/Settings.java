@@ -20,6 +20,9 @@ public final class Settings {
 	private static final String PREF_PASSWORD = "user_pref.password";
 	public static final String PREF_REMEMBER_PASSWORD = "user_pref.remember_password";
 	public static final String PREF_BOARD_INPUT_METHOD = "user_pref.board_input_method";
+	public static final String PREF_BOARD_PIECES = "user_pref.board_pieces";
+	public static final String PREF_BOARD_COLORS = "user_pref.board_colors";
+	public static final String PREF_BOARD_PREMOVE = "user_pref.board_premove";
 	private static final String PREF_SEEK_TIME = "user_pref.seek_time";
 	private static final String PREF_SEEK_INCREMENT = "user_pref.seek_increment";
 	private static final String PREF_SEEK_TYPE = "user_pref.seek_type";
@@ -37,6 +40,9 @@ public final class Settings {
 	
 	private static final String PREF_CURRENT_GAME = "app_pref.current_game";
 	private static final String PREF_CURRENT_CHAT = "app_pref.current_chat";
+	private static final String PREF_RATE_CLICKED = "app_pref.rate_clicked";
+	private static final String PREF_SHOW_RATE_DELAY = "app_pref.show_rate_delay";
+	private static final int SHOW_RATE_INITIAL_DELAY = 6;
 	
 	private static SharedPreferences getSharedPrefs(Context context) {
 		return PreferenceManager.getDefaultSharedPreferences(context);
@@ -98,6 +104,24 @@ public final class Settings {
 		String pref = prefs.getString(PREF_BOARD_INPUT_METHOD, BOARD_INPUT_METHOD_DEFAULT_VALUE);
 		int inputMethod = Integer.parseInt(pref);
 		return inputMethod;
+	}
+	
+	public static String getBoardPieces(Context context) {
+		SharedPreferences prefs = getSharedPrefs(context);
+		String pieces = prefs.getString(PREF_BOARD_PIECES, "default");
+		return pieces;
+	}
+	
+	public static String getBoardColors(Context context) {
+		SharedPreferences prefs = getSharedPrefs(context);
+		String colors = prefs.getString(PREF_BOARD_COLORS, "default");
+		return colors;
+	}
+	
+	public static boolean isBoardPremove(Context context) {
+		SharedPreferences prefs = getSharedPrefs(context);
+		boolean premove = prefs.getBoolean(PREF_BOARD_PREMOVE, true);
+		return premove;
 	}
 	
 	public static String getSeekTime(Context context) {
@@ -202,5 +226,27 @@ public final class Settings {
 		SharedPreferences prefs = getSharedPrefs(context);
 		String chatId = prefs.getString(PREF_CURRENT_CHAT, null);
 		return chatId;
+	}
+	
+	public static boolean canShowRate(Context context) {
+		SharedPreferences prefs = getSharedPrefs(context);
+		boolean rateClicked = prefs.getBoolean(PREF_RATE_CLICKED, false);
+		if (rateClicked) {
+			return false;
+		}
+		int delay = prefs.getInt(PREF_SHOW_RATE_DELAY, SHOW_RATE_INITIAL_DELAY) - 1;
+		if (delay <= 0) {
+			return true;
+		}
+		SharedPreferences.Editor editor = prefs.edit();
+		editor.putInt(PREF_SHOW_RATE_DELAY, delay);
+		editor.commit();
+		return false;
+	}
+	
+	public static void setRateClicked(Context context) {
+		SharedPreferences.Editor editor = getSharedPrefsEditor(context);
+		editor.putBoolean(PREF_RATE_CLICKED, true);
+		editor.commit();
 	}
 }

@@ -11,6 +11,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Picture;
 import android.graphics.RectF;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -28,7 +30,9 @@ public class BoardView extends View {
 	
 	private Map<Character, Picture> pictures;
 	
-	private char piece;
+	private static Map<String, Integer> lightSquareColors;
+	private static Map<String, Integer> darkSquareColors;
+	
 	private int initFile;
 	private int initRank;
 	private int destFile;
@@ -37,6 +41,9 @@ public class BoardView extends View {
 	private float draggingY;
 	
 	private int inputMethod;
+	private int lightSquareColor;
+	private int darkSquareColor;
+	private boolean premove;
 	
 	private int state;
 	private static final int NONE = 0;
@@ -82,7 +89,37 @@ public class BoardView extends View {
 		pictures.put('q', SVGParser.getSVGFromResource(getResources(), R.raw.black_queen).getPicture());
 		pictures.put('k', SVGParser.getSVGFromResource(getResources(), R.raw.black_king).getPicture());
 		
+		if (lightSquareColors == null) {
+			lightSquareColors = new HashMap<String, Integer>();
+			darkSquareColors = new HashMap<String, Integer>();
+			lightSquareColors.put("default", Color.rgb(255, 206, 158));
+			darkSquareColors.put("default", Color.rgb(209, 139, 71));
+			lightSquareColors.put("red", Color.rgb(255, 158, 158));
+			darkSquareColors.put("red", Color.rgb(209, 71, 71));
+			lightSquareColors.put("green", Color.rgb(206, 255, 158));
+			darkSquareColors.put("green", Color.rgb(139, 209, 71));
+			lightSquareColors.put("blue", Color.rgb(158, 201, 255));
+			darkSquareColors.put("blue", Color.rgb(71, 133, 209));
+			lightSquareColors.put("butter_chameleon", Color.rgb(254, 244, 158));
+			darkSquareColors.put("butter_chameleon", Color.rgb(178, 236, 122));
+			lightSquareColors.put("sky_plum", Color.rgb(174, 201, 228));
+			darkSquareColors.put("sky_plum", Color.rgb(204, 176, 201));
+			lightSquareColors.put("scarlet_aluminium", Color.rgb(238, 238, 236));
+			darkSquareColors.put("scarlet_aluminium", Color.rgb(248, 152, 152));
+		}
+		
 		inputMethod = Settings.getBoardInputMethod(getContext());
+		String colorsKey = Settings.getBoardColors(getContext());
+		lightSquareColor = lightSquareColors.get(colorsKey);
+		darkSquareColor = darkSquareColors.get(colorsKey);
+	}
+	
+	public void setPremove(boolean premove) {
+		this.premove = premove;
+	}
+	
+	public void setMoveSent() {
+		state = MOVE_SENT;
 	}
 	
 	@Override
@@ -90,25 +127,13 @@ public class BoardView extends View {
 		super.onDraw(canvas);
 		float squareWidth = getWidth() / 8.0f;
 		float squareHeight = getHeight() / 8.0f;
-		paint.setColor(Color.rgb(209, 139, 71));
+		paint.setColor(darkSquareColor);
 		canvas.drawPaint(paint);
-		paint.setColor(Color.rgb(255, 206, 158));
+		paint.setColor(lightSquareColor);
 		
 		for (int y = 0; y < 8; y++) {
 			for (int x = 0; x < 8; x++) {
-				if ((state == DRAGGING || state == CLICK_CLICK) && (x == flip(destFile) || y == flip(destRank))) {
-					rect.left = x * squareWidth;
-					rect.right = rect.left + squareWidth;
-					rect.top = y * squareHeight;
-					rect.bottom = rect.top + squareHeight;
-					if ((x + y) % 2 == 0) {
-						paint.setColor(Color.rgb(255, 217, 179));
-					} else {
-						paint.setColor(Color.rgb(218, 162, 105));
-					}
-					canvas.drawRect(rect, paint);
-					paint.setColor(Color.rgb(255, 206, 158));
-				} else if ((x + y) % 2 == 0) {
+				if ((x + y) % 2 == 0) {
 					rect.left = x * squareWidth;
 					rect.right = rect.left + squareWidth;
 					rect.top = y * squareHeight;
@@ -116,6 +141,19 @@ public class BoardView extends View {
 					canvas.drawRect(rect, paint);
 				}
 			}
+		}
+		if (state == DRAGGING || state == CLICK_CLICK) {
+			paint.setColor(Color.argb(100, 255, 255, 255));
+			rect.left = destFile * squareWidth;
+			rect.right = rect.left + squareWidth;
+			rect.top = 0;
+			rect.bottom = 8 * squareHeight;
+			canvas.drawRect(rect, paint);
+			rect.left = 0;
+			rect.right = 8 * squareWidth;
+			rect.top = destRank * squareHeight;
+			rect.bottom = rect.top + squareHeight;
+			canvas.drawRect(rect, paint);
 		}
 		if (position != null) {
 			String move = position.getVerboseMove();
@@ -192,6 +230,7 @@ public class BoardView extends View {
 				rect.top = (flip(destRank) - 0.25f) * squareHeight;
 				rect.bottom = rect.top + 1.5f * squareHeight;
 			}
+			char piece = position.getPieceAt(initFile, initRank);
 			Picture picture = pictures.get(piece);
 			canvas.drawPicture(picture, rect);
 		}
@@ -209,17 +248,16 @@ public class BoardView extends View {
 	
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		if (position != null && position.getRelation() > 0) {
+		if (position != null && (position.getRelation() > 0 || premove && position.getRelation() == -1)) {
 			int action = event.getAction();
 			int file = flip((int) (event.getX() * 8.0f / getWidth()));
 			int rank = flip((int) (event.getY() * 8.0f / getHeight()));
 			if (action == MotionEvent.ACTION_DOWN) {
 				if (state == NONE || state == MOVE_SENT) {
-					char p = position.getPieceAt(file, rank);
-					if (p != '-') {
+					char piece = position.getPieceAt(file, rank);
+					if (piece != '-') {
 						//TODO: handle clicking only own pieces
 						state = INITIAL;
-						piece = p;
 						initFile = file;
 						initRank = rank;
 						invalidate();
@@ -267,10 +305,11 @@ public class BoardView extends View {
 						state = NONE;
 					}
 				} else if (state == DRAGGING || state == CLICK_CLICK) {
-					state = NONE;
 					if ((destFile != initFile || destRank != initRank) && 0 <= destFile && destFile < 8 && 0 <= destRank && destRank < 8) {
 						state = MOVE_SENT;
 						notifyMove(initFile, initRank, destFile, destRank);
+					} else {
+						state = NONE;
 					}
 				}
 				invalidate();
@@ -291,13 +330,47 @@ public class BoardView extends View {
 	}
 	
 	public void setPosition(Position pos) {
+		if (state == MOVE_SENT) {
+			state = NONE;
+		}
 		this.position = pos;
-		state = NONE;
 		invalidate();
 	}
 	
 	private int flip(int a) {
 		return position.isFlip() ? 7 - a : a;
+	}
+	
+	@Override
+	protected Parcelable onSaveInstanceState() {
+		Parcelable parcelable = super.onSaveInstanceState();
+		Bundle bundle = new Bundle();
+		bundle.putParcelable("super", parcelable);
+		int state;
+		if (this.state == MOVE_SENT) {
+			state = MOVE_SENT;
+		} else if (this.state >= CLICK) {
+			state = CLICK;
+		} else {
+			state = NONE;
+		}
+		bundle.putInt("state", state);
+		bundle.putInt("initFile", initFile);
+		bundle.putInt("initRank", initRank);
+		bundle.putInt("destFile", destFile);
+		bundle.putInt("destRank", destRank);
+		return bundle;
+	}
+	
+	@Override
+	protected void onRestoreInstanceState(Parcelable state) {
+		Bundle bundle = (Bundle) state;
+		super.onRestoreInstanceState(bundle.getParcelable("super"));
+		this.state = bundle.getInt("state");
+		this.initFile = bundle.getInt("initFile");
+		this.initRank = bundle.getInt("initRank");
+		this.destFile = bundle.getInt("destFile");
+		this.destRank = bundle.getInt("destRank");
 	}
 	
 	public interface OnMoveListener {

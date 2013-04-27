@@ -37,6 +37,9 @@ public class FreechessModel {
 	
 	private Map<String, List<Communication>> allCommunication;
 	
+	private int currentVersion = Integer.MAX_VALUE;
+	private boolean currentVersionOld;
+	
 	public FreechessModel() {
 		init();
 	}
@@ -46,6 +49,14 @@ public class FreechessModel {
 		activeGames = new HashMap<Integer, Game>();
 		allGames = new HashMap<UUID, Game>();
 		allCommunication = new HashMap<String, List<Communication>>();
+	}
+	
+	public void setCurrentVersion(int currentVersion) {
+		this.currentVersion = currentVersion;
+	}
+	
+	public boolean isCurrentVersionOld() {
+		return currentVersionOld;
 	}
 	
 	public String getOutput() {
@@ -767,6 +778,21 @@ public class FreechessModel {
 	private void parseFinger(Matcher m) {
 		FingerInfo info = FingerInfo.fromMatch(m);
 		notifyFinger(info);
+		if ("Yafi".equalsIgnoreCase(info.getUser()) && info.getLineCount() >= 10) {
+			String line = info.getLine(9);
+			String[] settings = line.split("#");
+			for (String setting : settings) {
+				String[] values = setting.split("\\|");
+				if (values.length >= 2 && "android".equalsIgnoreCase(values[0])) {
+					try {
+						int newestVersion = Integer.parseInt(values[1]);
+						currentVersionOld = newestVersion > currentVersion;
+					} catch (NumberFormatException ex) {
+						// ignore
+					}
+				}
+			}
+		}
 	}
 	
 	private void parseVariables(Matcher m) {

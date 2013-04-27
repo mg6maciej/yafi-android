@@ -126,6 +126,7 @@ public final class FreechessConnection implements Runnable, Handler.Callback {
 			// UnknownHostException: freechess.org
 			// SocketException: Connection reset by peer
 			// SocketTimeoutException: Connection timed out
+			// ConnectException: /69.36.243.188:23 - Network is unreachable
 			Log.e(TAG, "connection error", ex);
 		} finally {
 			
@@ -259,6 +260,7 @@ public final class FreechessConnection implements Runnable, Handler.Callback {
 					send("set style 12\n");
 					send("set unobserve 3\n");
 					send("showlist channel\n");
+					send("finger yafi\n");
 					state = ConnectionState.LoggedOn;
 					notifyLoggedOn();
 					break;

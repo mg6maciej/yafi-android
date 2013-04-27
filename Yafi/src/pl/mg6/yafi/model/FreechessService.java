@@ -144,6 +144,8 @@ public class FreechessService extends Service implements FreechessConnection.Lis
 		cleanup();
 		
 		model = new FreechessModel();
+		int currentVersion = AndroidUtils.getVersionCode(this);
+		model.setCurrentVersion(currentVersion);
 		model.setListener(this);
 		String interfaceName = "Yafi " + AndroidUtils.getVersionName(this);
 		connection = new FreechessConnection(username, password, interfaceName);
@@ -384,6 +386,8 @@ public class FreechessService extends Service implements FreechessConnection.Lis
 		String getRealUsername();
 		
 		void quit();
+		
+		boolean isCurrentVersionOld();
 	}
 	
 	private class LocalBinder extends Binder implements FreechessServiceInterface {
@@ -479,6 +483,11 @@ public class FreechessService extends Service implements FreechessConnection.Lis
 		public void quit() {
 			cleanup();
 			stopSelf();
+		}
+		
+		@Override
+		public boolean isCurrentVersionOld() {
+			return model.isCurrentVersionOld();
 		}
 		
 //		synchronized private void sendMessage(int msgId, int data) {

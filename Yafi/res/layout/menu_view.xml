@@ -67,7 +67,7 @@
             android:lines="2"
             android:onClick="onChallengesClick"
             android:text="@string/challenges" />
-        
+
         <Button
             android:id="@+id/main_console"
             android:layout_width="110dp"
@@ -87,6 +87,30 @@
             android:lines="2"
             android:onClick="onUserPrefsClick"
             android:text="@string/preferences" />
-        </RelativeLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/main_update_rate_panel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/main_update_rate_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/main_update_rate_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onUpdateRateClick" />
+
+    </LinearLayout>
 
 </merge>

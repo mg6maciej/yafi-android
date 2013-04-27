@@ -12,14 +12,21 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class LoginActivity extends BaseFreechessActivity {
+	
+	private static final String TAG = LoginActivity.class.getSimpleName();
 	
 	private static final int FIRST_ID = 20000;
 	
@@ -34,6 +41,7 @@ public class LoginActivity extends BaseFreechessActivity {
 	
 	private EditText usernameField;
 	private EditText passwordField;
+	private Button loginButton;
 	
 	private ProgressDialog connectingDialog;
 	
@@ -45,6 +53,24 @@ public class LoginActivity extends BaseFreechessActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login_view);
 		usernameField = (EditText) findViewById(R.id.login_username);
+		usernameField.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+			}			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+			}
+			@Override
+			public void afterTextChanged(Editable s) {
+				int resId;
+				if (usernameField.length() > 0) {
+					resId = R.string.login;
+				} else {
+					resId = R.string.login_as_guest;
+				}
+				loginButton.setText(resId);
+			}
+		});
 		passwordField = (EditText) findViewById(R.id.login_password);
 		passwordField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 			@Override
@@ -53,6 +79,7 @@ public class LoginActivity extends BaseFreechessActivity {
 				return false;
 			}
 		});
+		loginButton = (Button) findViewById(R.id.login_submit);
 		
 		checkLoggedOn = false;
 	}
@@ -183,6 +210,13 @@ public class LoginActivity extends BaseFreechessActivity {
 		
 		trackEvent(Tracking.CATEGORY_LOGIN, Tracking.ACTION_APP_VERSION, AndroidUtils.getVersionName(this), AndroidUtils.getVersionCode(this));
 		trackEvent(Tracking.CATEGORY_LOGIN, Tracking.ACTION_DEVICE, Build.MODEL, Build.VERSION.SDK_INT);
+		DisplayMetrics dm = getResources().getDisplayMetrics();
+		int width = dm.widthPixels;
+		int height = dm.heightPixels;
+		int rotation = getWindowManager().getDefaultDisplay().getOrientation();
+		int density = (int) (DisplayMetrics.DENSITY_DEFAULT * dm.density);
+		Log.i(TAG, "size: " + width + " " + height);
+		trackEvent(Tracking.CATEGORY_LOGIN, Tracking.ACTION_SCREEN, width + "x" + height + "@" + density + "dpi", rotation);
 	}
 	
 	protected void onDisconnected() {

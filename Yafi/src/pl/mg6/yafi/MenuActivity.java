@@ -1,13 +1,20 @@
 package pl.mg6.yafi;
 
+import java.util.Random;
+
 import pl.mg6.common.Settings;
+import pl.mg6.common.android.tracker.Tracking;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
 
 public class MenuActivity extends BaseFreechessActivity {
 	
@@ -27,10 +34,14 @@ public class MenuActivity extends BaseFreechessActivity {
 	private AlertDialog confirmDisconnectDialog;
 	private CheckBox confirmDisconnectCheckbox;
 	
+	private ViewGroup updateRatePanel;
+	private boolean triedShowRate;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.menu_view);
+		updateRatePanel = (ViewGroup) findViewById(R.id.main_update_rate_panel);
 	}
 	
 	public void onBoardClick(View view) {
@@ -86,6 +97,42 @@ public class MenuActivity extends BaseFreechessActivity {
 	private void dismissConfirmDisconnectDialog() {
 		if (confirmDisconnectDialog != null && confirmDisconnectDialog.isShowing()) {
 			confirmDisconnectDialog.dismiss();
+		}
+	}
+	
+	@Override
+	protected void onStartHandlingMessages() {
+		super.onStartHandlingMessages();
+		if (service.isCurrentVersionOld()) {
+			updateRatePanel.setVisibility(View.VISIBLE);
+			TextView text = (TextView) updateRatePanel.findViewById(R.id.main_update_rate_text);
+			Button button = (Button) updateRatePanel.findViewById(R.id.main_update_rate_button);
+			text.setText("New version of Yafi available!");
+			button.setText("Download");
+			button.setTag(false);
+		} else if (!(triedShowRate || !Settings.canShowRate(this))) {
+			triedShowRate = true;
+			if (new Random().nextInt(10) == 0) {
+				updateRatePanel.setVisibility(View.VISIBLE);
+				TextView text = (TextView) updateRatePanel.findViewById(R.id.main_update_rate_text);
+				Button button = (Button) updateRatePanel.findViewById(R.id.main_update_rate_button);
+				text.setText("If you enjoy using Yafi,\nplease take a moment to rate it.");
+				button.setText("Rate Yafi");
+				button.setTag(true);
+			}
+		}
+	}
+	
+	public void onUpdateRateClick(View view) {
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.setData(Uri.parse("market://details?id=" + getPackageName()));
+		startActivity(intent);
+		if ((Boolean) view.getTag()) {
+			updateRatePanel.setVisibility(View.GONE);
+			Settings.setRateClicked(this);
+			trackEvent(Tracking.CATEGORY_EXTERNAL, Tracking.ACTION_RATE, null, 0);
+		} else {
+			trackEvent(Tracking.CATEGORY_EXTERNAL, Tracking.ACTION_UPDATE, null, 0);
 		}
 	}
 	

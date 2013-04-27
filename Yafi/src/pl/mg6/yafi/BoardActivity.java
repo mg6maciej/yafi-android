@@ -1,6 +1,8 @@
 package pl.mg6.yafi;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.UUID;
 
 import pl.mg6.common.Settings;
@@ -57,6 +59,9 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 	
 	private boolean showLag;
 	
+	private boolean premove;
+	private Queue<String> premoveQueue = new LinkedList<String>();
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -87,6 +92,9 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 		};
 		
 		currentGameId = Settings.loadCurrentGame(this);
+		
+		premove = Settings.isBoardPremove(this);
+		boardView.setPremove(premove);
 	}
 	
 	@Override
@@ -289,6 +297,10 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 			updateViews();
 		} else if (currentGameId.equals(gameId)) {
 			updateViews();
+			while (premoveQueue.size() > 0) {
+				service.sendInput(premoveQueue.poll());
+				boardView.setMoveSent();
+			}
 		} else {
 			Game game = service.getGame(gameId);
 			((Button) tabs.findViewWithTag(gameId)).setText(game.getWhiteName() + "*\n" + game.getBlackName());
@@ -386,7 +398,14 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 	
 	@Override
 	public void onMove(int initFile, int initRank, int destFile, int destRank) {
-		service.sendInput(FreechessUtils.moveToString(initFile, initRank, destFile, destRank) + "\n");
+		String move = FreechessUtils.moveToString(initFile, initRank, destFile, destRank) + "\n";
+		Game game = service.getGame(currentGameId);
+		Position last = game.getPosition(game.getPositionCount() - 1);
+		if (last.getRelation() > 0) {
+			service.sendInput(move);
+		} else if (premove) {
+			premoveQueue.offer(move);
+		}
 	}
 	
 	@Override

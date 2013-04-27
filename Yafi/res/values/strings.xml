@@ -6,6 +6,7 @@
     <string name="password">Password</string>
     <string name="remember_password">Remember password</string>
     <string name="login">Login</string>
+    <string name="login_as_guest">Login as Guest</string>
     <string name="board">Board</string>
     <string name="chat">Chat</string>
     <string name="seek">Seek \na game</string>
@@ -35,6 +36,8 @@
     <string name="confirm_disconnect">Confirm disconnection</string>
     <string name="input_method">Input method</string>
     <string name="input_method_summary">%s</string>
+    <string name="colors">Colors</string>
+    <string name="colors_summary">%s</string>
     <string name="loading">Loading…</string>
 
     <string-array name="types">
@@ -62,6 +65,24 @@
         <item>1</item>
         <item>2</item>
         <item>3</item>
+    </string-array>
+    <string-array name="board_colors">
+        <item>Default</item>
+        <item>Red</item>
+        <item>Green</item>
+        <item>Blue</item>
+        <item>Butter Chameleon</item>
+        <item>Sky Plum</item>
+        <item>Scarlet Aluminium</item>
+    </string-array>
+    <string-array name="board_colors_values">
+        <item>default</item>
+        <item>red</item>
+        <item>green</item>
+        <item>blue</item>
+        <item>butter_chameleon</item>
+        <item>sky_plum</item>
+        <item>scarlet_aluminium</item>
     </string-array>
 
 </resources>
