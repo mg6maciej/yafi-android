@@ -44,7 +44,8 @@
     <string name="search_for_game">Search for game</string>
     <string name="console">Console</string>
     <string name="preferences">Preferences</string>
-    <string name="contact">Bugs? Feedback? Contact developer</string>
+    <string name="issue_tracker">Bugs? Requests? Issue tracker</string>
+    <string name="contact">Feedback? Contact developer</string>
     <string name="messages_and_news">Messages\nand news</string>
     <string name="send">Send</string>
     <string name="dont_ask_again">Don\'t ask again</string>

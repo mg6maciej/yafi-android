@@ -338,6 +338,9 @@ public class LoginActivity extends BaseFreechessActivity {
 		if (id == R.id.mi_preferences) {
 			Intent intent = new Intent(this, UserPreferencesActivity.class);
 			startActivityForResult(intent, REQUEST_ID_USER_PREFS);
+		} else if (id == R.id.mi_issue_tracker) {
+			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://code.google.com/p/yafi-android-issues/"));
+			startActivity(intent);
 		} else if (id == R.id.mi_contact) {
 			Intent intent = new Intent(Intent.ACTION_SEND);
 			intent.setType("message/rfc822");

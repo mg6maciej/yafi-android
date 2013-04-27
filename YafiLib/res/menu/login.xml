@@ -6,6 +6,10 @@
         android:title="@string/preferences"/>
 
     <item
+        android:id="@+id/mi_issue_tracker"
+        android:title="@string/issue_tracker"/>
+
+    <item
         android:id="@+id/mi_contact"
         android:title="@string/contact"/>
     
