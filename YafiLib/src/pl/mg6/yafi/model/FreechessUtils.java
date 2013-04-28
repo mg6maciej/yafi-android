@@ -347,7 +347,10 @@ public class FreechessUtils {
 			+ "(?:\nYour message file is full, (\\d+) messages is the maximum number allowed\\.\n"
 			+ "You will not be able to receive any more messages until you remove some\\.\n)?"
 			+ "(?:\nPresent company includes: ([A-Za-z ]+)\\.\n)?"
-			+ "(?:\nYour arrival was noted by: ([A-Za-z ]+)\\.\n)?$");
+			+ "(?:\nYour arrival was noted by: ([A-Za-z ]+)\\.\n)?"
+			+ "(?:\nYou have \\d+ adjourned games?\\.\n"
+			+ "(?:\\d+ players?, who (?:has|have) an adjourned game with you, (?:is|are) online:\n"
+			+ "[A-Za-z ]+\n)?)?$");
 	
 	public static final Pattern NEWS = Pattern.compile("^Index of (?:the last few news items|news items \\d+-\\d+):\n *\\d+ \\(");
 	
