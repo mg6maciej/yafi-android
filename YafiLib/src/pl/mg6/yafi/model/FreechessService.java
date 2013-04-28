@@ -22,6 +22,8 @@ import pl.mg6.yafi.model.data.SeekInfo;
 import pl.mg6.yafi.model.data.SeekInfoList;
 import pl.mg6.yafi.model.data.VariablesInfo;
 import pl.mg6.yafi.model.data.WelcomeData;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -30,6 +32,7 @@ import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.PowerManager;
+import android.os.SystemClock;
 import android.os.Vibrator;
 import android.util.Log;
 
@@ -122,7 +125,11 @@ public class FreechessService extends Service implements FreechessConnection.Lis
 		}
 		String username = intent.getStringExtra(EXTRA_NAME_USERNAME);
 		String password = intent.getStringExtra(EXTRA_NAME_PASSWORD);
-		createConnection(username, password);
+		if (username != null) {
+			createConnection(username, password);
+		} else {
+			keepAlive();
+		}
 		return START_NOT_STICKY;
 	}
 	
@@ -169,6 +176,12 @@ public class FreechessService extends Service implements FreechessConnection.Lis
 			model = null;
 		}
 		
+		Intent intent = new Intent(this, FreechessService.class);
+		intent.setAction("keepAlive");
+		PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, 0);
+		AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+		alarmManager.cancel(pendingIntent);
+		
 		wakeLock.release();
 	}
 	
@@ -178,6 +191,12 @@ public class FreechessService extends Service implements FreechessConnection.Lis
 		
 		wakeLock.acquire();
 		
+		Intent intent = new Intent(this, FreechessService.class);
+		intent.setAction("keepAlive");
+		PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, 0);
+		AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+		alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + 60000, 60000, pendingIntent);
+		
 		model = new FreechessModel();
 		int currentVersion = AndroidUtils.getVersionCode(this);
 		model.setCurrentVersion(currentVersion);
@@ -186,6 +205,12 @@ public class FreechessService extends Service implements FreechessConnection.Lis
 		connection = new FreechessConnection(username, password, interfaceName);
 		connection.setListener(this);
 		connection.connect();
+	}
+	
+	private void keepAlive() {
+		if (connection != null) {
+			connection.send("$$\n");
+		}
 	}
 	
 	@Override
