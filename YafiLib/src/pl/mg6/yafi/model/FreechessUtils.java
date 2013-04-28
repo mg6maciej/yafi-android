@@ -123,7 +123,7 @@ public class FreechessUtils {
 	
 	public static final Pattern GAMEINFO_MOVE_ADDITIONAL = Pattern.compile(STYLE_12);
 	
-	public static final Pattern GAMEINFO_ACCEPT_DECLINE_MOVE = Pattern.compile("^(You (?:accept|decline) the (?:abort|adjourn|draw|switch|takeback) request from " + HANDLE_X + "\\.\n)" + STYLE_12 + "$");
+	public static final Pattern GAMEINFO_ACCEPT_DECLINE_MOVE = Pattern.compile("^((?:You (?:accept|decline) the (?:abort|adjourn|draw|switch|takeback) request from " + HANDLE_X + "\\.\n)+)" + STYLE_12 + "$");
 	
 	public static final Pattern GAMEINFO_ILLEGAL_MOVE = Pattern.compile("^(Illegal move \\(\\S+\\)\\.(?: You must capture\\.)?\n)" + STYLE_12 + "$");
 	
