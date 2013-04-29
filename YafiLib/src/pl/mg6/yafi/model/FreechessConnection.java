@@ -157,7 +157,7 @@ public final class FreechessConnection implements Runnable, Handler.Callback {
 					throw (Exception) socketAndErrors[1];
 				}
 			}
-			socket.setSoTimeout(120000);
+			socket.setSoTimeout(5 * 60 * 1000);
 			istream = new BufferedInputStream(socket.getInputStream());
 			ostream = socket.getOutputStream();
 			protocol = new TimesealProtocolImpl(istream, ostream);
