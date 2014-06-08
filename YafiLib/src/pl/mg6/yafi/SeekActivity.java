@@ -18,10 +18,14 @@ public class SeekActivity extends BaseFreechessActivity {
 	private EditText incrementField;
 	private Spinner typeField;
 	private CheckBox ratedField;
+	private CheckBox formulaField;
+	private EditText minRatingField;
+	private EditText maxRatingField;
 
 	private String[] typeIds;
 	
-	private static final String SEEK_FORMAT = "seek %d %d %s %s\n";
+	private static final String SEEK_FORMAT = "seek %d %d %s %s %d-%d\n";
+	private static final String SEEK_FORMAT_WITH_FORMULA = "seek %d %d %s %s f %d-%d\n";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,9 @@ public class SeekActivity extends BaseFreechessActivity {
 		incrementField = (EditText) findViewById(R.id.seek_increment);
 		typeField = (Spinner) findViewById(R.id.seek_type);
 		ratedField = (CheckBox) findViewById(R.id.seek_rated);
+		formulaField = (CheckBox) findViewById(R.id.seek_formula);
+		minRatingField = (EditText) findViewById(R.id.seek_min_rating);
+		maxRatingField = (EditText) findViewById(R.id.seek_max_rating);
 		
 		typeIds = getResources().getStringArray(R.array.types_ids);
 		
@@ -45,6 +52,9 @@ public class SeekActivity extends BaseFreechessActivity {
 			}
 		}
 		ratedField.setChecked(Settings.isSeekRated(this));
+		formulaField.setChecked(Settings.isSeekWithFormula(this));
+		minRatingField.setText(Settings.getSeekMinRating(this));
+		maxRatingField.setText(Settings.getSeekMaxRating(this));
 	}
 	
 	@Override
@@ -54,7 +64,10 @@ public class SeekActivity extends BaseFreechessActivity {
 		String increment = incrementField.getText().toString();
 		String type = typeIds[typeField.getSelectedItemPosition()];
 		boolean rated = ratedField.isChecked();
-		Settings.setSeekData(this, time, increment, type, rated);
+		boolean formula = formulaField.isChecked();
+		String minRating = minRatingField.getText().toString();
+		String maxRating = maxRatingField.getText().toString();
+		Settings.setSeekData(this, time, increment, type, rated, formula, minRating, maxRating);
 	}
 	
 	public void onSeekClick(View view) {
@@ -84,8 +97,21 @@ public class SeekActivity extends BaseFreechessActivity {
 		}
 		String type = typeIds[typeField.getSelectedItemPosition()];
 		boolean rated = ratedField.isChecked();
+		boolean formula = formulaField.isChecked();
+		int minRating = 0;
+		int maxRating = 9999;
+		try {
+			if (minRatingField.length() > 0) {
+				minRating = Integer.parseInt(minRatingField.getText().toString());
+			}
+			if (maxRatingField.length() > 0) {
+				maxRating = Integer.parseInt(maxRatingField.getText().toString());
+			}
+		} catch (NumberFormatException ex) {
+		}
 		
-		service.sendInput(String.format(SEEK_FORMAT, time, increment, type, (rated ? "r" : "u")));
+		String format = formula ? SEEK_FORMAT_WITH_FORMULA : SEEK_FORMAT;
+		service.sendInput(String.format(format, time, increment, type, (rated ? "r" : "u"), minRating, maxRating));
 		if (time == 0 && increment == 0) {
 			Toast.makeText(this, "Seeking untimed game.", Toast.LENGTH_SHORT).show();
 		} else {

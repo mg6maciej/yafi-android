@@ -40,6 +40,9 @@ public final class Settings {
 	private static final String PREF_SEEK_INCREMENT = "user_pref.seek_increment";
 	private static final String PREF_SEEK_TYPE = "user_pref.seek_type";
 	private static final String PREF_SEEK_RATED = "user_pref.seek_rated";
+	private static final String PREF_SEEK_FORMULA = "user_pref.seek_formula";
+	private static final String PREF_SEEK_MIN_RATING = "user_pref.seek_min_rating";
+	private static final String PREF_SEEK_MAX_RATING = "user_pref.seek_max_rating";
 	private static final String PREF_MATCH_TIME = "user_pref.match_time";
 	private static final String PREF_MATCH_INCREMENT = "user_pref.match_increment";
 	private static final String PREF_MATCH_TYPE = "user_pref.match_type";
@@ -184,12 +187,33 @@ public final class Settings {
 		return rated;
 	}
 	
-	public static void setSeekData(Context context, String time, String increment, String type, boolean rated) {
+	public static boolean isSeekWithFormula(Context context) {
+		SharedPreferences prefs = getSharedPrefs(context);
+		boolean formula = prefs.getBoolean(PREF_SEEK_FORMULA, false);
+		return formula;
+	}
+	
+	public static String getSeekMinRating(Context context) {
+		SharedPreferences prefs = getSharedPrefs(context);
+		String minRating = prefs.getString(PREF_SEEK_MIN_RATING, null);
+		return minRating;
+	}
+	
+	public static String getSeekMaxRating(Context context) {
+		SharedPreferences prefs = getSharedPrefs(context);
+		String naxRating = prefs.getString(PREF_SEEK_MAX_RATING, null);
+		return naxRating;
+	}
+	
+	public static void setSeekData(Context context, String time, String increment, String type, boolean rated, boolean formula, String minRating, String maxRating) {
 		SharedPreferences.Editor editor = getSharedPrefsEditor(context);
 		editor.putString(PREF_SEEK_TIME, time);
 		editor.putString(PREF_SEEK_INCREMENT, increment);
 		editor.putString(PREF_SEEK_TYPE, type);
 		editor.putBoolean(PREF_SEEK_RATED, rated);
+		editor.putBoolean(PREF_SEEK_FORMULA, formula);
+		editor.putString(PREF_SEEK_MIN_RATING, minRating);
+		editor.putString(PREF_SEEK_MAX_RATING, maxRating);
 		editor.commit();
 	}
 	

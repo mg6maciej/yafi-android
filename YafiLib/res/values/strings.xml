@@ -63,6 +63,9 @@
     <string name="time">Time (minutes)</string>
     <string name="increment">Increment (seconds)</string>
     <string name="rated">Rated</string>
+    <string name="formula">Use server formula</string>
+    <string name="min_rating">Min rating</string>
+    <string name="max_rating">Max rating</string>
     <string name="flip">Flip</string>
     <string name="show_controls">Show controls</string>
     <string name="hide_controls">Hide controls</string>
@@ -265,15 +268,5 @@
         <item>spatial</item>
         <item>eyes</item>
     </string-array>
-
-    <!--
-    array name="board_pieces_images">
-        <item>@drawable/board_pieces_default</item>
-        <item>@drawable/board_pieces_celtic</item>
-        <item>@drawable/board_pieces_fantasy</item>
-        <item>@drawable/board_pieces_spatial</item>
-        <item>@drawable/board_pieces_eyes</item>
-    </array
-    -->
 
 </resources>
