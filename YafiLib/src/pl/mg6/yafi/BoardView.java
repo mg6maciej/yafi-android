@@ -321,8 +321,8 @@ public class BoardView extends View {
 			int file = flip((int) (event.getX() * 8.0f / getWidth()));
 			int rank = flip((int) (event.getY() * 8.0f / getHeight()));
 			if (action == MotionEvent.ACTION_DOWN) {
-				if (state == NONE || state == MOVE_SENT) {
-					char piece = position.getPieceAt(file, rank);
+				char piece = position.getPieceAt(file, rank);
+				if (state == NONE || state == MOVE_SENT || state == CLICK && (file != initFile || rank != initRank) && isSamePieceColorAlreadySelected(piece)) {
 					if (piece != '-') {
 						//TODO: handle clicking only own pieces
 						state = INITIAL;
@@ -385,6 +385,14 @@ public class BoardView extends View {
 			}
 		}
 		return false;
+	}
+	
+	private boolean isSamePieceColorAlreadySelected(char piece) {
+		String white = "pnbrqk";
+		String black = "PNBRQK";
+		char prevClickedPiece = position.getPieceAt(initFile, initRank);
+		return white.indexOf(piece) >= 0 && white.indexOf(prevClickedPiece) >= 0
+				|| black.indexOf(piece) >= 0 && black.indexOf(prevClickedPiece) >= 0;
 	}
 	
 	public void setOnMoveListener(OnMoveListener l) {
