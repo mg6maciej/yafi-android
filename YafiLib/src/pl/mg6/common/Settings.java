@@ -334,6 +334,27 @@ public final class Settings {
 		return commands;
 	}
 	
+	public static void removeFromFrequentlyUsedCommands(Context context, String command) {
+		SharedPreferences prefs = getSharedPrefs(context);
+		String pref = prefs.getString(PREF_CONSOLE_COMMANDS, null);
+		Set<String> commands = new HashSet<String>();
+		if (pref != null) {
+			for (String tmp : pref.split("\n")) {
+				commands.add(tmp);
+			}
+		}
+		for (String old : commands) {
+			int index = old.indexOf(' ');
+			if (old.substring(index + 1).equals(command)) {
+				commands.remove(old);
+				break;
+			}
+		}
+		SharedPreferences.Editor editor = prefs.edit();
+		editor.putString(PREF_CONSOLE_COMMANDS, StringUtils.join("\n", commands.toArray(new String[0])));
+		editor.commit();
+	}
+	
 	public static boolean isVibrate(Context context) {
 		SharedPreferences prefs = getSharedPrefs(context);
 		boolean vibrate = prefs.getBoolean(PREF_VIBRATE, Build.VERSION.SDK_INT < 11 || ((Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE)).hasVibrator());

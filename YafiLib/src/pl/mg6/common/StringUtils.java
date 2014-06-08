@@ -11,6 +11,9 @@ public class StringUtils {
 	private static final Pattern FIRST_OR_AFTER_UNDERLINE = Pattern.compile("(?:^|_+)[a-z]");
 	
 	public static String join(String j, String[] array) {
+		if (array.length == 0) {
+			return null;
+		}
 		StringBuilder builder = new StringBuilder();
 		builder.append(array[0]);
 		for (int i = 1; i < array.length; i++) {

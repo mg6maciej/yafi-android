@@ -1,6 +1,5 @@
 package pl.mg6.yafi;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import pl.mg6.common.Settings;
@@ -12,6 +11,7 @@ import pl.mg6.yafi.lib.R;
 import pl.mg6.yafi.model.FreechessService;
 import android.os.Bundle;
 import android.os.Message;
+import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,13 +27,6 @@ public class ConsoleActivity extends BaseFreechessActivity {
 	private ScrollViewEx outputScroll;
 
 	private LinearLayout tabs;
-//	private HorizontalScrollView tabsScrollPortrait;
-//	private ScrollView tabsScrollLandscape;
-	
-//	private Button previousCommandsButton;
-	
-	private List<String> previousCommands = new LinkedList<String>();
-	private static final int MAX_PREVIOUS_COMMANDS = 5;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -73,19 +66,6 @@ public class ConsoleActivity extends BaseFreechessActivity {
 				addTab(command);
 			}
 		}
-//		tabsScrollPortrait = (HorizontalScrollView) findViewById(R.id.console_tabs_scroll_portrait);
-//		tabsScrollLandscape = (ScrollView) findViewById(R.id.chat_tabs_scroll_landscape);
-		
-//		previousCommandsButton = (Button) findViewById(R.id.console_command_history);
-//		previousCommandsButton.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
-//			@Override
-//			public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-//				menu.setHeaderTitle(getString(R.string.previous_commands).replace('\n', ' '));
-//				for (String cmd : previousCommands) {
-//					menu.add(cmd);
-//				}
-//			}
-//		});
 	}
 	
 	private boolean sendCommand() {
@@ -94,7 +74,7 @@ public class ConsoleActivity extends BaseFreechessActivity {
 		if (length > 0) {
 			service.sendInput(input + "\n");
 			inputField.setText("");
-			rememberCommand(input);
+			Settings.addCommand(this, input);
 			String cmd = input.split(" ")[0].toLowerCase();
 			trackEvent(Tracking.CATEGORY_VETERAN, Tracking.ACTION_COMMAND, cmd, length);
 			return true;
@@ -106,31 +86,22 @@ public class ConsoleActivity extends BaseFreechessActivity {
 		sendCommand();
 	}
 	
-	private void rememberCommand(String command) {
-		Settings.addCommand(this, command);
-		previousCommands.remove(command);
-		previousCommands.add(command);
-		if (previousCommands.size() > MAX_PREVIOUS_COMMANDS) {
-			previousCommands.remove(0);
-		}
-//		previousCommandsButton.setEnabled(true);
-//		if (previousCommands.size() > 1) {
-//			previousCommandsButton.setText(R.string.previous_commands);
-//		}
-	}
-	
-	public void onPreviousCommandsClick(View view) {
-		if (previousCommands.size() == 1) {
-			inputField.setText(previousCommands.get(0));
-		} else {
-			view.showContextMenu();
-		}
-	}
-	
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		inputField.setText(item.getTitle());
-		return true;
+		String title = item.getTitle().toString();
+		if (title.startsWith("Delete ")) {
+			String command = title.substring("Delete ".length());
+			Settings.removeFromFrequentlyUsedCommands(this, command);
+			for (int i = 0; i < tabs.getChildCount(); i++) {
+				Button tab = (Button) tabs.getChildAt(i);
+				if (command.contentEquals(tab.getText())) {
+					tabs.removeViewAt(i);
+					break;
+				}
+			}
+			return true;
+		}
+		return super.onContextItemSelected(item);
 	}
 	
 	private void addTab(final String command) {
@@ -145,6 +116,12 @@ public class ConsoleActivity extends BaseFreechessActivity {
 				Settings.addCommand(ConsoleActivity.this, command);
 				String cmd = command.split(" ")[0].toLowerCase();
 				trackEvent(Tracking.CATEGORY_VETERAN, Tracking.ACTION_COMMAND_CLICK, cmd, command.length());
+			}
+		});
+		b.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
+			@Override
+			public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+				contextMenu.add("Delete " + command);
 			}
 		});
 		tabs.addView(b);
