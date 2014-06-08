@@ -41,6 +41,7 @@
         <activity android:name="pl.mg6.yafi.NewsDetailsActivity" />
         <activity android:name="pl.mg6.yafi.SearchForGameActivity" />
         <activity android:name="pl.mg6.yafi.SeekActivity" />
+        <activity android:name="pl.mg6.yafi.SelfFinishingActivity" />
         <activity android:name="pl.mg6.yafi.SendMessageActivity" />
         <activity android:name="pl.mg6.yafi.SoughtActivity" />
         <activity

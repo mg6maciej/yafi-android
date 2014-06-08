@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import pl.mg6.common.Settings;
 import pl.mg6.common.android.AndroidUtils;
+import pl.mg6.yafi.SelfFinishingActivity;
 import pl.mg6.yafi.lib.R;
 import pl.mg6.yafi.model.FreechessConnection.ConnectionState;
 import pl.mg6.yafi.model.data.AdjournedInfo;
@@ -23,6 +24,7 @@ import pl.mg6.yafi.model.data.SeekInfoList;
 import pl.mg6.yafi.model.data.VariablesInfo;
 import pl.mg6.yafi.model.data.WelcomeData;
 import android.app.AlarmManager;
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
@@ -34,6 +36,7 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.os.SystemClock;
 import android.os.Vibrator;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 public class FreechessService extends Service implements FreechessConnection.Listener, FreechessModel.Listener {
@@ -116,6 +119,8 @@ public class FreechessService extends Service implements FreechessConnection.Lis
 		PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
 		wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "freechess.org connection");
 		wakeLock.setReferenceCounted(false);
+		
+		stopForeground(true);
 	}
 	
 	@Override
@@ -182,6 +187,7 @@ public class FreechessService extends Service implements FreechessConnection.Lis
 		AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 		alarmManager.cancel(pendingIntent);
 		
+		stopForeground(true);
 		wakeLock.release();
 	}
 	
@@ -190,6 +196,7 @@ public class FreechessService extends Service implements FreechessConnection.Lis
 		cleanup();
 		
 		wakeLock.acquire();
+		startForeground(1, createNotification(false));
 		
 		Intent intent = new Intent(this, FreechessService.class);
 		intent.setAction("keepAlive");
@@ -205,6 +212,20 @@ public class FreechessService extends Service implements FreechessConnection.Lis
 		connection = new FreechessConnection(username, password, interfaceName);
 		connection.setListener(this);
 		connection.connect();
+	}
+	
+	private Notification createNotification(boolean connected) {
+		NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+		builder.setSmallIcon(R.drawable.ic_launcher);
+		builder.setContentTitle("Yafi");
+		builder.setContentText((connected ? "connected" : "connecting") + " to freechess.org");
+		builder.setContentIntent(createIntent());
+		return builder.build();
+	}
+	
+	private PendingIntent createIntent() {
+		Intent intent = new Intent(this, SelfFinishingActivity.class);
+		return PendingIntent.getActivity(this, 0, intent, 0);
 	}
 	
 	private void keepAlive() {
@@ -254,6 +275,7 @@ public class FreechessService extends Service implements FreechessConnection.Lis
 		if (connection.isRegistered()) {
 			Settings.setRegisteredUser(this);
 		}
+		startForeground(1, createNotification(true));
 		binder.sendMessage(MSG_ID_LOGGED_ON);
 	}
 	
