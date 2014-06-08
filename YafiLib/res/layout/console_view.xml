@@ -25,6 +25,7 @@
 
         <TextView
             android:id="@+id/console_output"
+            android:textIsSelectable="true"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" />
     </pl.mg6.common.android.ScrollViewEx>
