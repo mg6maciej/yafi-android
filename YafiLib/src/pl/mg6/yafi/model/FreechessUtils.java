@@ -184,6 +184,8 @@ public class FreechessUtils {
 	
 	public static final Pattern GAMEINFO_MOVE_END = Pattern.compile("^" + STYLE_12 + "(\n\\{Game \\d+ \\(" + HANDLE_X + " vs\\. " + HANDLE_X + "\\) (.*?)\\} (1-0|0-1|1/2-1/2|\\*)\n" + OPTIONAL_RATING_ADJUSTMENT + ")$");
 	
+	public static final Pattern GAMEINFO_END_MOVE = Pattern.compile("^(\n\\{Game (\\d+) \\(" + HANDLE_X + " vs\\. " + HANDLE_X + "\\) (.*?)\\} (1-0|0-1|1/2-1/2|\\*)\n" + OPTIONAL_RATING_ADJUSTMENT + ")" + STYLE_12 + "$");
+	
 	public static final Pattern GAMEINFO_AUTOFLAGGING_MOVE = Pattern.compile("^((?:\nChecking if really out of time\\.\n)?\nAuto-flagging\\.\n)" + STYLE_12 + "$");
 	
 	public static final Pattern GAMEINFO_DRAW_OFFER = Pattern.compile("^\n" + HANDLE + " offers you a draw\\.\n$");

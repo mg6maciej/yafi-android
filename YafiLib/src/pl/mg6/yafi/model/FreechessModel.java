@@ -210,6 +210,12 @@ public class FreechessModel {
 			this.output += m.group(2) + "yafi% ";
 			return true;
 		}
+		m = FreechessUtils.GAMEINFO_END_MOVE.matcher(output);
+		if (m.matches()) {
+			parseGameInfoEndMove(m);
+			this.output += m.group(1) + "yafi% ";
+			return true;
+		}
 		m = FreechessUtils.GAMEINFO_AUTOFLAGGING_MOVE.matcher(output);
 		if (m.matches()) {
 			parseGameInfoAutoflaggingMove(m);
@@ -874,6 +880,21 @@ public class FreechessModel {
 		String result = m.group(3);
 		Game game = activeGames.remove(gameId);
 		if (game != null) {
+			game.setResult(result, description);
+			game.setRelation(Game.RELATION_UNKNOWN);
+			notifyGameUpdate(game.getUUID());
+		}
+	}
+	
+	private void parseGameInfoEndMove(Matcher m) {
+		int gameId = Integer.parseInt(m.group(2));
+		String description = m.group(3);
+		String result = m.group(4);
+		String style12 = m.group(5);
+		Position pos = Position.fromStyle12(style12);
+		Game game = activeGames.remove(gameId);
+		if (game != null) {
+			game.addPosition(pos);
 			game.setResult(result, description);
 			game.setRelation(Game.RELATION_UNKNOWN);
 			notifyGameUpdate(game.getUUID());
