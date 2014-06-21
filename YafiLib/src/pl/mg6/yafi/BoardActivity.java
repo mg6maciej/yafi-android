@@ -460,7 +460,6 @@ public class BoardActivity extends BaseFreechessActivity implements BoardView.On
 			view.showContextMenu();
 		} else {
 			currentGameId = gameId;
-			Game game = service.getGame(currentGameId);
 			view.findViewById(R.id.board_tab_update).setVisibility(View.INVISIBLE);
 			currentPosition = Integer.MAX_VALUE;
 			updateViews();

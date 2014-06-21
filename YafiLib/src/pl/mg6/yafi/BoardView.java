@@ -322,7 +322,7 @@ public class BoardView extends View {
 			int rank = flip((int) (event.getY() * 8.0f / getHeight()));
 			if (action == MotionEvent.ACTION_DOWN) {
 				char piece = position.getPieceAt(file, rank);
-				if (state == NONE || state == MOVE_SENT || state == CLICK && (file != initFile || rank != initRank) && isSamePieceColorAlreadySelected(piece)) {
+				if (state == NONE || state == MOVE_SENT || state == CLICK && (file != initFile || rank != initRank) && isSamePieceColorAlreadySelected(piece) && position.getRelation() > 0) {
 					if (piece != '-') {
 						//TODO: handle clicking only own pieces
 						state = INITIAL;
@@ -332,7 +332,6 @@ public class BoardView extends View {
 						return true;
 					}
 				} else if (state == CLICK) {
-					//TODO: handle clicking own piece as in NONE state
 					if (initFile == file && initRank == rank) {
 						state = NONE;
 					} else {
