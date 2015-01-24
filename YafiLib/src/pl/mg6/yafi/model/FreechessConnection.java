@@ -21,7 +21,7 @@ public final class FreechessConnection implements Runnable, Handler.Callback {
 	
 	private static final String SERVER_NAME = "freechess.org";
 	private static final int SERVER_PORT = 5000;
-	private static final String ALT_SERVER_NAME = "69.36.243.188";
+	private static final String ALT_SERVER_NAME = "167.114.65.195";
 	private static final int ALT_SERVER_PORT = 23;
 	
 	private final String username;
