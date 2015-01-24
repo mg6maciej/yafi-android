@@ -3,8 +3,8 @@
     android:hardwareAccelerated="true"
     android:installLocation="auto"
     package="pl.mg6.yafi.plus"
-    android:versionCode="34"
-    android:versionName="0.6.32" >
+    android:versionCode="6033"
+    android:versionName="0.6.33" >
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
