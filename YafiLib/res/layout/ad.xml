@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.ads.AdView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+<io.userfeeds.ads.sdk.AdView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:userfeeds="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ad_view"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:layout_alignParentRight="true"
-    android:layout_gravity="right"
-    ads:adSize="BANNER"
-    ads:adUnitId="a14eff5593f0b1d" />
+    userfeeds:algorithm="internal"
+    userfeeds:apiKey="59049c8fdfed920001508e2a94bad07aa8f846674ae92e8765bd926c"
+    userfeeds:context="ads"
+    userfeeds:debug="true"/>

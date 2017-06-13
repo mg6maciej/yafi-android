@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/userfeeds_ad_background"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingLeft="4dp"
+    android:paddingRight="50dp">
+
+    <TextView
+        android:id="@+id/userfeeds_ad_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textColor="@color/userfeeds_ad_text_color"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/userfeeds_ad_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/userfeeds_ad_text_color"/>
+
+</LinearLayout>

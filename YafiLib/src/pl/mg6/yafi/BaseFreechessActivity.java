@@ -3,10 +3,7 @@ package pl.mg6.yafi;
 import java.util.UUID;
 
 import pl.mg6.common.Settings;
-import pl.mg6.common.TimeUtils;
 import pl.mg6.common.android.BaseActivity;
-import pl.mg6.common.android.ads.BaseAdListener;
-import pl.mg6.common.android.tracker.Tracking;
 import pl.mg6.yafi.lib.R;
 import pl.mg6.yafi.model.FreechessService;
 import pl.mg6.yafi.model.FreechessService.FreechessServiceInterface;
@@ -26,11 +23,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.google.ads.Ad;
-import com.google.ads.AdRequest;
-import com.google.ads.AdRequest.ErrorCode;
-import com.google.ads.AdView;
+import io.userfeeds.sdk.core.UserfeedsSdk;
 
 public class BaseFreechessActivity extends BaseActivity implements ServiceConnection, Callback {
 	
@@ -57,6 +50,7 @@ public class BaseFreechessActivity extends BaseActivity implements ServiceConnec
 		super.onCreate(savedInstanceState);
 		handler = new Handler(this);
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
+		UserfeedsSdk.INSTANCE.initialize("59049c8fdfed920001508e2a94bad07aa8f846674ae92e8765bd926c", false);
 	}
 	
 	@Override
@@ -68,37 +62,7 @@ public class BaseFreechessActivity extends BaseActivity implements ServiceConnec
 				ViewGroup parent = (ViewGroup) view.getParent();
 				parent.removeView(view);
 			} else {
-				final AdView adView = (AdView) view;
-				adView.setAdListener(new BaseAdListener() {
-					private long startTime = 0L;
-					@Override
-					public void onPresentScreen(Ad ad) {
-						super.onPresentScreen(ad);
-						startTime = TimeUtils.getTimestamp();
-					}
-					
-					@Override
-					public void onLeaveApplication(Ad ad) {
-						super.onLeaveApplication(ad);
-						startTime = TimeUtils.getTimestamp();
-					}
-					@Override
-					public void onDismissScreen(Ad ad) {
-						super.onDismissScreen(ad);
-						long endTime = TimeUtils.getTimestamp();
-						int time = (int) (endTime - startTime);
-						trackEvent(Tracking.CATEGORY_ADMOB, Tracking.ACTION_CLICKED, BaseFreechessActivity.this.getClass().getSimpleName(), time);
-					}
-					@Override
-					public void onFailedToReceiveAd(Ad ad, ErrorCode code) {
-						super.onFailedToReceiveAd(ad, code);
-						trackEvent(Tracking.CATEGORY_ADMOB, Tracking.ACTION_FAILED_TO_LOAD, code.name(), 0);
-					}
-				});
-				AdRequest request = new AdRequest();
-				request.addTestDevice(AdRequest.TEST_EMULATOR);
-				request.addTestDevice("ADC437B053BD10CA22B9DCF950994CD8");
-				adView.loadAd(request);
+				
 			}
 		}
 	}
